@@ -1,0 +1,24 @@
+spring:
+  thymeleaf:
+    mode: HTML
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/welog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1314520
+
+
+
+
+logging:
+  file:
+    path: log/welog.log
+  level:
+    root: info
+    com.soreak: debug
+
+mybatis-plus:
+  mapper-locations: classpath:mapperXML/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.soreak.entity
