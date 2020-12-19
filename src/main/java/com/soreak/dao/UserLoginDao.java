@@ -1,7 +1,6 @@
 package com.soreak.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.soreak.entity.User;
+import com.soreak.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,5 +11,7 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface UserLoginDao{
-    User checkUser(String phone,String password);
+    UserEntity checkUser(String phone, String password);
+    UserEntity getUserInfoByUsername(String username);
+
 }

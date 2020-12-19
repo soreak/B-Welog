@@ -23,9 +23,9 @@ public class BlogTag implements Serializable {
     private Long id;
 
     /**
-     * 标签名称
+     * 标签id
      */
-    private String tagName;
+    private String tagId;
 
     /**
      * 对应博客Id

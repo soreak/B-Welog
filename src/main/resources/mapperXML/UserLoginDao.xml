@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.soreak.dao.UserLoginDao">
 
-    <resultMap id="userMap" type="com.soreak.entity.User">
+    <resultMap id="userMap" type="com.soreak.entity.UserEntity">
         <id property="id" column="id"/>
         <result property="nickname" column="nickname"/>
         <result property="avatar" column="avatar"/>
@@ -16,12 +16,16 @@
         <result property="git" column="git"/>
         <result property="email" column="email"/>
         <result property="information" column="information"/>
-        <result property="type" column="type"/>
+        <result property="role" column="role"/>
 
     </resultMap>
 
     <select id="checkUser" parameterType="String" resultMap="userMap">
       select * from sk_user where phone = #{phone} and password = #{password}
+    </select>
+
+    <select id="getUserInfoByUsername" parameterType="String" resultMap="userMap">
+      select * from sk_user where phone = #{phone}
     </select>
 
 </mapper>

@@ -3,9 +3,15 @@ package com.soreak.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: welog
@@ -16,7 +22,7 @@ import java.util.Date;
 
 @Data
 @TableName(value = "sk_user")
-public class User implements Serializable {
+public class UserEntity implements Serializable {
 
     /**
      * 标识符 ID
@@ -50,9 +56,9 @@ public class User implements Serializable {
     private String information;
 
     /**
-     * 账户状态
+     * 账户角色
      */
-    private Integer type;
+    private String role;
 
     /**
      * 创建时间

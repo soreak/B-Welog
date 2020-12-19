@@ -18,10 +18,11 @@
                         </div>
                     </h2>
                     <form class="ui large form" method="post" action="#" th:action="@{}">
+                        <input type="hidden" name="flag" th:unless="${#strings.isEmpty(flag)}" th:text="${flag}}">
                         <div class="ui stacked segment">
                             <div class="field">
                                 <div class="ui left icon input">
-                                    <i class="user icon"></i>
+                                    <i class="userEntity icon"></i>
                                     <input type="text" name="username" placeholder="用户名">
                                 </div>
                             </div>
@@ -32,10 +33,12 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui left icon input">
-                                    <i class="phone icon"></i>
-                                    <input type="number" name="phone" placeholder="手机号">
-                                </div>
+                                    <div class="ui left icon input">
+                                        <i class="phone icon"></i>
+                                        <input type="tel" name="phone" placeholder="手机号">
+                                        &nbsp;
+                                        <div class="ui right button">获取验证码</div>
+                                    </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
@@ -44,6 +47,8 @@
                                 </div>
                             </div>
                             <button class="ui fluid large teal submit button">注册</button>
+                            <div class="field m-margin-top">
+                                已有账号？不妨试试 <a href="#">登录</a> </div>
                         </div>
 
                         <div class="ui error mini message">

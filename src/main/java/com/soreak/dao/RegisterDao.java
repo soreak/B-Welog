@@ -7,12 +7,9 @@ import org.springframework.stereotype.Repository;
 /**
  * @program: welog
  * @author: soreak
- * @description:
- * @create: 2020-12-17 16:07
+ * @description: 注册
+ * @create: 2020-12-19 14:30
  **/
 @Repository
-public interface UserDao extends BaseMapper<UserEntity> {
-
-
-
+public interface RegisterDao extends BaseMapper<UserEntity> {
 }

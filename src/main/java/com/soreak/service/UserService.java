@@ -1,6 +1,6 @@
 package com.soreak.service;
 
-import com.soreak.entity.User;
+import com.soreak.entity.UserEntity;
 
 /**
  * @program: welog
@@ -14,8 +14,8 @@ public interface UserService {
      * @param phone
      * @return
      */
-    User checkUser(String phone,String password);
+    UserEntity checkUser(String phone, String password);
 
-
+    UserEntity getUserInfo(String username);
 
 }

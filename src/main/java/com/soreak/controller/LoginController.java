@@ -1,12 +1,11 @@
 package com.soreak.controller;
 
 
-import com.soreak.entity.User;
 import com.soreak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,19 +27,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,
-                        @RequestParam String password,
-                        HttpSession session,
-                        RedirectAttributes attributes){
-        User user = userService.checkUser(username,password);
-        if (user != null){
-            user.setPassword(null);
-            session.setAttribute("user",user);
-            return "/index";
-        }else{
-            attributes.addFlashAttribute("message","用户名或密码错误");
-            return "/login";
-        }
+    public String login(){
+        return "login";
     }
 
 

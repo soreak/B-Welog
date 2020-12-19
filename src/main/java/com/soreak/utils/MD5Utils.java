@@ -1,7 +1,8 @@
-package com.soreak.util;
+package com.soreak.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 /**
  * @program: welog
@@ -35,5 +36,6 @@ public class MD5Utils {
     }
     public static void main(String[] args) {
         System.out.println(code("123456"));
+        System.out.println(UUID.randomUUID().toString());
     }
 }

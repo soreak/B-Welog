@@ -48,8 +48,8 @@
             <div class="ui top attached segment">
                 <div class="ui horizontal link list">
                     <div class="item">
-                        <img src="http://lorempixel.com/100/100/" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
-                        <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">soreaK</a></div>
+                        <img src="http://lorempixel.com/100/100/" th:src="@{${blog.userEntity.avatar}}" alt="" class="ui avatar image">
+                        <div class="content"><a href="#" class="header" th:text="${blog.userEntity.nickname}">soreaK</a></div>
                     </div>
                     <div class="item">
                         <i class="calendar icon" ></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-8-6</span>
@@ -115,7 +115,7 @@
                 <div class="ui middle aligned grid">
                     <div class="eleven wide column">
                         <ui class="list">
-                            <li>作者：<span th:text="${blog.user.nickname}"> soreak</span><a href="#" th:href="@{/about}" target="_blank"></a></li>
+                            <li>作者：<span th:text="${blog.userEntity.nickname}"> soreak</span><a href="#" th:href="@{/about}" target="_blank"></a></li>
                             <li>发表时间：<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}"> 2020-03-26 23:53</span></li>
 
                         </ui>
@@ -243,14 +243,14 @@
                         <div class="field m-mobile-wide margin-bottom-small">
                             <!--ui icon input 输入框加图标-->
                             <div class="ui left icon input">
-                                <i class="user icon"></i>
-                                <input type="text" name="nickname" placeholder="姓名" th:value="${session.user}!=null ? ${session.user.nickname}">
+                                <i class="userEntity icon"></i>
+                                <input type="text" name="nickname" placeholder="姓名" th:value="${session.userEntity}!=null ? ${session.userEntity.nickname}">
                             </div>
                         </div>
                         <div class="field m-mobile-wide margin-bottom-small">
                             <div class="ui left icon input">
                                 <i class="mail icon"></i>
-                                <input type="text" name="email" placeholder="邮箱" th:value="${session.user}!=null ? ${session.user.email}">
+                                <input type="text" name="email" placeholder="邮箱" th:value="${session.userEntity}!=null ? ${session.userEntity.email}">
                             </div>
                         </div>
                         <div class="field m-mobile-wide margin-bottom-small">
