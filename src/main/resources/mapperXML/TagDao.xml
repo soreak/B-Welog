@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soreak.dao.TagDao">
+
+
+
+
+    <select id="getTagNameAndCount"  resultType="com.soreak.entity.VO.TagVO">
+      select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc  LIMIT 8
+    </select>
+
+
+
+</mapper>

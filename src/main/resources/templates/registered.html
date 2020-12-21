@@ -17,78 +17,217 @@
                             账号注册
                         </div>
                     </h2>
-                    <form class="ui large form" method="post" action="#" th:action="@{}">
-                        <input type="hidden" name="flag" th:unless="${#strings.isEmpty(flag)}" th:text="${flag}}">
+                    <div class="ui large form">
+                        <input type="hidden" name="flag" id="flag">
                         <div class="ui stacked segment">
                             <div class="field">
                                 <div class="ui left icon input">
-                                    <i class="userEntity icon"></i>
-                                    <input type="text" name="username" placeholder="用户名">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="username" id="username" placeholder="用户名">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="密码">
+                                    <input type="password" name="password" id="password" placeholder="密码">
                                 </div>
                             </div>
                             <div class="field">
                                     <div class="ui left icon input">
                                         <i class="phone icon"></i>
-                                        <input type="tel" name="phone" placeholder="手机号">
+                                        <input type="tel" name="phone" id="phone" placeholder="手机号">
                                         &nbsp;
-                                        <div class="ui right button">获取验证码</div>
+                                        <button class="ui right button" id="codeBtn">获取验证码</button>
                                     </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="envelope outline icon"></i>
-                                    <input type="验证码" name="code" placeholder="验证码">
+                                    <input type="验证码" name="code" id="code" placeholder="验证码">
                                 </div>
                             </div>
-                            <button class="ui fluid large teal submit button">注册</button>
+                            <button class="ui fluid large teal submit button" onclick="sub()">注册</button>
                             <div class="field m-margin-top">
-                                已有账号？不妨试试 <a href="#">登录</a> </div>
+                                已有账号？不妨试试 <a href="#" th:href="@{/login}">登录</a> </div>
                         </div>
 
-                        <div class="ui error mini message">
-
-                        </div>
                         <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}}">验证码错误</div>
 
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-                <!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-                <!--/*/</th:block>/*/-->
-                <script>
-                    $('.ui.form').form({
-                        fields : {
-                            username : {
-                                identifier : 'username',
-                                rules : [{
-                                    /*非空校验*/
-                                    type : 'empty',
-                                    prompt : '请输入用户名'
-
+    <!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+    <script>
+        $('.ui.form').form({
+            fields : {
+                username : {
+                    identifier : 'username',
+                    rules : [{
+                        /*非空校验*/
+                        type : 'empty',
+                        prompt : '请输入用户名'
                                 }]
                             },
 
-                            password : {
-                                identifier : 'password',
-                                rules : [{
-                                    /*非空校验*/
-                                    type : 'empty',
-                                    prompt : '请输入密码'
-
+                password : {
+                    identifier : 'password',
+                    rules : [{
+                        /*非空校验*/
+                        type : 'empty',
+                        prompt : '请输入密码'
                                 }]
-                            }
+                },
+                phone : {
+                    identifier : 'phone',
+                    rules:  [
+                        {
+                            type: 'number',
+                            prompt: "手机号码只允许数字"
+                        },
+                        {
+                            type: 'exactLength[11]',
+                            prompt: "手机号码长度不正确"
                         }
-                    });
-                </script>
+                    ]
+                }
+            }
+        });
+
+
+        /**
+         * 手机号校验
+         * @param data
+         */
+        function checkPhone(phoneNum) {
+            $.ajax({
+                type: "POST",
+                url: "phoneCheck",
+                // contentType: "application/x-www-form-urlencoded",
+                data: {
+                    phone: phoneNum,
+                },
+                success: function (data) {
+                    //放入数据
+                    console.log(data);
+                    if (data.status == 200) {
+                        $.ajax({
+                            type: "POST",
+                            url: "getCode",
+                            // contentType: "application/x-www-form-urlencoded",
+                            data: {
+                                phone: phoneNum,
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                //放入数据
+                                if (data.status == 200) {
+                                    alert("手机验证码发送成功！");
+                                    $("#flag").val(data.flag);
+                                    codeBtn.attr("disabled", true);
+                                    timeCount();
+                                } else {
+                                    alert("手机验证码发送失败，请重新发送！");
+                                    codeBtn.attr("disabled", false);
+                                }
+                            },
+                            error: function (res) {
+                                alert("客官，慢点按(⊙o⊙)？");
+                                codeBtn.attr("disabled", false);
+                            }
+                        });
+                        return
+                    }
+                    alert("手机号码已注册");
+                    codeBtn.attr("disabled", false);
+                },
+                error: function (res) {
+                    alert("客官，慢点按(⊙o⊙)？");
+
+                }
+            });
+
+        }
+
+
+
+        var phone = $("#phone");
+        /**
+         * 点击获取验证码
+         */
+
+        var codeBtn = $("#codeBtn");
+        var my_interval;
+        my_interval = 60;
+        var timeLeft = my_interval;
+        //重新发送计时函数
+        var timeCount = function () {
+            window.setTimeout(function () {
+                if (timeLeft > 0) {
+                    timeLeft -= 1;
+                    codeBtn.html(timeLeft + "秒重新发送");
+                    codeBtn.attr('disabled', true);
+                    timeCount();
+                } else {
+                    codeBtn.html("重新发送");
+                    timeLeft = 60;
+                    codeBtn.attr('disabled', false);
+                }
+            }, 1000);
+        };
+
+        var myreg = /^1[3-578]\d{9}$/;
+
+        /**
+         * 验证码获取
+         */
+        codeBtn.click(async function () {
+            codeBtn.attr("disabled", true);
+            var phone1 = phone.val().trim();
+            if (phone1.length == 0 || phone1.length != 11 ||!myreg.test(phone1) ) {
+                alert("手机号码有误");
+                codeBtn.attr("disabled", false);
+            }
+            await checkPhone(phone1)
+
+
+
+
+        });
+
+
+
+
+        function sub() {
+            $.ajax({
+                type: "POST",
+                url: "registered",
+                // contentType: "application/x-www-form-urlencoded",
+                data: {
+                    flag:$("#flag").val().trim(),
+                    phone: $("#phone").val(),
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    code: $("#code").val()
+                },
+                success: function (data) {
+                    //放入数据
+                    console.log(data);
+                    if (data.status == 200) {
+                        alert("注册成功")
+                        window.location.href = "login";
+                    }else {
+                        alert(data.message);
+                    }
+                },
+
+            });
+        }
+
+    </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 spring:
   thymeleaf:
-    mode: HTML
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

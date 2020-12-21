@@ -44,7 +44,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public int findByUsername(String username) {
-        int name = registerDao.selectCount(new QueryWrapper<UserEntity>().eq("username",username));
+        int name = registerDao.selectCount(new QueryWrapper<UserEntity>().eq("nickname",username));
         return name;
     }
 }

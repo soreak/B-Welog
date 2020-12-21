@@ -72,23 +72,23 @@
 
                     <!--content-->
                     <!--attached连接segment-->
-                    <div class="ui attached segment m-padded-tb-large" th:each="blog : ${page.content}">
+                    <div class="ui attached segment m-padded-tb-large" th:each="blog : ${blogs}">
                         <!--padded 内部边距-->
                         <!--vertical竖直排布 中间会自动加线-->
                         <div class="ui padded vertical segment" >
                             <!--mobile reversed 图片和文字换位置 图片在上 eleven 和five 反转-->
                             <div class="ui middle aligned mobile reversed stackable grid" >
-                                <div class="eleven wide column">
+                                <div class="column">
                                     <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">文章标题</a></h3>
-                                    <p class="m-text" th:text="|${blog.description}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
+                                    <p class="m-text" th:text="|${blog.content}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
 
                                     <div class="ui grid">
                                         <div class="eleven wide column">
                                             <!--每个item水平摆放-->
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img src="http://lorempixel.com/100/100/" th:src="@{${blog.userEntity.avatar}}" alt="" class="ui avatar image">
-                                                    <div class="content"> <a href="#" class="header" th:text="${blog.userEntity.nickname}">soreaK</a></div>
+                                                    <img src="http://lorempixel.com/100/100/" th:src="@{${blog.userAvatar}}" alt="" class="ui avatar image">
+                                                    <div class="content"> <a href="#" class="header" th:text="${blog.userName}">soreaK</a></div>
 
                                                 </div>
                                                 <div class="item">
@@ -105,29 +105,11 @@
                                     </div>
 
                                 </div>
-
-                                <div class="five wide column">
-                                    <a href="#"  th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                                        <img src="http://lorempixel.com/800/400/" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
 
 
-                    <!--footer-->
-                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
-                        <div class="ui middle aligned two column grid">
-
-                            <div class="column">
-                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">上一页</a>
-                            </div>
-                            <div class="right aligned column">
-                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini teal basic button">下一页</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!--右侧 top-->
                 <div class="five wide column">
@@ -139,15 +121,13 @@
                                 <div class="column">
                                     <i class="tags icon"></i>标签
                                 </div>
-                                <div class="right aligned column">
-                                    <a href="#" th:href="@{/tags/-1}" target="_blank">more<i class="angle double right icon"></i></a>
-                                </div>
+
                             </div>
                         </div>
 
                         <div class="ui teal segment">
                             <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
-                               <span th:text="${tag.name}">方法论</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">2</div>
+                               <span th:text="${tag.name}">方法论</span> <div class="detail" th:text="${tag.count}">2</div>
                             </a>
 
 

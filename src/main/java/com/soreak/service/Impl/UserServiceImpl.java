@@ -1,5 +1,7 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.soreak.dao.UserDao;
 import com.soreak.dao.UserLoginDao;
 import com.soreak.entity.UserEntity;
 import com.soreak.service.UserService;
@@ -21,14 +23,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserLoginDao userLoginDao;
 
+    @Autowired
+    private UserDao userDao;
+
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public UserEntity checkUser(String phone, String password) {
-        return userLoginDao.checkUser(phone, MD5Utils.code(password));
+        return userLoginDao.checkUser(phone, password);
     }
 
     @Override
     public UserEntity getUserInfo(String username) {
         return userLoginDao.getUserInfoByUsername(username);
+    }
+
+    @Override
+    public int findByPhone(String phone) {
+        return userDao.selectCount(new QueryWrapper<UserEntity>().eq("phone", phone));
     }
 }
