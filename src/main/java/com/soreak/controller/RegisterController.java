@@ -37,6 +37,7 @@ public class RegisterController {
 
 
 
+
     @GetMapping("/registered")
     public String registerPage(){
         return "/registered";
@@ -110,10 +111,10 @@ public class RegisterController {
     @PostMapping("/phoneCheck")
     @ResponseBody
     public JSONObject phoneCheck(@RequestParam("phone") String phone){
-        int result = userService.findByPhone(phone);
+        UserEntity result = userService.findByPhone(phone);
         System.out.println(result);
         JSONObject jsonObject = new JSONObject();
-        if(result == 0){
+        if(result == null){
             jsonObject.put("status",200);
         }else{
             jsonObject.put("status",500);

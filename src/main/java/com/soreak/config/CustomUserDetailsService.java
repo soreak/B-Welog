@@ -49,8 +49,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(
                 user.getPhone(),
                 // 因为数据库是明文，所以这里需加密密码
-                passwordEncoder.encode(user.getPassword()),
+               user.getPassword(),
                 authorities
+
         );
     }
     }

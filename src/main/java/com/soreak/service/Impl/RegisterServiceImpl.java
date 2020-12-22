@@ -5,6 +5,8 @@ import com.soreak.dao.RegisterDao;
 import com.soreak.entity.UserEntity;
 import com.soreak.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,9 @@ public class RegisterServiceImpl implements RegisterService {
     @Autowired
     private RegisterDao registerDao;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -31,6 +36,10 @@ public class RegisterServiceImpl implements RegisterService {
         userEntity.setRole("0");
         userEntity.setCreateTime(new Date());
         userEntity.setUpdateTime(new Date());
+        String password = userEntity.getPassword();
+
+        String newPasswd = passwordEncoder.encode(password);
+        userEntity.setPassword(newPasswd);
 
 
         return registerDao.insert(userEntity);

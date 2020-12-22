@@ -5,7 +5,6 @@ import com.soreak.dao.UserDao;
 import com.soreak.dao.UserLoginDao;
 import com.soreak.entity.UserEntity;
 import com.soreak.service.UserService;
-import com.soreak.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -38,7 +37,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int findByPhone(String phone) {
-        return userDao.selectCount(new QueryWrapper<UserEntity>().eq("phone", phone));
+    public UserEntity findByPhone(String phone) {
+        return userDao.selectOne(new QueryWrapper<UserEntity>().eq("phone", phone));
     }
+
+
 }

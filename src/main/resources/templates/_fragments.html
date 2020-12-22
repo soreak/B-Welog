@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width ,initial-scale=1.0">
@@ -15,11 +16,11 @@
 <nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">Blog</h2>
-            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i><span th:text="#{nav.index}">首页</span></a>
-            <a href="#" th:href="@{/news/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="newspaper icon"></i><span th:text="#{nav.news}">新闻</span></a>
-            <a href="#" th:href="@{/topic/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="bullhorn icon"></i><span th:text="#{nav.topic}">话题</span></a>
-            <a href="#" th:href="@{/my}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="info icon"></i><span th:text="#{nav.MY}">MY</span></a>
+            <h2 class="ui teal header item">welog</h2>
+            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i><span>首页</span></a><!--th:text="#{nav.index}"-->
+            <a href="#" th:href="@{/news/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="newspaper icon"></i><span >新闻</span></a><!--th:text="#{nav.news}"-->
+            <a href="#" th:href="@{/topic/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="bullhorn icon"></i><span >话题</span></a><!--th:text="#{nav.topic}"-->
+            <a href="#" sec:authorize="isAuthenticated()" th:href="@{/my}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="info icon"></i><span >MY</span></a><!--th:text="#{nav.MY}"-->
 
             <div class="right item m-mobile-hide">
                 <form name="search" th:method="post" action="#" th:action="@{/search}" target="_blank">
@@ -29,6 +30,28 @@
                     </div>
                 </form>
 
+            </div>
+
+
+            <div class="ui item" sec:authorize="!isAuthenticated()">
+
+                <a href="#" class="ui teal button" th:href="@{/login}">登录</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="#" class="ui teal button" th:href="@{/registered}">注册</a>
+            </div>
+
+
+            <div class="ui dropdown item" sec:authorize="isAuthenticated()">
+
+                <div class="text">
+                    <span th:if="${user.nickname}" th:text="${user.nickname}"></span>
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">个人信息</a>
+                    <a href="#" class="item">发表</a>
+                    <a href="#" class="item">注销</a>
+                </div>
             </div>
         </div>
     </div>

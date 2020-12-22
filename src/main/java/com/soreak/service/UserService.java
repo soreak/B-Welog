@@ -18,5 +18,5 @@ public interface UserService {
 
     UserEntity getUserInfo(String username);
 
-    int findByPhone(String phone);
+    UserEntity findByPhone(String phone);
 }

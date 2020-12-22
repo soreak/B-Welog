@@ -1,12 +1,16 @@
 package com.soreak.controller;
 
 import com.soreak.entity.Blog;
+import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TagVO;
 import com.soreak.service.BlogService;
 import com.soreak.service.TagService;
+import com.soreak.service.UserService;
 import com.soreak.utils.HTMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +39,16 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/")
     public String index(Model model){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (phone!=null){
+            model.addAttribute("user",userService.findByPhone(phone));
+        }
+
         List<TagVO> tags = tagService.getTagNameAndCount();
         model.addAttribute("tags",tags);
 
@@ -54,5 +68,8 @@ public class IndexController {
         model.addAttribute("recommendBlogs",recommendBlog);
         return "index";
     }
+
+
+
 
 }
