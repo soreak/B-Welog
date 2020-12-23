@@ -2,7 +2,6 @@ package com.soreak.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.UserDao;
-import com.soreak.dao.UserLoginDao;
 import com.soreak.entity.UserEntity;
 import com.soreak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserLoginDao userLoginDao;
+
 
     @Autowired
     private UserDao userDao;
@@ -28,17 +26,22 @@ public class UserServiceImpl implements UserService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public UserEntity checkUser(String phone, String password) {
-        return userLoginDao.checkUser(phone, password);
+        return userDao.checkUser(phone, password);
     }
 
     @Override
     public UserEntity getUserInfo(String username) {
-        return userLoginDao.getUserInfoByUsername(username);
+        return userDao.getUserInfoByUsername(username);
     }
 
     @Override
     public UserEntity findByPhone(String phone) {
         return userDao.selectOne(new QueryWrapper<UserEntity>().eq("phone", phone));
+    }
+
+    @Override
+    public UserEntity getUserById(Long id) {
+        return userDao.selectById(id);
     }
 
 

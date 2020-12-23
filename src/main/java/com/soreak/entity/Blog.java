@@ -68,7 +68,10 @@ public class Blog implements Serializable {
      */
     private String views;
 
-
+    /**
+     * 作者id
+     */
+    private Long userId;
 
 
 

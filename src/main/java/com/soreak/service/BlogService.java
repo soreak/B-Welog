@@ -16,5 +16,5 @@ public interface BlogService {
 
     List<Blog> getRecommendBlogList();
 
-
+    BlogVO getBlogById(Long id);
 }

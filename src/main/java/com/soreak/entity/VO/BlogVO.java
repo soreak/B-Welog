@@ -1,8 +1,10 @@
 package com.soreak.entity.VO;
 
+import com.soreak.entity.Tag;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: welog
@@ -18,7 +20,17 @@ public class BlogVO {
 
     private String content;
 
+    private Date createTime;
+
     private Date updateTime;
+
+    private boolean commentabled;
+
+    private boolean recommend;
+
+    private boolean published;
+
+    private String flag;
 
     private String views;
 
@@ -26,5 +38,6 @@ public class BlogVO {
 
     private String userAvatar;
 
+    private List<Tag> tags;
 
 }

@@ -1,21 +1,21 @@
-package com.soreak.entity;
+package com.soreak.entity.VO;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.soreak.entity.BlogComment;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: welog
  * @author: soreak
- * @description: 博客评论表
- * @create: 2020-12-17 16:24
+ * @description:
+ * @create: 2020-12-23 22:32
  **/
 @Data
-@TableName(value = "sk_blog_commend")
-public class BlogCommend implements Serializable {
+public class CommentVO {
 
     /**
      * 标识符Id
@@ -39,6 +39,11 @@ public class BlogCommend implements Serializable {
     private String content;
 
     /**
+     * 判断已读
+     */
+    private int status;
+
+    /**
      * 评论创建时间
      */
     private Date createTime;
@@ -47,4 +52,10 @@ public class BlogCommend implements Serializable {
      * 父级评论
      */
     private Long parentCommentId;
+
+    private List<CommentVO> replyComments;
+
+    private CommentVO parentComment;
+
+    private String nickname;
 }

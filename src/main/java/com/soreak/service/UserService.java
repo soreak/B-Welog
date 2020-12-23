@@ -19,4 +19,6 @@ public interface UserService {
     UserEntity getUserInfo(String username);
 
     UserEntity findByPhone(String phone);
+
+    UserEntity getUserById(Long id);
 }

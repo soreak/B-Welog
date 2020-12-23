@@ -45,6 +45,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         if (phone!=null){
             model.addAttribute("user",userService.findByPhone(phone));
         }
