@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width ,initial-scale=1.0">
@@ -198,27 +198,32 @@
                 <div id="comment-form" class="ui form">
                     <input type="hidden" name="blog.id" th:value="${blog.id}">
                     <input type="hidden" name="parentComment.id" th:value="-1">
-                    <div class="field">
-                        <textarea name="content" placeholder="请输入评论信息..." id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="fields">
-                        <div class="field m-mobile-wide margin-bottom-small">
-                            <!--ui icon input 输入框加图标-->
-                            <div class="ui left icon input">
-                                <i class="userEntity icon"></i>
-                                <input type="text" name="nickname" placeholder="姓名" th:value="${session.userEntity}!=null ? ${session.userEntity.nickname}">
-                            </div>
-                        </div>
-                        <div class="field m-mobile-wide margin-bottom-small">
-                            <div class="ui left icon input">
-                                <i class="mail icon"></i>
-                                <input type="text" name="email" placeholder="邮箱" th:value="${session.userEntity}!=null ? ${session.userEntity.email}">
-                            </div>
-                        </div>
-                        <div class="field m-mobile-wide margin-bottom-small">
-                            <button type="button" id="commentpost-btn" class="ui teal m-mobile-wide button"> <i class="edit icon"></i>发布</button>
-                        </div>
 
+
+
+                    <div sec:authorize="!isAuthenticated()">
+                        <div class="field">
+                            <textarea name="content" placeholder="请登录..."  cols="30" rows="10" readonly="readonly"></textarea>
+                        </div>
+                        <div class="fields">
+                            <div class="field m-mobile-wide margin-bottom-small">
+                                <a href="#" class="ui teal button" th:href="@{/login}">登录</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div sec:authorize="isAuthenticated()">
+                        <div class="field">
+                            <textarea name="content" placeholder="请输入评论信息..."  cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="fields">
+                            <div class="field m-mobile-wide margin-bottom-small">
+                                <button type="button" id="commentpost-btn" class="ui teal m-mobile-wide button"> <i class="edit icon"></i>发布</button>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -278,16 +283,7 @@
     });
 
 
-    var serurl = /*[[#{blog.serurl}]]*/"127.0.0.1:8080";
-    var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
-    var qrcode = new QRCode("qrcode", {
-        text: serurl+url,
-        width: 110,
-        height: 110,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-    });
+
     $('#toTop-button').click(function () {
         /*0 最开头 500 间隔时间*/
         $(window).scrollTo(0,500);
@@ -318,28 +314,6 @@
 
                 }]
             },
-
-            content : {
-                identifier : 'nickname',
-                rules : [{
-                    /*非空校验*/
-                    type : 'empty',
-                    prompt : '请输入你的名字'
-
-                }]
-            },
-
-            typeId : {
-                identifier : 'email',
-                rules : [{
-                    /*非空校验*/
-                    type : 'empty',
-                    prompt : '请输入你的邮箱'
-
-                }]
-            },
-
-
         }
     });
 
@@ -355,15 +329,13 @@
 
     // 页面加载完成后加载评论
     $(function () {
-        $('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comment/0");
+        ($('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/0"));
     });
 
     function postData() {
         $("#comment-container").load(/*[[@{/comments}]]*/"",{
-            "parentComment.id" : $("[name='parentComment.id']").val(),
-            "blog.id" : $("[name='blog.id']").val(),
-            "nickname" : $("[name='nickname']").val(),
-            "email" : $("[name='email']").val(),
+            "parentCommentId" : $("[name='parentComment.id']").val(),
+            "blogId" : $("[name='blog.id']").val(),
             "content" : $("[name='content']").val(),
         },function (responseTxt,statusTxt,xhr) {
             // $(window).scrollTo($('#comment-container'),500);

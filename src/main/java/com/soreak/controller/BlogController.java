@@ -43,14 +43,9 @@ public class BlogController {
             model.addAttribute("user",byPhone);
         }
 
-
         BlogVO blog =blogService.getBlogById(id);
 
-        List<CommentVO> blogComments = blogCommentService.listCommentByBlogId(id);
-        System.out.println(blogComments);
-
         model.addAttribute("blog",blog);
-        model.addAttribute("comments",blogComments);
         return "blog";
     }
 }

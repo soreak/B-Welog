@@ -50,7 +50,7 @@
                 <div class="menu">
                     <a href="#" class="item">个人信息</a>
                     <a href="#" class="item">发表</a>
-                    <a href="#" class="item">注销</a>
+                    <a href="#" class="item" th:href="@{/logout}">注销</a>
                 </div>
             </div>
         </div>
@@ -72,7 +72,13 @@
     <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
     <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
     <script>
-        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+        $('.menu.toggle').click(function () {
+            /*toggleClass 有则去除没有则加上*/
+            $('.m-item').toggleClass('m-mobile-hide')
+        });
+        $('.ui.dropdown').dropdown({
+            on:'hover'
+        });
     </script>
 </th:block>
 

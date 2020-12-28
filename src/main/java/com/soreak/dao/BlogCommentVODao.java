@@ -16,7 +16,7 @@ import java.util.List;
  * @create: 2020-12-17 16:47
  **/
 @Repository
-public interface BlogCommendDao extends BaseMapper<CommentVO> {
+public interface BlogCommentVODao extends BaseMapper<CommentVO> {
 
     @Select("select bc.*,u.nickname as 'nickname' FROM sk_blog_comment bc, sk_user u WHERE bc.user_id = u.id and bc.blog_id=#{blogId} and bc.parent_comment_id is NULL ORDER BY create_time asc")
     List<CommentVO> getBlogCommentByBlogIdAndParentCommentNull(@Param("blogId") Long blogId);

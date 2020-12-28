@@ -1,10 +1,10 @@
 package com.soreak.service.Impl;
 
-import com.soreak.dao.BlogCommendDao;
+import com.soreak.dao.BlogCommentDao;
+import com.soreak.dao.BlogCommentVODao;
 import com.soreak.entity.BlogComment;
 import com.soreak.entity.VO.CommentVO;
 import com.soreak.service.BlogCommentService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,15 +21,25 @@ import java.util.List;
 public class BlogCommentServiceImpl implements BlogCommentService {
 
     @Autowired
-    private BlogCommendDao blogCommendDao;
+    private BlogCommentVODao blogCommentVODao;
+
+
+    @Autowired
+    private BlogCommentDao blogCommentDao;
 
 
     @Override
     public List<CommentVO> listCommentByBlogId(Long blogId) {
 
-        List<CommentVO> comments = blogCommendDao.getBlogCommentByBlogIdAndParentCommentNull(blogId);
+        List<CommentVO> comments = blogCommentVODao.getBlogCommentByBlogIdAndParentCommentNull(blogId);
         return eachComment(comments);
     }
+
+    @Override
+    public int saveOne(BlogComment comment) {
+        return blogCommentDao.insert(comment);
+    }
+
     /**
      * 循环顶层结点
      * @param comments
@@ -45,11 +55,11 @@ public class BlogCommentServiceImpl implements BlogCommentService {
 
     private void combineChildren(List<CommentVO> comments) {
         for (CommentVO comment : comments) {
-            List<CommentVO> replies = blogCommendDao.getChildCommentByParentId(comment.getId());
+            List<CommentVO> replies = blogCommentVODao.getChildCommentByParentId(comment.getId());
 
             for (CommentVO reply : replies) {
                 // 循环找出子代
-                reply.setParentComment(blogCommendDao.selectById(reply.getParentCommentId()));
+                reply.setParentComment(blogCommentVODao.selectById(reply.getParentCommentId()));
                 recursively(reply);
             }
             comment.setReplyComments(tempReplies);
@@ -65,12 +75,12 @@ public class BlogCommentServiceImpl implements BlogCommentService {
      */
     private void recursively(CommentVO comment) {
         tempReplies.add(comment);// 顶节点添加到临时存放集合
-        List<CommentVO> childCommentByParentId = blogCommendDao.getChildCommentByParentId(comment.getId());
+        List<CommentVO> childCommentByParentId = blogCommentVODao.getChildCommentByParentId(comment.getId());
         if(childCommentByParentId.size()>0){
             for (CommentVO reply : childCommentByParentId) {
-                reply.setParentComment(blogCommendDao.selectById(reply.getParentCommentId()));
+                reply.setParentComment(blogCommentVODao.selectById(reply.getParentCommentId()));
                 tempReplies.add(reply);
-                if( blogCommendDao.getChildCommentByParentId(reply.getId()).size()>0){
+                if( blogCommentVODao.getChildCommentByParentId(reply.getId()).size()>0){
                     recursively(reply);
                 }
             }

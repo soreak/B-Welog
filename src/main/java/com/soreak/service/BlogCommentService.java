@@ -14,4 +14,5 @@ import java.util.List;
 public interface BlogCommentService {
     List<CommentVO> listCommentByBlogId(Long blogId);
 
+    int saveOne(BlogComment comment);
 }
