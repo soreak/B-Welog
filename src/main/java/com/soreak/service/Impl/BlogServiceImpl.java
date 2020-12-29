@@ -4,8 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.soreak.dao.BlogDao;
+import com.soreak.dao.BlogTagDao;
 import com.soreak.dao.TagDao;
 import com.soreak.entity.Blog;
+import com.soreak.entity.BlogTag;
+import com.soreak.entity.Tag;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.service.BlogService;
 import com.soreak.utils.MarkdownUtils;
@@ -30,6 +33,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private TagDao tagDao;
+
+    @Autowired
+    private BlogTagDao blogTagDao;
 
     @Override
     public List<BlogVO> getBlogList() {
@@ -94,6 +100,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int deleteBlogById(Long id) {
+        QueryWrapper<BlogTag> wrapper = new QueryWrapper<>();
+        wrapper.eq("blog_id",id);
+        blogTagDao.delete(wrapper);
         return blogDao.deleteById(id);
     }
 
