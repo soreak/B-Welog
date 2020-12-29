@@ -1,5 +1,6 @@
 package com.soreak.service;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.soreak.entity.Blog;
 import com.soreak.entity.VO.BlogVO;
 
@@ -14,7 +15,17 @@ import java.util.List;
 public interface BlogService {
     List<BlogVO> getBlogList();
 
-    List<Blog> getRecommendBlogList();
+    List<BlogVO> getMyBlogListByUserId(Long userId);
+
+    List<Blog> getHotBlogList();
 
     BlogVO getBlogById(Long id);
+
+    BlogVO getOneBlog(Long id);
+
+    Long saveBlog(Blog blog);
+
+    Long updateBlog(Blog blog);
+
+    int deleteBlogById(Long id);
 }

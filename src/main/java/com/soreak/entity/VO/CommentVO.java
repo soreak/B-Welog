@@ -58,4 +58,20 @@ public class CommentVO {
     private CommentVO parentComment;
 
     private String nickname;
+
+    @Override
+    public String toString() {
+        return "CommentVO{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", blogId=" + blogId +
+                ", content='" + content + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", parentCommentId=" + parentCommentId +
+                ", replyComments=" + replyComments +
+                ", parentComment=" + parentComment +
+                ", nickname='" + nickname + '\'' +
+                '}'+"\n";
+    }
 }

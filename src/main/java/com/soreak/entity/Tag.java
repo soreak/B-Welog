@@ -1,8 +1,10 @@
 package com.soreak.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+
 
 /**
  * @program: welog
@@ -13,9 +15,11 @@ import lombok.Data;
 @Data
 @TableName("sk_tag")
 public class Tag {
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private String name;
+
+
 
 }

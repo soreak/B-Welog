@@ -1,5 +1,6 @@
 package com.soreak.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -19,13 +20,13 @@ public class BlogTag implements Serializable {
     /**
      * 标识符Id
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
      * 标签id
      */
-    private String tagId;
+    private Long tagId;
 
     /**
      * 对应博客Id

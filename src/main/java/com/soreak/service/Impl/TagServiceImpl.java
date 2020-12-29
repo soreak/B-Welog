@@ -35,4 +35,9 @@ public class TagServiceImpl implements TagService {
     public List<TagVO> getTagNameAndCount() {
         return tagDao.getTagNameAndCount();
     }
+
+    @Override
+    public Long saveTag(Tag tag) {
+        return tagDao.saveBlog(tag);
+    }
 }

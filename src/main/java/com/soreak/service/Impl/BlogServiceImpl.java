@@ -11,7 +11,9 @@ import com.soreak.service.BlogService;
 import com.soreak.utils.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +37,12 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getRecommendBlogList() {
+    public List<BlogVO> getMyBlogListByUserId(Long userId) {
+        return blogDao.getMyBlogListByUserId(userId);
+    }
+
+    @Override
+    public List<Blog> getHotBlogList() {
 
         QueryWrapper queryWrapper = new QueryWrapper();
 
@@ -47,10 +54,48 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public BlogVO getBlogById(Long id) {
-        BlogVO oneBlogById = blogDao.getOneBlogById(id);
-        String content = oneBlogById.getContent();
-        oneBlogById.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
-        oneBlogById.setTags(tagDao.getTagByBlogId(id));
-        return oneBlogById;
+        BlogVO Blog = blogDao.getOneBlogById(id);
+        String content = Blog.getContent();
+        Blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        Blog.setTags(tagDao.getTagByBlogId(id));
+
+        blogDao.updateViews(id);
+        return Blog;
     }
+
+    @Override
+    public BlogVO getOneBlog(Long id) {
+        BlogVO blog = blogDao.getOneBlogById(id);
+        blog.setTags(tagDao.getTagByBlogId(id));
+        return blog;
+    }
+
+
+
+    @Override
+    public Long saveBlog(Blog blog) {
+
+        blog.setCreateTime(new Date());
+        blog.setUpdateTime(new Date());
+        blog.setViews(0);
+
+
+
+        return blogDao.saveBlog(blog);
+    }
+
+
+    @Override
+    public Long updateBlog(Blog blog) {
+        blog.setUpdateTime(new Date());
+        return blogDao.updateBlog(blog);
+    }
+
+
+    @Override
+    public int deleteBlogById(Long id) {
+        return blogDao.deleteById(id);
+    }
+
+
 }

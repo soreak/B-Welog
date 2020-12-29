@@ -60,7 +60,8 @@ public class BlogCommentServiceImpl implements BlogCommentService {
             for (CommentVO reply : replies) {
                 // 循环找出子代
                 reply.setParentComment(blogCommentVODao.selectById(reply.getParentCommentId()));
-                recursively(reply);
+                headComment(reply);
+
             }
             comment.setReplyComments(tempReplies);
             // 清除临时存放区域
@@ -70,18 +71,29 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     }
 
     private List<CommentVO> tempReplies = new ArrayList<>();
+
+    /**
+     * 顶节点添加到临时存放集合,不加入循环
+     * @param comment
+     */
+    private void headComment(CommentVO comment){
+
+        tempReplies.add(comment);// 顶节点添加到临时存放集合
+        recursively(comment);
+    }
+
+
     /**
      * 迭代找出子代集合
      */
     private void recursively(CommentVO comment) {
-        tempReplies.add(comment);// 顶节点添加到临时存放集合
         List<CommentVO> childCommentByParentId = blogCommentVODao.getChildCommentByParentId(comment.getId());
         if(childCommentByParentId.size()>0){
-            for (CommentVO reply : childCommentByParentId) {
-                reply.setParentComment(blogCommentVODao.selectById(reply.getParentCommentId()));
-                tempReplies.add(reply);
-                if( blogCommentVODao.getChildCommentByParentId(reply.getId()).size()>0){
-                    recursively(reply);
+            for (CommentVO reply1 : childCommentByParentId) {
+                reply1.setParentComment(blogCommentVODao.selectById(reply1.getParentCommentId()));
+                tempReplies.add(reply1);
+                if( blogCommentVODao.getChildCommentByParentId(reply1.getId()).size()>0){
+                    recursively(reply1);
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.soreak.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Blog implements Serializable {
     /**
      * 标识符 ID
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -66,7 +67,7 @@ public class Blog implements Serializable {
     /**
      * 访问量
      */
-    private String views;
+    private int views;
 
     /**
      * 作者id

@@ -23,3 +23,6 @@ mybatis-plus:
   mapper-locations: classpath:mapperXML/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   type-aliases-package: com.soreak.entity
+
+server:
+  max-http-header-size: 102400

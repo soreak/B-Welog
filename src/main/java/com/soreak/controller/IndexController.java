@@ -65,7 +65,7 @@ public class IndexController {
         }
         model.addAttribute("blogs",blogs);
 
-        List<Blog> recommendBlog = blogService.getRecommendBlogList();
+        List<Blog> recommendBlog = blogService.getHotBlogList();
         model.addAttribute("recommendBlogs",recommendBlog);
         return "index";
     }

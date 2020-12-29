@@ -40,4 +40,27 @@ public class BlogVO {
 
     private List<Tag> tags;
 
+    private String tagIds;
+
+    public void init() {
+        this.tagIds = tagsToIds(this.getTags());
+    }
+
+    private String tagsToIds(List<Tag> tags) {
+        StringBuilder ids = new StringBuilder();
+        if (!tags.isEmpty()) {
+            boolean flag = false;
+            // 1,2,3
+            for (Tag tag : tags) {
+                if (flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+                ids.append(tag.getId());
+            }
+        }
+        return ids.toString();
+    }
+
 }

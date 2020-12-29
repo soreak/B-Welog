@@ -13,7 +13,7 @@
 <body>
 <!--导航-->
     <!--m 自定义 间距 上下 -->
-<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:replace="_fragments :: menu(-1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">Blog</h2>
@@ -45,7 +45,7 @@
     <div class="m-container m-padded-tb-big">
         <!--container 响应移动端-->
         <div class="ui container">
-            <form id="blog-form" action="#" th:object="${blog}" th:action="@{/admin/blogs}" method="post" class="ui form">
+            <form id="blog-form" action="#" th:object="${blog}" th:action="@{/blog}" method="post" class="ui form">
                 <input type="hidden" name="id" th:value="*{id}">
                 <input type="hidden" name="published">
                 <div class="required field">
@@ -57,8 +57,8 @@
                             <div class="text">原创</div>
                             <div class="menu">
                                 <div class="item" data-value="原创">原创</div>
-                                <div class="item" data-value="原创1">原创1</div>
-                                <div class="item" data-value="原创2">原创2</div>
+                                <div class="item" data-value="转载">转载</div>
+
                             </div>
                         </div>
                         <input type="text" name="title" placeholder="标题" th:value="*{title}">
@@ -73,20 +73,6 @@
                     </div>
                 </div>
                 <div class="two fields">
-                    <div class="required field">
-                        <div class="ui left labeled action input">
-                            <label  class="ui compact teal basic label">分类</label>
-                            <!--fluid 占满宽度（一半）-->
-                            <div class="ui fluid selection dropdown">
-                                <input type="hidden" name="type.id" th:value="*{type}!=null ? *{type.id}">
-                                <i class="dropdown icon"></i>
-                                <div class="default text">分类</div>
-                                <div class="menu">
-                                    <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">开发者手册</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="field">
                         <div class="ui left labeled action input">
                             <label  class="ui compact teal basic label">标签</label>
@@ -99,43 +85,21 @@
                                     <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">开发者手册</div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                </div>
-
-                <div class="required field">
-                    <div class="ui left labeled input">
-                        <label  class="ui teal basic label">首图</label>
-                        <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="首图引用地址">
-                    </div>
-
-                </div>
 
 
-                <div class="required field">
-                    <textarea name="description" th:text="*{description}" placeholder="博客描述" maxlength="200"></textarea>
+
+
                 </div>
 
                 <div class="inline fields">
                     <div class="field">
                         <div class="ui checkbox">
                             <!--hidden 默认不选中-->
-                            <input type="checkbox" id="recommend" name="recommend" checked th:checked="*{recommend}" class="hidden" >
+                            <input type="checkbox" id="recommend" name="recommend" th:checked="*{recommend}" class="hidden" >
                             <label for="recommend">推荐</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <!--hidden 默认不选中-->
-                            <input type="checkbox" id="shareStatement" name="shareStatement" th:checked="*{shareStatement}" class="hidden" >
-                            <label for="shareStatement">转载声明</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <!--hidden 默认不选中-->
-                            <input type="checkbox" id="appreciation" name="appreciation" th:checked="*{appreciation}" class="hidden" >
-                            <label for="appreciation">赞赏</label>
                         </div>
                     </div>
                     <div class="field">
@@ -145,7 +109,6 @@
                             <label for="commentabled">评论</label>
                         </div>
                     </div>
-
                 </div>
                 <!--ui error message 显示提示信息-->
                 <div class="ui error message">
@@ -158,12 +121,14 @@
                     <button type="button" id="save-btn" class="ui secondary button">保存</button>
                     <button type="button" id="publish-btn" class="ui teal button">发布</button>
 
+
                 </div>
+
             </form>
         </div>
     </div>
 <
-<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script src="../static/lib/editormd/editormd.min.js"></script>
@@ -180,7 +145,7 @@
             height  : 640,
             syncScrolling : "single",
             path    : "/lib/editormd/lib/"
-            // path    : "../static/lib/editormd/lib/"
+             //path    : "../static/lib/editormd/lib/"
         });
 
         /*
@@ -195,14 +160,7 @@
     });
     
     
-    $('.menu.toggle').click(function () {
-        /*toggleClass 有则去除没有则加上*/
-        $('.m-item').toggleClass('m-mobile-hide')
-    });
 
-    $('.ui.dropdown').dropdown({
-        on:'hover'
-    });
 
     $('#save-btn').click(function () {
         $('[name="published"]').val(false);
@@ -213,10 +171,10 @@
         $('[name="published"]').val(true);
         $('#blog-form').submit();
     });
-        /* 可以在新增博客时自己写一个新的tag */
-    // $('.ui.tag.dropdown').dropdown({
-    //    allowAdditions: true
-    // });
+   /*      可以在新增博客时自己写一个新的tag */
+    $('.ui.tag.dropdown').dropdown({
+       allowAdditions: true
+    });
 
     /*表单数据校验*/
     $('.ui.form').form({
@@ -241,35 +199,6 @@
                 }]
             },
 
-            typeId : {
-                identifier : 'typeId',
-                rules : [{
-                    /*非空校验*/
-                    type : 'empty',
-                    prompt : '标题：请输入博客类型'
-
-                }]
-            },
-
-            firstPicture : {
-                identifier : 'firstPicture',
-                rules : [{
-                    /*非空校验*/
-                    type : 'empty',
-                    prompt : '标题：请输入博客首图'
-
-                }]
-            },
-
-            description : {
-                identifier : 'description',
-                rules : [{
-                    /*非空校验*/
-                    type : 'empty',
-                    prompt : '标题：请输入博客描述'
-
-                }]
-            },
         }
     });
 </script>
