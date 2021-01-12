@@ -96,7 +96,7 @@
                                 <td><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">文章标题</a></td>
                                 <td th:text="${blog.recommend} ? '是':'否'">是</td>
                                 <td th:text="${blog.published} ? '发布':'草稿'">是</td>
-                                <td th:text="${#dates.format(blog.updateTime)}">2020-08-12 09:45</td>
+                                <td th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}">2020-08-12 09:45</td>
                                 <td>
                                     <a href="#" th:href="@{/blog/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
                                     <a href="#" th:href="@{/blog/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>

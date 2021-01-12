@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width ,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
-    <title>关于我</title>
+    <title>个人信息</title>
 </head>
 <body>
 <!--导航-->
@@ -14,12 +14,11 @@
     <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">Blog</h2>
+                <h2 class="ui teal header item">WeBlog</h2>
                 <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="target icon"></i>标签</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-                <a href="#" class="active m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i>新闻</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i>话题</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>MY</a>
 
                 <div class="right item m-mobile-hide">
                     <div class="ui icon inverted transparent input">
@@ -42,44 +41,58 @@
         <div class="ui container">
             <div class="ui stackable grid">
 
-                <div class="two wide column">
-                    <div class="ui top attached segment">
-                        <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
-                    </div>
-                    <div class="ui attached segment">
-                        <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+                <div class="three wide column">
 
-                    </div>
-                    <div class="ui attached segment">
-                        <a href="#" class="ui qq circular icon button" ><i class="qq icon"></i></a>
-                    </div>
-                    <div class="ui bottom attached segment">
-                        <a href="#" class="ui email circular icon button"><i class="envelope icon"></i></a>
-                    </div>
+                        <div class="ui top attached segment" style="text-align: center">
+                            <a href="#" class="ui middle aligned github circular icon button"><i class="github icon"></i></a>
+                            <div class="m-margin-top" style="display: none" id="github" th:text="${user.git}">soreak</div>
+                        </div>
+
+
+
+                        <div class="ui attached segment" style="text-align: center">
+                            <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+                            <div class="m-margin-top" style="display: none" id="wechat" th:text="${user.wechat}">sorea1k</div>
+                        </div>
+
+
+                        <div class="ui attached segment" style="text-align: center">
+                            <a href="#" class="ui qq circular icon button" ><i class="qq icon"></i></a>
+                            <div class="m-margin-top" style="display: none" id="qq" th:text="${user.qq}">1498985670</div>
+                        </div>
+
+
+                        <div class="ui bottom attached segment" style="text-align: center">
+                            <a href="#" class="ui email circular icon button"><i class="envelope icon"></i></a>
+                            <div class="m-margin-top" style="display: none" id="email" th:text="${user.email}">1498985670@qq.com</div>
+                        </div>
+
                 </div>
 
                 <div class="nine wide column">
-                    <div class="ui top attached segment">
-                        <div class="ui header">名字</div>
-                    </div>
-                    <div class="ui attached segment">
-                        <p class="m-text-thin">个人</p>
-                        <p class="m-text-thin">介绍</p>
-                    </div>
-                    <!--擅长的技术-->
-                    <div class="ui attached segment">
-                        <div class="ui orange basic left pointing label">编程</div>
-                        <div class="ui orange basic left pointing label">编程</div>
-                        <div class="ui orange basic left pointing label">编程</div>
-                        <div class="ui orange basic left pointing label">编程</div>
-                        <div class="ui orange basic left pointing label">编程</div>
-                    </div>
-                    <!--座右铭-->
-                    <div class="ui attached segment">
-                        <p class="m-text-thin">座右铭</p>
-                    </div>
+                    <div class="segments">
+                        <div class="ui top attached segment">
+                            <div class="ui header" th:text="${user.nickname}">soreak</div>
+                            <div th:text="|uid:${user.id}|">uid:123</div>
+                        </div>
+                        <div class="ui attached segment">
+                            <p class="ui teal m-text-thin" th:text="${user.information}">个人介绍</p>
 
+                        </div>
+
+                        <div class="ui attached segment">
+                            <p class="m-text-thin" th:text="|注册时间：${#dates.format(user.createTime,'yyyy-MM-dd')}|"></p>
+                            <p class="m-text-thin" th:text="|最近一次登录时间：${#dates.format(user.updateTime,'yyyy-MM-dd')}|"></p>
+                        </div>
+
+                        <div class="ui right aligned container m-margin-top">
+                            <button type="button" id="save-btn" class="ui teal button">修改个人信息</button>
+
+                        </div>
+
+                    </div>
                 </div>
+
 
                 <div class="four wide column">
                     <div class="ui segment">
@@ -102,14 +115,46 @@
         $('.m-item').toggleClass('m-mobile-hide')
     });
 
-    $('.qq').popup();
+    $('.github.circular').hover(
+        function(){
 
-    $('.wechat').popup( {
-        popup : $('.wechat-qr'),
-        // 默认就是hover
-        // on : 'hover',
-        position : 'bottom center'
-    });
+                $('#github').css("display","block");
+        },function(){
+
+                $('#github').css("display","none");
+        }
+    );
+    $('.email.circular').hover(
+            function(){
+
+                    $('#email').css("display","block");
+            },function(){
+
+                    $('#email').css("display","none");
+            }
+        );
+    $('.wechat.circular').hover(
+            function(){
+
+                    $('#wechat').css("display","block");
+            },function(){
+
+                    $('#wechat').css("display","none");
+            }
+        );
+    $('.qq.circular').hover(
+            function(){
+
+                    $('#qq').css("display","block");
+            },function(){
+
+                    $('#qq').css("display","none");
+            }
+        );
+
+
+
+
 
 </script>
 </body>

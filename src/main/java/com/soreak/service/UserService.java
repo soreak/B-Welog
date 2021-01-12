@@ -2,6 +2,8 @@ package com.soreak.service;
 
 import com.soreak.entity.UserEntity;
 
+import java.util.Date;
+
 /**
  * @program: welog
  * @author: soreak
@@ -21,4 +23,6 @@ public interface UserService {
     UserEntity findByPhone(String phone);
 
     UserEntity getUserById(Long id);
+
+    int updateTime(Long id);
 }

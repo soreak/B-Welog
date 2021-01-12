@@ -12,6 +12,7 @@ spring:
 
 
 
+
 logging:
   file:
     path: log/welog.log
@@ -26,3 +27,8 @@ mybatis-plus:
 
 server:
   max-http-header-size: 102400
+
+
+absoluteImgPath: C://Users/Administrator/Desktop/nba
+
+sonImgPath: /static/images/

@@ -85,6 +85,10 @@ public class UserEntity implements Serializable {
      * QQ
      */
     private String qq;
+    /**
+     * QQ
+     */
+    private String wechat;
 
 
 }

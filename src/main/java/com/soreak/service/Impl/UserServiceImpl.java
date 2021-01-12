@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * @program: welog
  * @author: soreak
@@ -16,7 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @create: 2020-12-17 16:52
  **/
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl
+        implements UserService {
 
 
 
@@ -42,6 +45,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity getUserById(Long id) {
         return userDao.selectById(id);
+    }
+
+    @Override
+    public int updateTime(Long id) {
+        UserEntity entity = new UserEntity();
+
+        entity.setId(id);
+        entity.setUpdateTime(new Date());
+        return userDao.updateById(entity);
     }
 
 

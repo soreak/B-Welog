@@ -46,8 +46,11 @@ public class IndexController {
     public String index(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         System.out.println(SecurityContextHolder.getContext().getAuthentication());
-        if (phone!=null){
-            model.addAttribute("user",userService.findByPhone(phone));
+        System.out.println(phone);
+        if (phone!="anonymousUser"){
+            UserEntity entity = userService.findByPhone(phone);
+            userService.updateTime(entity.getId());
+            model.addAttribute("user",entity);
         }
 
         List<TagVO> tags = tagService.getTagNameAndCount();
