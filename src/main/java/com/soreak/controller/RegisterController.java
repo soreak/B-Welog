@@ -73,6 +73,7 @@ public class RegisterController {
             userEntity.setNickname(username);
             userEntity.setPhone(phone);
             userEntity.setPassword(password);
+
             int result = registerService.insUser(userEntity);
             if (result >0){
                 jsonObject.put("status",200);

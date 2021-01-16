@@ -25,4 +25,6 @@ public interface UserService {
     UserEntity getUserById(Long id);
 
     int updateTime(Long id);
+
+    int saveUser(UserEntity userEntity);
 }

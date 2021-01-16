@@ -36,6 +36,7 @@ public class RegisterServiceImpl implements RegisterService {
         userEntity.setRole("0");
         userEntity.setCreateTime(new Date());
         userEntity.setUpdateTime(new Date());
+        userEntity.setAvatar("/imgs/avatar.jpg");
         String password = userEntity.getPassword();
 
         String newPasswd = passwordEncoder.encode(password);

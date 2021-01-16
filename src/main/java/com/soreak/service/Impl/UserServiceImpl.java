@@ -18,8 +18,7 @@ import java.util.Date;
  * @create: 2020-12-17 16:52
  **/
 @Service
-public class UserServiceImpl
-        implements UserService {
+public class UserServiceImpl implements UserService {
 
 
 
@@ -54,6 +53,11 @@ public class UserServiceImpl
         entity.setId(id);
         entity.setUpdateTime(new Date());
         return userDao.updateById(entity);
+    }
+
+    @Override
+    public int saveUser(UserEntity user) {
+        return userDao.updateById(user);
     }
 
 

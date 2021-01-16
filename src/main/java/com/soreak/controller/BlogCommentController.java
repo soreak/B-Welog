@@ -2,6 +2,7 @@ package com.soreak.controller;
 
 import com.soreak.entity.BlogComment;
 import com.soreak.entity.UserEntity;
+import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.CommentVO;
 import com.soreak.service.BlogCommentService;
 import com.soreak.service.BlogService;
@@ -33,11 +34,15 @@ public class BlogCommentController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BlogService blogService;
 
 
     @GetMapping("/comments/{id}")
     public String comments(@PathVariable Long id, Model model){
         model.addAttribute("comments",commentService.listCommentByBlogId(id));
+        BlogVO oneBlog = blogService.getOneBlog(id);
+        model.addAttribute("authorId",oneBlog.getUserId());
         return "blog :: commentList";
     }
 

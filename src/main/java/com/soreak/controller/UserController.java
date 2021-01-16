@@ -1,6 +1,7 @@
 package com.soreak.controller;
 
 import com.soreak.entity.Blog;
+import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TagVO;
 import com.soreak.service.UserService;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,18 +47,21 @@ public class UserController {
 
     @GetMapping("/showInfo")
     public String showInfo(Model model){
-        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        model.addAttribute("user",userService.findByPhone(phone));
-
+        getUser(model);
         return "showInfo";
     }
-    @RequestMapping(value = "/showInfo",method = RequestMethod.POST)
+    @RequestMapping(value = "/editInfo",method = RequestMethod.GET)
     public String editInfo(Model model){
-        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("user",userService.findByPhone(phone));
+       getUser(model);
         return "editInfo";
     }
+
+    private Model getUser(Model model){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("user",userService.findByPhone(phone));
+        return model;
+    }
+
     @RequestMapping(value = "/saveInfo",method = RequestMethod.POST)
     public String save(@RequestParam("avatar") MultipartFile avatar,
                        @RequestParam("nickname") String nickname,
@@ -65,26 +70,44 @@ public class UserController {
                        @RequestParam("qq") String qq,
                        @RequestParam("wechat") String wechat,
                        @RequestParam("email") String email,
-                       @RequestParam("id") Long id,
                        Model model){
 
-        if(avatar.isEmpty()){
-
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByPhone(phone);
+        String oldAvatar = user.getAvatar();
+        String replace = oldAvatar.replace(sonImgPath, "");
+        String delpath = absoluteImgPath+replace;
+        if (replace != "avatar.jpg"){
+            File f1 = new File(delpath);
+            f1.delete();
         }
-        String originalFilename = avatar.getOriginalFilename();
-        //随机生成文件名
-        String fileName = RandomNum.createRandomBySize(10) + originalFilename;
-        File dest = new File(absoluteImgPath + fileName);
-        String imgUrl = sonImgPath +fileName;
-        try{
-            avatar.transferTo(dest);
 
 
-        }catch (IllegalStateException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+            String originalFilename = avatar.getOriginalFilename();
+            //随机生成文件名
+            String fileName = RandomNum.createRandomBySize(10) + originalFilename;
+            File dest = new File(absoluteImgPath + fileName);
+            String imgUrl = sonImgPath +fileName;
+            System.out.println(imgUrl);
+            try{
+                avatar.transferTo(dest);
+                user.setAvatar(imgUrl);
+            }catch (IllegalStateException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+        user.setNickname(nickname);
+        user.setInformation(information);
+        user.setGit(git);
+        user.setQq(qq);
+        user.setWechat(wechat);
+        user.setEmail(email);
+
+        userService.saveUser(user);
+
+        getUser(model);
 
     return "showInfo";
 

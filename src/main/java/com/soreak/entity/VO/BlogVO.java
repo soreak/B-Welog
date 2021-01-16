@@ -34,6 +34,8 @@ public class BlogVO {
 
     private String views;
 
+    private Long userId;
+
     private String userName;
 
     private String userAvatar;

@@ -29,6 +29,6 @@ server:
   max-http-header-size: 102400
 
 
-absoluteImgPath: C://Users/Administrator/Desktop/nba
+absoluteImgPath: C://Users/14989/Desktop/images/
 
-sonImgPath: /static/images/
+sonImgPath: /imgs/

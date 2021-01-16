@@ -51,7 +51,6 @@ public class BlogController {
         setUser(model);
 
         BlogVO blog =blogService.getBlogById(id);
-
         model.addAttribute("blog",blog);
         return "blog";
     }

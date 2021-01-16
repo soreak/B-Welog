@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0,multipart/form-data,">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
     <title>个人信息</title>
@@ -82,12 +81,10 @@
 
                         <div class="ui attached segment">
                             <p class="m-text-thin" th:text="|注册时间：${#dates.format(user.createTime,'yyyy-MM-dd')}|"></p>
-                            <p class="m-text-thin" th:text="|最近一次登录时间：${#dates.format(user.updateTime,'yyyy-MM-dd')}|"></p>
                         </div>
 
                         <div class="ui right aligned container m-margin-top">
-                            <button type="button" id="save-btn" class="ui teal button">修改个人信息</button>
-
+                            <a type="button" id="save-btn" class="ui teal button" th:href="@{/editInfo}">修改个人信息</a>
                         </div>
 
                     </div>
@@ -96,7 +93,7 @@
 
                 <div class="four wide column">
                     <div class="ui segment">
-                        <img src="http://lorempixel.com/800/600/" alt="" class="ui rounded image">
+                        <img src="http://lorempixel.com/800/600/" alt="" class="ui rounded image" th:src="${user.avatar}">
                     </div>
 
                 </div>

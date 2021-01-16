@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <meta name="viewport" content="multipart/form-data">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
     <title>个人信息</title>
@@ -43,45 +42,47 @@
                 <div class="column">
 
                     <div class="ui left action input ">
-                        <img id="img3" class="ui medium circular image" src="http://lorempixel.com/800/600/">
+                        <img id="img2" class="ui medium circular image" src="http://lorempixel.com/800/600/" th:src="${user.avatar}">
+
                     </div>
+                    <form action="#" method="post" th:action="@{/saveInfo}" enctype="multipart/form-data">
                     <div id="prompt3">
                         <div class="ui left action input m-margin-top">
                             <div class="ui teal button">头像</div>
-                            <input type="file" id="file" onchange="changePic(this)"
+                            <input type="file" id="file" name="avatar" onchange="changePic(this)"
                                    accept="image/jpg,image/jpeg,image/png,image/PNG">
                             <!--当vaule值改变时执行changePic函数，规定上传的文件只能是图片-->
                         </div>
                     </div>
-                    <input type="hidden" id="id" value="-1">
                     <div class="ui left action input m-margin-top">
                         <div class="ui teal button">用户名</div>
-                        <input type ="text" id="nickname" value="$52.03">
+                        <input type ="text" id="nickname" name="nickname" value="$52.03" th:value="${user.nickname}">
                     </div>
 
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">个人介绍</button>
-                        <input type="text" id="information" value="$52.03">
+                        <input type="text" id="information" name="information" value="$52.03" th:value="${user.information}">
                     </div>
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">git</button>
-                        <input type="text" id="git" value="$52.03">
+                        <input type="text" id="git" name="git" value="$52.03" th:value="${user.git}">
                     </div>
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">QQ</button>
-                        <input type="text" id="qq" value="$52.03">
+                        <input type="text" id="qq" name="qq" value="$52.03" th:value="${user.qq}">
                     </div>
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">email</button>
-                        <input type="text" id="email" value="$52.03">
+                        <input type="text" id="email" name="email" value="$52.03" th:value="${user.email}">
                     </div>
                      <div class="ui left action input m-margin-top">
                         <button class="ui teal button">微信</button>
-                        <input type="text" id="wechat" value="$52.03">
+                        <input type="text" id="wechat" name="wechat" value="$52.03" th:value="${user.wechat}">
                     </div>
                     <div class="m-padded-lr-response m-margin-top">
-                        <button class="ui orange button">提交数据</button>
+                        <button class="ui orange button" type="submit">提交数据</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -116,33 +117,11 @@
         console.log(f);
         reads.readAsDataURL(f);
         reads.onload = function(e) {
-            document.getElementById('img3').src = this.result;
-            // $("#img3").css("display", "block");
+            document.getElementById('img2').src = this.result;
+
         };
     }
 
-    function sumbit_photo(){
-        $.ajax({
-            type : 'POST',
-            url : "editInfo",
-            data : {
-                id: $('#id').val(),
-                avatar: document.getElementById('file').files[0],
-                nickname: $('#nickname').val(),
-                information: $('#information').val(),
-                git:$('#git').val(),
-                qq:$('#qq').val(),
-                wechat:$('#wechat').val(),
-                email:$('#email').val()
-            },
-            success : function(data) {
-
-            },
-            errors : function(data) {
-
-            }
-        })
-    }
 
 </script>
 </body>
