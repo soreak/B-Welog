@@ -12,6 +12,8 @@ import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +48,13 @@ public class UserController {
     String sonImgPath;
 
     @GetMapping("/showInfo")
+    @PreAuthorize("isAuthenticated()")
     public String showInfo(Model model){
         getUser(model);
         return "showInfo";
     }
     @RequestMapping(value = "/editInfo",method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated()")
     public String editInfo(Model model){
        getUser(model);
         return "editInfo";
@@ -64,6 +68,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/saveInfo",method = RequestMethod.POST)
+    @PreAuthorize("isAuthenticated()")
     public String save(@RequestParam("avatar") MultipartFile avatar,
                        @RequestParam("nickname") String nickname,
                        @RequestParam("information") String information,

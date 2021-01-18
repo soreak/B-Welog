@@ -13,12 +13,17 @@
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">管理后台</h2>
-            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="user icon"></i>用户</a>
+            <a href="#" th:href="@{/admin/users}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="user icon"></i>用户</a>
             <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="home icon"></i>博客</a>
-            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="newspaper icon"></i>新闻</a>
-            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="bullhorn icon"></i>话题</a>
+            <a href="#" th:href="@{/admin/news}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="newspaper icon"></i>新闻</a>
+            <a href="#" th:href="@{/admin/topics}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="bullhorn icon"></i>话题</a>
             <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="target icon"></i>标签</a>
 
+            <div class="right item m-mobile-hide">
+                <div class="ui item">
+                    <a href="#" class="ui teal button" th:href="@{/}">用户端</a>
+                </div>
+            </div>
 
         </div>
     </div>

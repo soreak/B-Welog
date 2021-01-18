@@ -27,7 +27,7 @@ public class usersController {
         return "admin/index";
     }
 
-    @PostMapping("/users")
+    @GetMapping("/users")
     public String list(Model model)
     {
         model.addAttribute("users",userService.getAllUser());

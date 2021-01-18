@@ -29,6 +29,7 @@ server:
   max-http-header-size: 102400
 
 
+
 absoluteImgPath: C://Users/14989/Desktop/images/
 
 sonImgPath: /imgs/

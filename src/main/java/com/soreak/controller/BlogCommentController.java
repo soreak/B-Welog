@@ -8,6 +8,7 @@ import com.soreak.service.BlogCommentService;
 import com.soreak.service.BlogService;
 import com.soreak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,7 @@ public class BlogCommentController {
     }
 
     @PostMapping("/comments")
+    @PreAuthorize("isAuthenticated()")
     public String post(@RequestParam Long parentCommentId,
                        @RequestParam Long blogId,
                        @RequestParam String content){

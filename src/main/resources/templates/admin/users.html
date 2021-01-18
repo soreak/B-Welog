@@ -92,11 +92,11 @@
                     <td th:text="${user.id}">1</td>
                     <td th:text="${user.nickname}">sorea1k</td>
                     <td th:text="${user.role}">管理员</td>
-                    <td th:text="${user.createTime}">2020-08-12 09:45</td>
-                    <td th:text="${user.updateTime}">2020-08-12 09:45</td>
+                    <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
+                    <td th:text="${#dates.format(user.updateTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
                     <td>
                         <a href="#" id="edit" class="ui mini teal basic button">编辑</a>
-                        <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
+                        <a href="#" th:href="@{/admin/blogs/{id}/delete}" class="ui mini red basic button">删除</a>
                     </td>
 
                 </tr>

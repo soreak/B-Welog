@@ -10,6 +10,7 @@ import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -138,6 +139,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/input")
+    @PreAuthorize("isAuthenticated()")
     public String input(Model model){
         setUser(model);
         setTag(model);
@@ -147,6 +149,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{id}/input")
+    @PreAuthorize("isAuthenticated()")
     public String editInput(@PathVariable Long id,Model model){
         setUser(model);
         setTag(model);
@@ -159,6 +162,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{id}/delete")
+    @PreAuthorize("isAuthenticated()")
     public String delete(@PathVariable Long id,RedirectAttributes attributes){
         blogService.deleteBlogById(id);
         attributes.addFlashAttribute("message","删除成功");
@@ -167,6 +171,7 @@ public class BlogController {
 
 
     @GetMapping("/MY")
+    @PreAuthorize("isAuthenticated()")
     public String my(Model model){
         UserEntity userEntity = setUser(model);
 
