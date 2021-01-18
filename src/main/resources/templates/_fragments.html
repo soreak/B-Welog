@@ -45,7 +45,7 @@
 
             <div class="ui dropdown item" sec:authorize="isAuthenticated()">
 
-                <div class="text">
+                <div class="text" >
                     <span th:if="${user.nickname}" th:text="${user.nickname}"></span>
                 </div>
                 <i class="dropdown icon"></i>
@@ -55,6 +55,12 @@
                     <a href="#" class="item" th:href="@{/logout}">注销</a>
                 </div>
             </div>
+            <div class="ui item"  sec:authorize="hasRole('1')">
+                    <a href="#" class="ui teal button" th:href="@{/admin/index}">管理员</a>
+            </div>
+
+
+
         </div>
     </div>
     <!--menu toggle 用于jQuery选择-->
@@ -82,6 +88,8 @@
         $('.ui.dropdown').dropdown({
             on:'hover'
         });
+
+
     </script>
 </th:block>
 

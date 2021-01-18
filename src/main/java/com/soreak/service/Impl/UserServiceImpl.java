@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: welog
@@ -58,6 +59,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int saveUser(UserEntity user) {
         return userDao.updateById(user);
+    }
+
+    @Override
+    public List<UserEntity> getAllUser() {
+        return userDao.selectAll();
     }
 
 

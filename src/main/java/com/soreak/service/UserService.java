@@ -3,6 +3,7 @@ package com.soreak.service;
 import com.soreak.entity.UserEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: welog
@@ -27,4 +28,6 @@ public interface UserService {
     int updateTime(Long id);
 
     int saveUser(UserEntity userEntity);
+
+    List<UserEntity> getAllUser();
 }

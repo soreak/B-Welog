@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @program: welog
  * @author: soreak
@@ -20,4 +22,6 @@ public interface UserDao extends BaseMapper<UserEntity> {
     @Select("select * from sk_user where phone = #{username}")
     UserEntity getUserInfoByUsername(@Param("username") String username);
 
+    @Select("select * from sk_user")
+    List<UserEntity> selectAll();
 }

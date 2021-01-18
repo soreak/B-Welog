@@ -56,6 +56,7 @@ public class UserController {
         return "editInfo";
     }
 
+
     private Model getUser(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("user",userService.findByPhone(phone));

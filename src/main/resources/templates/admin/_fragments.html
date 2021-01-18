@@ -13,24 +13,13 @@
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">管理后台</h2>
-            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>博客</a>
-            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>分类</a>
-            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="target icon"></i>标签</a>
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="user icon"></i>用户</a>
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="home icon"></i>博客</a>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="newspaper icon"></i>新闻</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="bullhorn icon"></i>话题</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="target icon"></i>标签</a>
 
-            <div class="right m-item m-mobile-hide menu">
 
-                <div class="ui dropdown item">
-                    <div class="text">
-                        <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
-                        soreaK
-                    </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
     <!--menu toggle 用于jQuery选择-->
@@ -41,47 +30,6 @@
 
 </nav>
 
-<!--底部-->
-<!--vertical 去掉圆角-->
-<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive" >
-    <!--center aligned 居中-->
-    <div class="ui center aligned container">
-        <div class="ui inverted divided stackable grid">
-            <!--                3 3 3 7 分为16份-->
-            <div class="three wide column">
-                <div class="ui inverted link list">
-                    <div class="item">
-                        <img src="../../static/images/avatar.jpg" class="ui rounded image" style="width: 110px" alt="">
-                    </div>
-                </div>
-
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced" >最新博客</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">用户故事</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">用户故事</a>
-                    <a href="#" class="item">用户故事</a>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced">Blog</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">这是一个博客，这是一个博客，这是一个博客，这是一个博客，这是一个博客，这是一个博客</p>
-            </div>
-        </div>
-        <div class="ui inverted section divider "></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020-2021 Aaron All Rights Reserved</p>
-    </div>
-
-</footer>
 
 <th:block th:fragment="script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
