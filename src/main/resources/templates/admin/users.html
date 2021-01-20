@@ -95,8 +95,8 @@
                     <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
                     <td th:text="${#dates.format(user.updateTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
                     <td>
-                        <a href="#" id="edit" class="ui mini teal basic button">编辑</a>
-                        <a href="#" th:href="@{/admin/blogs/{id}/delete}" class="ui mini red basic button">删除</a>
+                        <div id="edit" th:onclick="|showUser(${user.id})|" class="ui mini teal basic button">编辑</div>
+                        <a href="#" th:href="@{/admin/users/{id}/delete(id=${user.id})}" class="ui mini red basic button">删除</a>
                     </td>
 
                 </tr>
@@ -110,13 +110,14 @@
                 <p th:text="${message}">操作成功!</p>
             </div>
         </div>
-        <!--celled网格线-->
+
 
         <div class="ui modal">
             <i class="close icon"></i>
             <div class="header">
                 用户信息
             </div>
+
             <div class="image content">
                 <div class="ui medium image">
                     <img src="../static/images/avatar.jpg">
@@ -124,21 +125,22 @@
                 <div class="description">
                     <div class="ui labeled input ">
                         <div class="ui label">呢称</div>
-                        <input type="text" >
+                        <input type="text">
                     </div>
-                    <div class="ui labeled input ">
+                    <div class="ui labeled input m-margin-top">
                         <div class="ui label">电话</div>
-                        <input type="text" >
+                        <input type="text">
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">密码</div>
-                        <input type="text" >
+                        <input type="text">
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">权限</div>
                         <div class="ui type selection dropdown">
                             <input type="hidden" name="typeId">
                             <i class="dropdown icon"></i>
+                            <div class="default"></div>
                             <div class="menu">
                                 <div class="item" data-value="0" >用户</div>
                                 <div class="item" data-value="1" >管理员</div>
@@ -147,15 +149,15 @@
                     </div>
                 </div>
             </div>
-            <div class="actions">
-                <div class="ui black deny button">
-                    取消
+                <div class="actions">
+                    <div class="ui black deny button">
+                        取消
+                    </div>
+                    <div class="ui positive right labeled icon button">
+                        确认修改
+                        <i class="checkmark icon"></i>
+                    </div>
                 </div>
-                <div class="ui positive right labeled icon button">
-                    确认修改
-                    <i class="checkmark icon"></i>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -198,13 +200,28 @@
         $('#table-container').load(/*[[@{/amdin/blogs/search}]]*/"/admin/blogs/search",{
             title : $("[name='title']").val(),
             typeId : $("[name='typeId']").val(),
-            page : $("[name='page']").val()
         });
     }
-    $('#edit').click(function () {
-        $('.ui.modal').modal('show')
-        ;
-    })
+
+    function showUser(id) {
+        console.log(id);
+        $.ajax({
+            type: "POST",
+            url: "oneUser",
+            //contentType: "application/json",
+            data: {
+                id: id,
+            },
+            success: function (data) {
+                console.log(data);
+
+            },
+            error: function (res) {
+
+            }
+        });
+        $('.ui.modal').modal('show');
+    }
 </script>
 </body>
 </html>
