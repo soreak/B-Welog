@@ -30,4 +30,8 @@ public interface UserService {
     int saveUser(UserEntity userEntity);
 
     List<UserEntity> getAllUser();
+
+    List<UserEntity> searchUser(String nickname,String role);
+
+    int deleteUser(Long id);
 }

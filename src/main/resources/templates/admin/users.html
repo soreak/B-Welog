@@ -58,7 +58,7 @@
                 <div class="field">
                     <div class="ui labeled action input">
                         <div class="ui type selection dropdown">
-                            <input type="hidden" name="typeId">
+                            <input type="hidden" name="roleId">
                             <i class="dropdown icon"></i>
                             <div class="default text">权限</div>
                             <div class="menu">
@@ -101,9 +101,7 @@
 
                 </tr>
                 </tbody>
-
             </table>
-
             <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
                 <i class="close icon"></i>
                 <div class="header">提示：</div>
@@ -115,32 +113,37 @@
         <div class="ui modal">
             <i class="close icon"></i>
             <div class="header">
-                用户信息
+                UID:<span id="uid"></span>
             </div>
 
             <div class="image content">
-                <div class="ui medium image">
-                    <img src="../static/images/avatar.jpg">
+                <div class="ui medium image" style="text-align: center">
+                    <img id="avatar" src="../static/images/avatar.jpg">
+                    <div class="ui checkbox m-margin-top">
+                        <input type="checkbox" id="reset">
+                        <!--关联上面recommend 的 id-->
+                        <label for="reset">重置头像</label>
+                    </div>
                 </div>
                 <div class="description">
                     <div class="ui labeled input ">
                         <div class="ui label">呢称</div>
-                        <input type="text">
+                        <input type="text" id="nickname">
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">电话</div>
-                        <input type="text">
+                        <input type="text" id="phone">
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">密码</div>
-                        <input type="text">
+                        <input type="text" placeholder="重置密码">
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">权限</div>
                         <div class="ui type selection dropdown">
-                            <input type="hidden" name="typeId">
                             <i class="dropdown icon"></i>
-                            <div class="default"></div>
+                            <input type="hidden" id="newRole">
+                            <div class="text" id="role"></div>
                             <div class="menu">
                                 <div class="item" data-value="0" >用户</div>
                                 <div class="item" data-value="1" >管理员</div>
@@ -153,12 +156,13 @@
                     <div class="ui black deny button">
                         取消
                     </div>
-                    <div class="ui positive right labeled icon button">
+                    <div class="ui positive right labeled icon button" onclick="editUser()">
                         确认修改
                         <i class="checkmark icon"></i>
                     </div>
                 </div>
         </div>
+
 
     </div>
 </div>
@@ -175,34 +179,27 @@
     $('.ui.dropdown').dropdown({
         on:'hover'
     });
-
-    function page(obj) {
-        $("[name='page']").val($(obj).data("page"));
-        loaddata();
-    }
+    $('.message .close').on('click',function(){
+        $(this).closest('.message').transition('fade');
+    })
 
     $("#search-btn").click(function () {
-        $('[name="page"]').val(0);
         loaddata();
     });
-
+    /*查询的clear按钮*/
     $('.compact.button')
         .on('click',function () {
             $(' .ui.type.dropdown')
                 .dropdown('clear')
         })
-
-    $('.message .close').on('click',function(){
-        $(this).closest('.message').transition('fade');
-    })
-
+    /*查询功能*/
     function loaddata() {
-        $('#table-container').load(/*[[@{/amdin/blogs/search}]]*/"/admin/blogs/search",{
-            title : $("[name='title']").val(),
-            typeId : $("[name='typeId']").val(),
+        $('#table-container').load(/*[[@{/amdin/users/search}]]*/"/admin/users/search",{
+            nickname : $("[name='nickname']").val(),
+            role : $("[name='roleId']").val(),
         });
     }
-
+    /*model弹出层 数据获取*/
     function showUser(id) {
         console.log(id);
         $.ajax({
@@ -214,14 +211,50 @@
             },
             success: function (data) {
                 console.log(data);
+                $('#uid').text(data.user.id);
+                $('#avatar').attr("src",data.user.avatar);
+                $('#nickname').val(data.user.nickname);
+                $('#phone').val(data.user.phone);
+                var roleNum =data.user.role.trim();
+
+                if (roleNum == "1"){
+                    $('#role').text("管理员");
+                    $('#newRole').val(1);
+                }else {
+                    $('#role').text("用户");
+                    $('#newRole').val(0);
+                }
 
             },
-            error: function (res) {
+        });
+        $('.ui.modal').modal('show');
+    }
+    /*数据修改*/
+    function editUser() {
+        $.ajax({
+            type: "POST",
+            url: "editUser",
+            //contentType: "application/json",
+            data: {
+                id: $('#uid').text(),
+                nickname: $('#nickname').val(),
+                phone: $('#phone').val(),
+                role: $('#newRole').val(),
+                password: $('#password').val(),
+                resetAvatar: $('#reset').prop('checked'),
+            },
+            success: function (data) {
+                location.reload();
 
+            },
+            error: function (data) {
+                alert(data.message);
             }
         });
         $('.ui.modal').modal('show');
     }
+
+
 </script>
 </body>
 </html>

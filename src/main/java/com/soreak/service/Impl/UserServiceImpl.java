@@ -1,5 +1,7 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.UserDao;
 import com.soreak.entity.UserEntity;
@@ -64,6 +66,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> getAllUser() {
         return userDao.selectAll();
+    }
+
+    @Override
+    public List<UserEntity> searchUser(String nickname,String role) {
+        QueryWrapper<UserEntity> wrapper =new QueryWrapper<>();
+        if (!nickname.equals("soreak")){
+            wrapper.like("nickname",nickname);
+        }
+        if (!role.equals("-1")){
+            wrapper.eq("role",role);
+        }
+        return userDao.selectList(wrapper);
+    }
+
+    @Override
+    public int deleteUser(Long id) {
+        return userDao.deleteById(id);
     }
 
 

@@ -95,8 +95,8 @@ public class RegisterController {
     @ResponseBody
     public JSONObject getCode(@RequestParam("phone") String phone){
         try {
-            Encode = SMSUtil.sendSMS(phone);
-            //Encode = "123456";
+            //Encode = SMSUtil.sendSMS(phone);
+            Encode = "123456";
             System.out.println(Encode);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("status",200);
