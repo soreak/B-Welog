@@ -103,8 +103,6 @@ public class BlogController {
             blog1.setId(blog.getId());
             id = blogService.updateBlog(blog1);
         }
-
-        System.out.println("blog1id"+blog1.getId());
         if (id == 0){
             attributes.addFlashAttribute("message","操作失败");
         }else {
@@ -121,12 +119,11 @@ public class BlogController {
         return "redirect:/MY";
     }
 
-
-
     private void setTag(Model model){
         model.addAttribute("tags",tagService.getTagNameAndCount());
 
     }
+
     private UserEntity setUser(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         System.out.println(SecurityContextHolder.getContext().getAuthentication());

@@ -49,7 +49,7 @@ public class usersController {
     @RequestMapping(value = "/oneUser",method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasRole('1')")
-    public JSONObject one(@RequestParam("id") Long id){
+    public JSONObject oneUser(@RequestParam("id") Long id){
         UserEntity userById = userService.getUserById(id);
         userById.setPassword("");
         JSONObject jsonObject = new JSONObject();

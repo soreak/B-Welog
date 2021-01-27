@@ -29,4 +29,7 @@ public interface TagDao extends BaseMapper<Tag> {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("insert  into sk_tag(name) value (#{name})")
     Long saveBlog(Tag tag);
+
+
+
 }

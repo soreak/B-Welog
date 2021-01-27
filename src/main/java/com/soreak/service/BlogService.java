@@ -28,4 +28,6 @@ public interface BlogService {
     Long updateBlog(Blog blog);
 
     int deleteBlogById(Long id);
+
+    List<Blog> searchBlog(String title,String tagId,int recommend);
 }

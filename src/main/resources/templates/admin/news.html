@@ -59,12 +59,12 @@
                     <div class="field">
                         <div class="ui labeled action input">
                             <div class="ui type selection dropdown">
-                                <input type="hidden" name="tagId">
+                                <input type="hidden" name="typeId">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">分类</div>
                                 <div class="menu">
                                     <!--data-value="1" 为传入后端的值-->
-                                    <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">开发者手册</div>
+                                    <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">开发者手册</div>
 
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                     <tr>
                         <th></th>
                         <th>标题</th>
-                        <th>开启评论</th>
+                        <th>类型</th>
                         <th>推荐</th>
                         <th>状态</th>
                         <th>更新时间</th>
@@ -100,13 +100,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="blog : ${blogs}">
-                        <td th:text="${blog.id}">1</td>
+                    <tr th:each="blog,iterStat : ${page.content}">
+                        <td th:text="${iterStat.count}">1</td>
                         <td th:text="${blog.title}">可以练习</td>
-                        <td th:text="${blog.commentabled} ? '是':'否'">是</td>
+                        <td th:text="${blog.type.name}">认知升级</td>
                         <td th:text="${blog.recommend} ? '是':'否'">是</td>
-                        <td th:text="${blog.published} ? '发布':'草稿'">发布</td>
-                        <td th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-08-12 09:45</td>
+                        <td th:text="${blog.published} ? '发布':'草稿'">是</td>
+                        <td th:text="${blog.updateTime}">2020-08-12 09:45</td>
                         <td>
                             <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
                             <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
@@ -114,6 +114,17 @@
 
                     </tr>
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="7">
+                            <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                                <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item" th:unless="${page.first}">上一页</a>
+                                <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="item" th:unless="${page.last}">下一页</a>
+                            </div>
+                            <a href="#" th:href="@{/admin/blogs/input}" class="ui mini right floated teal basic button">新增</a>
+                        </th>
+                    </tr>
+                    </tfoot>
                 </table>
 
                 <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
@@ -166,8 +177,9 @@
     function loaddata() {
         $('#table-container').load(/*[[@{/amdin/blogs/search}]]*/"/admin/blogs/search",{
             title : $("[name='title']").val(),
-            tagId : $("[name='tagId']").val(),
+            typeId : $("[name='typeId']").val(),
             recommend : $("[name='recommend']").prop('checked'),
+            page : $("[name='page']").val()
         });
     }
 </script>

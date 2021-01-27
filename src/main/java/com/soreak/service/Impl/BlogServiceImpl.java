@@ -9,6 +9,7 @@ import com.soreak.dao.TagDao;
 import com.soreak.entity.Blog;
 import com.soreak.entity.BlogTag;
 import com.soreak.entity.Tag;
+import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.service.BlogService;
 import com.soreak.utils.MarkdownUtils;
@@ -104,6 +105,32 @@ public class BlogServiceImpl implements BlogService {
         wrapper.eq("blog_id",id);
         blogTagDao.delete(wrapper);
         return blogDao.deleteById(id);
+    }
+
+    @Override
+    public List<Blog> searchBlog(String title, String tagId, int recommend) {
+        QueryWrapper<Blog> wrapper =new QueryWrapper<>();
+
+        if (tagId.equals("-1")) {
+            if (!title.equals("soreak")) {
+                wrapper.like("title", title);
+            }
+            if (recommend != -1) {
+                wrapper.eq("recommend", recommend);
+            }
+            return blogDao.selectList(wrapper);
+        }else {
+            if (!title.equals("soreak")&&recommend != -1) {
+               return blogDao.searchBlogListByTTR(title,tagId,recommend);
+            }else if (title.equals("soreak")&&recommend != -1) {
+                return blogDao.searchBlogListByTR(tagId,recommend);
+            }else if (!title.equals("soreak")&&recommend == -1) {
+                return blogDao.searchBlogListByTT(title,tagId);
+            }else{
+                return blogDao.searchBlogListByT(tagId);
+            }
+
+        }
     }
 
 
