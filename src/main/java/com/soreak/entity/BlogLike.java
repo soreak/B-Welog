@@ -35,14 +35,9 @@ public class BlogLike implements Serializable {
     private Long blogId;
 
     /**
-     * 状态（是否点赞）
+     * 状态（赞或踩）
      */
     private Integer status;
-
-    /**
-     * 点赞创建时间
-     */
-    private Date createTime;
 
     /**
      * 更新时间

@@ -97,6 +97,18 @@
                 <div class="m-padded-lr-response">
                     <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">零碎</div>
                 </div>
+                <!--点赞-->
+                <div style="text-align: center" th:switch="${BlogLikeFlag}">
+                    <div th:case="0" >
+                        <input type="hidden" name="likeStyle" value="-1">
+                        <button class="ui toggle button ">👍</button>
+                    </div>
+                    <div th:case="1">
+                        <input type="hidden" name="likeStyle" value="1">
+                        <button class="ui toggle button orange">👍</button>
+                    </div>
+
+                </div>
 
 
 
@@ -328,6 +340,20 @@
         }
     });
 
+    $('.ui.toggle.button').click(function() {
+        like()
+        if ($("[name='likeStyle']").val() == -1) {
+            $('.ui.toggle.button').addClass("orange");
+            $("[name='likeStyle']").val(1);
+        } else {
+            $('.ui.toggle.button').removeClass("orange");
+            $("[name='likeStyle']").val(-1);
+
+        }
+    })
+
+
+
     // 页面加载完成后加载评论
     $(function () {
         ($('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/0"));
@@ -344,6 +370,21 @@
         });
     }
 
+    function like() {
+        $.ajax({
+            type: "POST",
+            url: "BlogLike",
+            data: {
+                blogId: $("[name='blog.id']").val(),
+                likeStyle: $("[name='likeStyle']").val(),
+            },
+            success:function (data) {
+                console.log(data.status);
+            }
+        });
+    }
+
+
     function clearContent() {
         $("[name='content']").val('');
         $("[name='parentComment.id']").val(-1);
@@ -358,6 +399,10 @@
         $("[name='parentComment.id']").val(commentId);
         $(window).scrollTo($('#comment-form'),500);
     }
+
+
+
+
 
 </script>
 </body>

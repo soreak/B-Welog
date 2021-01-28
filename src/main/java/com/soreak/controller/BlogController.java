@@ -45,11 +45,22 @@ public class BlogController {
     private TagService tagService;
 
     @Autowired
+    private BlogLikeService blogLikeService;
+
+    @Autowired
     private BlogCommentService blogCommentService;
 
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model){
-        setUser(model);
+        UserEntity userEntity = setUser(model);
+
+        BlogLike blogLike = blogLikeService.SelectBlogLike(id, userEntity.getId());
+
+        if (blogLike !=null){
+            model.addAttribute("BlogLikeFlag","1");
+        }else {
+            model.addAttribute("BlogLikeFlag","0");
+        }
 
         BlogVO blog =blogService.getBlogById(id);
         model.addAttribute("blog",blog);
