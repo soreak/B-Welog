@@ -42,7 +42,7 @@
                 <div class="column">
 
                     <div class="ui left action input ">
-                        <img id="img2" class="ui medium circular image" src="http://lorempixel.com/800/600/" th:src="${user.avatar}">
+                        <img id="img2" class="ui medium circular image" src="http://lorempixel.com/800/600/" th:src="${master.avatar}">
 
                     </div>
                     <form action="#" method="post" th:action="@{/saveInfo}" enctype="multipart/form-data">
@@ -56,28 +56,28 @@
                     </div>
                     <div class="ui left action input m-margin-top">
                         <div class="ui teal button">用户名</div>
-                        <input type ="text" id="nickname" name="nickname" value="$52.03" th:value="${user.nickname}">
+                        <input type ="text" id="nickname" name="nickname" value="$52.03" th:value="${master.nickname}">
                     </div>
 
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">个人介绍</button>
-                        <input type="text" id="information" name="information" value="$52.03" th:value="${user.information}">
+                        <input type="text" id="information" name="information" value="$52.03" th:value="${master.information}">
                     </div>
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">git</button>
-                        <input type="text" id="git" name="git" value="$52.03" th:value="${user.git}">
+                        <input type="text" id="git" name="git" value="$52.03" th:value="${master.git}">
                     </div>
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">QQ</button>
-                        <input type="text" id="qq" name="qq" value="$52.03" th:value="${user.qq}">
+                        <input type="text" id="qq" name="qq" value="$52.03" th:value="${master.qq}">
                     </div>
                     <div class="ui left action input m-margin-top">
                         <button class="ui teal button">email</button>
-                        <input type="text" id="email" name="email" value="$52.03" th:value="${user.email}">
+                        <input type="text" id="email" name="email" value="$52.03" th:value="${master.email}">
                     </div>
                      <div class="ui left action input m-margin-top">
                         <button class="ui teal button">微信</button>
-                        <input type="text" id="wechat" name="wechat" value="$52.03" th:value="${user.wechat}">
+                        <input type="text" id="wechat" name="wechat" value="$52.03" th:value="${master.wechat}">
                     </div>
                     <div class="m-padded-lr-response m-margin-top">
                         <button class="ui orange button" type="submit">提交数据</button>

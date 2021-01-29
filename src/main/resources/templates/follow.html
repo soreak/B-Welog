@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>关注与粉丝</title>
+</head>
+<body>
+<!--导航-->
+<!--m 自定义 间距 上下 -->
+<nav th:replace="_fragments :: menu(-1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">WeBlog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i>新闻</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i>话题</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>MY</a>
+
+            <div class="right item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+
+
+            <div class="ui item" sec:authorize="!isAuthenticated()">
+                <span style="display: none" name="phone" ></span>
+                <a href="#" class="ui teal button" th:href="@{/login}">登录</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="#" class="ui teal button" th:href="@{/registered}">注册</a>
+            </div>
+
+
+            <div class="ui dropdown item" sec:authorize="isAuthenticated()">
+
+                <div class="text">
+                    <span th:text="${user.nickname}"></span>
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">个人信息</a>
+                    <a href="#" class="item">发表</a>
+                    <a href="#" class="item">注销</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--menu toggle 用于jQuery选择-->
+    <!--加了menu 使得按钮会在导航栏水平居中位置-->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+<!--中间内容-->
+<div class="m-container m-padded-tb-big">
+    <!--semantic 容器 有响应式效果-->
+    <div class="ui container">
+
+        <div class="ui stackable grid">
+            <!--左侧 空余-->
+            <div class="three wide column"></div>
+            <!--中间 主干-->
+            <div class="ten wide column ">
+                <!--header-->
+                <div class="ui top attached segment">
+                    <!--middle aligned 水平居中-->
+                    <div class="ui grid">
+                        <div class="left aligned column">
+                            <span class="ui teal header" >
+                                <span th:text="|用户：${name}|">abc</span>
+                                <div style="float: right">
+                                    <a href="#" th:href="@{/userLike/like/{id}(id=${id})}"><span  class="" th:classappend="${flag == '1'} ? 'm-text-big' : '' ">关注</span></a> /
+                                <a href="#" th:href="@{/userLike/fan/{id}(id=${id})}"> <span class="" th:classappend="${flag == '2'} ? 'm-text-big' : '' ">粉丝</span></a>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--content-->
+                <div th:fragment="UserLike">
+                    <div class="ui attached segment" th:each="user : ${users}" >
+                        <div class="ui grid">
+                            <div class="three wide column">
+                                <img src="http://lorempixel.com/800/600/" alt="" class="ui rounded image" th:src="${user.avatar}">
+                            </div>
+                            <div class="eight wide column">
+                                <h3 class="ui header"><a href="#" th:href="@{/showInfo/{id}(id=${user.id})}" target="_blank" class="m-black" th:text="${user.nickname}">呢称</a></h3>
+                                <p class="m-text" th:text="|${user.information}|">个人介绍</p>
+                            </div>
+                            <div class="five wide column">
+
+                                <div style="float: right" class="m-margin-top">
+                                    <input type="hidden" name="likeStyle" value="1">
+                                    <button class="ui toggle button">已关注</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function () {
+        /*toggleClass 有则去除没有则加上*/
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+    $('.ui.dropdown').dropdown({
+        on:'hover'
+    });
+</script>
+</body>
+</html>

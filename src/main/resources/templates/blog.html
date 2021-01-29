@@ -98,7 +98,7 @@
                     <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">零碎</div>
                 </div>
                 <!--点赞-->
-                <div style="text-align: center" th:switch="${BlogLikeFlag}">
+                <div style="text-align: center" th:switch="${BlogLikeFlag}" sec:authorize="isAuthenticated()">
                     <div th:case="0" >
                         <input type="hidden" name="likeStyle" value="-1">
                         <button class="ui toggle button ">👍</button>
@@ -109,9 +109,6 @@
                     </div>
 
                 </div>
-
-
-
             </div>
 
             <!--留言区域-->
@@ -157,52 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--/*-->
-                            <div class="comment">
-                                <div class="content">
-                                    <a class="author" one-link-mark="yes">Elliot Fu</a>
-                                    <div class="metadata">
-                                        <span class="date">Yesterday at 12:30AM</span>
-                                    </div>
-                                    <div class="text">
-                                        <p>This has been very useful for my research. Thanks as well!</p>
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply" one-link-mark="yes">回复</a>
-                                    </div>
-                                </div>
-                                <div class="comments">
-                                    <div class="comment">
-                                        <div class="content">
-                                            <a class="author" one-link-mark="yes">Jenny Hess</a>
-                                            <div class="metadata">
-                                                <span class="date">Just now</span>
-                                            </div>
-                                            <div class="text">
-                                                Elliot you are always so right :)
-                                            </div>
-                                            <div class="actions">
-                                                <a class="reply" one-link-mark="yes">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <div class="content">
-                                    <a class="author" one-link-mark="yes">Joe Henderson</a>
-                                    <div class="metadata">
-                                        <span class="date">5 days ago</span>
-                                    </div>
-                                    <div class="text">
-                                        Dude, this is awesome. Thanks so much
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply" one-link-mark="yes">回复</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--*/-->
+
                         </div>
                     </div>
 
@@ -245,10 +197,15 @@
 
         </div>
     </div>
+
+
+
+
     <div id="toolbar" class="m-padded m-fixed m-right-bottom" style="display: none">
         <div class="ui vertical icon buttons">
             <button type="button" class="ui toc teal button">目录</button>
             <a href="#comment-container" type="button" class="ui teal button">留言</a>
+            <!--icon 显示会居中-->
             <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
         </div>
     </div>
@@ -265,19 +222,13 @@
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
 <script src="../static/lib/prism/prism.js"></script>
 <script src="../static/lib/tocbot/tocbot.min.js"></script>
 <script src="../static/lib/qrcode/qrcode.min.js"></script>
 <script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
 <!--/*/</th:block>/*/-->
 <script th:inline="javascript">
-    $('.menu.toggle').click(function () {
-        /*toggleClass 有则去除没有则加上*/
-        $('.m-item').toggleClass('m-mobile-hide')
-    });
-
-
 
     tocbot.init({
         // Where to render the table of contents.

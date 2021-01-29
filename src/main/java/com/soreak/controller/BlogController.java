@@ -53,8 +53,11 @@ public class BlogController {
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model){
         UserEntity userEntity = setUser(model);
+        BlogLike blogLike = null;
+        if (userEntity !=null){
+            blogLike = blogLikeService.SelectBlogLike(id, userEntity.getId());
+        }
 
-        BlogLike blogLike = blogLikeService.SelectBlogLike(id, userEntity.getId());
 
         if (blogLike !=null){
             model.addAttribute("BlogLikeFlag","1");
@@ -141,7 +144,7 @@ public class BlogController {
         UserEntity byPhone = new UserEntity();
         if (phone!=null){
            byPhone = userService.findByPhone(phone);
-            model.addAttribute("user",byPhone);
+            model.addAttribute("master",byPhone);
         }
         return byPhone;
     }

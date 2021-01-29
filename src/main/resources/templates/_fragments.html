@@ -46,11 +46,12 @@
             <div class="ui dropdown item" sec:authorize="isAuthenticated()">
 
                 <div class="text" >
-                    <span th:if="${user.nickname}" th:text="${user.nickname}"></span>
+                    <img src="http://lorempixel.com/100/100/" th:src="@{${master.avatar}}" alt="" class="ui avatar image"/>
+                    <span th:text="${master.nickname}">123</span>
                 </div>
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a href="#" class="item" th:href="@{/showInfo}">个人信息</a>
+                    <a href="#" class="item" th:href="@{/showInfo/{id}(id=${master.id})}">个人信息</a>
                     <a href="#" class="item" th:href="@{/blog/input}">发表</a>
                     <a href="#" class="item" th:href="@{/logout}">注销</a>
                 </div>

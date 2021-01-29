@@ -4,6 +4,7 @@ import com.soreak.entity.Blog;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TagVO;
+import com.soreak.service.UserFollowService;
 import com.soreak.service.UserService;
 import com.soreak.utils.HTMLUtils;
 import com.soreak.utils.phoneVerify.util.RandomNum;
@@ -18,10 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -39,6 +37,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserFollowService userFollowService;
+
 
 
     @Value("${absoluteImgPath}")
@@ -47,10 +48,21 @@ public class UserController {
     @Value("${sonImgPath}")
     String sonImgPath;
 
-    @GetMapping("/showInfo")
+    @GetMapping("/showInfo/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String showInfo(Model model){
-        getUser(model);
+    public String showInfo(@PathVariable Long id, Model model){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("master",userService.findByPhone(phone));
+        UserEntity userById = userService.getUserById(id);
+        if (phone.equals(userById.getPhone())){
+            model.addAttribute("self","1");
+        }
+        List<UserEntity> list;
+        list = userFollowService.selectFollowByUId(id);
+        model.addAttribute("like",list.size());
+        list = userFollowService.selectFollowByUFId(id);
+        model.addAttribute("fan",list.size());
+        model.addAttribute("user",userById);
         return "showInfo";
     }
     @RequestMapping(value = "/editInfo",method = RequestMethod.GET)
@@ -63,13 +75,13 @@ public class UserController {
 
     private Model getUser(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("user",userService.findByPhone(phone));
+        model.addAttribute("master",userService.findByPhone(phone));
         return model;
     }
 
     @RequestMapping(value = "/saveInfo",method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated()")
-    public String save(@RequestParam("avatar") MultipartFile avatar,
+    public String  save(@RequestParam("avatar") MultipartFile avatar,
                        @RequestParam("nickname") String nickname,
                        @RequestParam("information") String information,
                        @RequestParam("git") String git,
@@ -114,8 +126,9 @@ public class UserController {
         userService.saveUser(user);
 
         getUser(model);
+        showInfo(user.getId(),model);
 
-    return "showInfo";
+        return "showInfo";
 
 
     }

@@ -10,7 +10,7 @@
 <body>
 <!--导航-->
     <!--m 自定义 间距 上下 -->
-    <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <nav th:replace="_fragments :: menu(-1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">WeBlog</h2>
@@ -71,8 +71,16 @@
                 <div class="nine wide column">
                     <div class="segments">
                         <div class="ui top attached segment">
-                            <div class="ui header" th:text="${user.nickname}">soreak</div>
-                            <div th:text="|uid:${user.id}|">uid:123</div>
+                            <div class="ui grid">
+                                <div class="twelve wide column">
+                                    <div class="ui header" th:text="${user.nickname}">soreak</div>
+                                    <div th:text="|uid:${user.id}|">uid:123</div>
+                                </div>
+                                <div class="four wide column">
+                                    <a th:if="${#strings.isEmpty(self)}" type="button" class="ui toggle button" style="float: right;">关注</a>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="ui attached segment">
                             <p class="ui teal m-text-thin" th:text="${user.information}">个人介绍</p>
@@ -82,9 +90,18 @@
                         <div class="ui attached segment">
                             <p class="m-text-thin" th:text="|注册时间：${#dates.format(user.createTime,'yyyy-MM-dd')}|"></p>
                         </div>
+                        <div class="m-margin-top"  >
 
-                        <div class="ui right aligned container m-margin-top">
-                            <a type="button" id="save-btn" class="ui teal button" th:href="@{/editInfo}">修改个人信息</a>
+                                <div class="ui compact menu">
+                                    <a class="item" th:href="@{/userLike/like/{id}(id=${user.id})}">关注 <div class="floating ui red label" th:text="${like}">22</div>
+                                    </a>
+                                    <a class="item" th:href="@{/userLike/fan/{id}(id=${user.id})}">粉丝 <div class="floating ui teal label" th:text="${fan}">22</div>
+                                    </a>
+
+                                </div>
+
+                                <a th:unless="${#strings.isEmpty(self)}" type="button" id="save-btn" class="ui teal button" style="float: right;" th:href="@{/editInfo}">修改个人信息</a>
+
                         </div>
 
                     </div>

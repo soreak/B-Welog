@@ -50,7 +50,7 @@ public class IndexController {
         if (phone!="anonymousUser"){
             UserEntity entity = userService.findByPhone(phone);
             userService.updateTime(entity.getId());
-            model.addAttribute("user",entity);
+            model.addAttribute("master",entity);
         }
 
         List<TagVO> tags = tagService.getTagNameAndCount();

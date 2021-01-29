@@ -44,8 +44,4 @@ public class UserFollow implements Serializable {
      */
     private Date createTime;
 
-    /**
-     * 状态更新时间
-     */
-    private Date updateTime;
 }

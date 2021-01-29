@@ -58,6 +58,9 @@ body{
     line-height: 1.8;
 
 }
+.m-text-big{
+    font-size: 1.5em !important;
+}
 
 .m-text-thin {
     font-weight: 300 !important;
