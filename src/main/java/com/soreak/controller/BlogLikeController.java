@@ -25,7 +25,7 @@ public class BlogLikeController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/BlogLike")
+    @RequestMapping(value = "/BlogLike",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject Like(@RequestParam("blogId") String blogId,
                            @RequestParam("likeStyle") String likeStyle){
