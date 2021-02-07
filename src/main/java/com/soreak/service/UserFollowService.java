@@ -16,4 +16,8 @@ public interface UserFollowService {
     List<UserEntity> selectFollowByUId(Long id);
 
     List<UserEntity> selectFollowByUFId(Long id);
+
+    int createFollow(Long UId,Long UFId);
+
+    int deleteFollow(Long UId,Long UFId);
 }

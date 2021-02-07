@@ -1,5 +1,6 @@
 package com.soreak.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.UserFollow;
 import com.soreak.service.UserFollowService;
@@ -9,9 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -72,6 +71,55 @@ public class UserFollowController {
         return "follow";
     }
 
+    @RequestMapping(value = "/FollowOperate",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject Like(@RequestParam("UFId") String UFId,
+                           @RequestParam("followFlag") String followFlag){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        UFId = UFId.replace("uid:","");
+        UserEntity byPhone = userService.findByPhone(phone);
+        int i = 0;
+        if (followFlag.equals("-1")){
+            i = userFollowService.createFollow(byPhone.getId(),Long.valueOf(UFId));
+        }else if (followFlag.equals("1")){
+            i = userFollowService.deleteFollow(byPhone.getId(),Long.valueOf(UFId));
+        }
 
+
+        JSONObject jsonObject = new JSONObject();
+        if (i == 1){
+            jsonObject.put("status","success");
+        }else {
+            jsonObject.put("status","error");
+        }
+
+        return jsonObject;
+    }
+
+
+    @RequestMapping(value = "/fanOperate",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject fan(@RequestParam("UFId") String UFId,
+                           @RequestParam("fanFlag") String fanFlag){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        UFId = UFId.replace("uid:","");
+        UserEntity byPhone = userService.findByPhone(phone);
+        int i = 0;
+        if (fanFlag.equals("-1")){
+            i = userFollowService.createFollow(Long.valueOf(UFId),byPhone.getId());
+        }else if (fanFlag.equals("1")){
+            i = userFollowService.deleteFollow(Long.valueOf(UFId),byPhone.getId());
+        }
+
+
+        JSONObject jsonObject = new JSONObject();
+        if (i == 1){
+            jsonObject.put("status","success");
+        }else {
+            jsonObject.put("status","error");
+        }
+
+        return jsonObject;
+    }
 
 }

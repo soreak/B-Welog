@@ -52,11 +52,20 @@ public class UserController {
     @PreAuthorize("isAuthenticated()")
     public String showInfo(@PathVariable Long id, Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("master",userService.findByPhone(phone));
+        UserEntity master = userService.findByPhone(phone);
+        model.addAttribute("master",master);
         UserEntity userById = userService.getUserById(id);
         if (phone.equals(userById.getPhone())){
             model.addAttribute("self","1");
         }
+        List<UserEntity> masterLikeList = userFollowService.selectFollowByUId(master.getId());
+        int followLikeFlag = 0;
+        for (UserEntity u : masterLikeList) {
+            if (id.equals(u.getId())){
+                followLikeFlag = 1;
+            }
+        }
+        model.addAttribute("followLikeFlag",followLikeFlag);
         List<UserEntity> list;
         list = userFollowService.selectFollowByUId(id);
         model.addAttribute("like",list.size());

@@ -18,12 +18,12 @@ import java.util.List;
 @Repository
 public interface UserFollowDao extends BaseMapper<UserFollow> {
 
-    /*找粉丝*/
-    @Select("SELECT u.id,u.nickname,u.information,u.avatar FROM sk_user_follow uf,sk_user u where uf.user_follow_id =u.id and uf.user_id = #{UId}")
+    /*找关注*/
+    @Select("SELECT u.id,u.nickname,u.information,u.avatar FROM sk_user_follow uf,sk_user u where uf.user_follow_id =u.id and uf.user_id = #{UId} order by uf.create_time asc")
     List<UserEntity> selectFollowByUId(@Param("UId") Long id);
 
-    /*找关注*/
-    @Select("SELECT u.id,u.nickname,u.information,u.avatar FROM sk_user_follow uf,sk_user u where uf.user_id =u.id and uf.user_follow_id = #{UFId}")
+    /*找粉丝*/
+    @Select("SELECT u.id,u.nickname,u.information,u.avatar FROM sk_user_follow uf,sk_user u where uf.user_id =u.id and uf.user_follow_id = #{UFId} order by uf.create_time asc")
     List<UserEntity> selectFollowByUFId(@Param("UFId")Long id);
 
 

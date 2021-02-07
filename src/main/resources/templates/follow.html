@@ -74,11 +74,11 @@
                     <!--middle aligned 水平居中-->
                     <div class="ui grid">
                         <div class="left aligned column">
-                            <span class="ui teal header" >
+                            <span class="ui header" >
                                 <span th:text="|用户：${name}|">abc</span>
                                 <div style="float: right">
-                                    <a href="#" th:href="@{/userLike/like/{id}(id=${id})}"><span  class="" th:classappend="${flag == '1'} ? 'm-text-big' : '' ">关注</span></a> /
-                                <a href="#" th:href="@{/userLike/fan/{id}(id=${id})}"> <span class="" th:classappend="${flag == '2'} ? 'm-text-big' : '' ">粉丝</span></a>
+                                    <a href="#" th:href="@{/userLike/like/{id}(id=${id})}"><span class="" th:classappend="${flag == '1'} ? 'm-text-big' : '' ">关注</span></a> /
+                                    <a href="#" th:href="@{/userLike/fan/{id}(id=${id})}"> <span class="" th:classappend="${flag == '2'} ? 'm-text-big' : '' ">粉丝</span></a>
                                 </div>
                             </span>
                         </div>
@@ -93,15 +93,34 @@
                                 <img src="http://lorempixel.com/800/600/" alt="" class="ui rounded image" th:src="${user.avatar}">
                             </div>
                             <div class="eight wide column">
+                                <input type="hidden" name="user.id" th:value="${user.id}">
                                 <h3 class="ui header"><a href="#" th:href="@{/showInfo/{id}(id=${user.id})}" target="_blank" class="m-black" th:text="${user.nickname}">呢称</a></h3>
                                 <p class="m-text" th:text="|${user.information}|">个人介绍</p>
                             </div>
                             <div class="five wide column">
 
-                                <div style="float: right" class="m-margin-top">
-                                    <input type="hidden" name="likeStyle" value="1">
-                                    <button class="ui toggle button">已关注</button>
+                                <div style="text-align: center;float: right;" th:switch="${flag}">
+                                    <div th:case="1" >
+                                        <div th:unless="${#strings.isEmpty(self)}">
+                                            <div style="float: right" class="m-margin-top">
+                                                <input type="hidden" name="followFlag" value="1">
+                                                <button class="ui toggle button">已关注</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div th:case="2">
+                                        <div th:unless="${#strings.isEmpty(self)}">
+                                            <div style="float: right" class="m-margin-top">
+                                                <input type="hidden" name="fanFlag" value="1">
+                                                <button class="ui toggle button">移除粉丝</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+
+
+
                             </div>
                         </div>
 
@@ -128,6 +147,48 @@
     $('.ui.dropdown').dropdown({
         on:'hover'
     });
+
+    $('.ui.toggle.button').click(function() {
+        follow()
+        if ($("[name='followFlag']").val() == -1) {
+            $('.ui.toggle.button').addClass("black");
+            $('.ui.toggle.button').text("已关注")
+            $("[name='followFlag']").val(1);
+        } else {
+            $('.ui.toggle.button').removeClass("black");
+            $('.ui.toggle.button').text("关&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注")
+            $("[name='followFlag']").val(-1);
+
+        }
+    });
+
+    function follow() {
+        $.ajax({
+            type: "POST",
+            url: "/FollowOperate",
+            data: {
+                UFId: $("[name='user.id']").val(),
+                followFlag: $("[name='followFlag']").val(),
+            },
+            success:function (data) {
+                console.log(data.status);
+            }
+        });
+    }
+
+    function fan() {
+        $.ajax({
+            type: "POST",
+            url: "/fanOperate",
+            data: {
+                UFId: $("[name='user.id']").val(),
+                fanFlag: $("[name='followFlag']").val(),
+            },
+            success:function (data) {
+                console.log(data.status);
+            }
+        });
+    }
 </script>
 </body>
 </html>

@@ -74,10 +74,23 @@
                             <div class="ui grid">
                                 <div class="twelve wide column">
                                     <div class="ui header" th:text="${user.nickname}">soreak</div>
-                                    <div th:text="|uid:${user.id}|">uid:123</div>
+                                    <div th:text="|uid:${user.id}|" id="UID">uid:123</div>
                                 </div>
                                 <div class="four wide column">
-                                    <a th:if="${#strings.isEmpty(self)}" type="button" class="ui toggle button" style="float: right;">关注</a>
+                                    <div th:if="${#strings.isEmpty(self)}">
+                                        <!--关注-->
+                                        <div style="text-align: center;float: right;" th:switch="${followLikeFlag}">
+                                            <div th:case="0" >
+                                                <input type="hidden" name="followFlag" value="-1">
+                                                <button class="ui toggle button ">关&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</button>
+                                            </div>
+                                            <div th:case="1">
+                                                <input type="hidden" name="followFlag" value="1">
+                                                <button class="ui toggle button black">已关注</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -166,6 +179,33 @@
             }
         );
 
+    $('.ui.toggle.button').click(function() {
+        follow()
+        if ($("[name='followFlag']").val() == -1) {
+            $('.ui.toggle.button').addClass("black");
+            $('.ui.toggle.button').text("已关注")
+            $("[name='followFlag']").val(1);
+        } else {
+            $('.ui.toggle.button').removeClass("black");
+            $('.ui.toggle.button').text("关     注")
+            $("[name='followFlag']").val(-1);
+
+        }
+    });
+
+    function follow() {
+        $.ajax({
+            type: "POST",
+            url: "/FollowOperate",
+            data: {
+                UFId: $('#UID').text(),
+                followFlag: $("[name='followFlag']").val(),
+            },
+            success:function (data) {
+                console.log(data.status);
+            }
+        });
+    }
 
 
 
