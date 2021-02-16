@@ -44,6 +44,8 @@ public class BlogVO {
 
     private String tagIds;
 
+    private int likeCount;
+
     public void init() {
         this.tagIds = tagsToIds(this.getTags());
     }

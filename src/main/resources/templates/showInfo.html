@@ -103,20 +103,41 @@
                         <div class="ui attached segment">
                             <p class="m-text-thin" th:text="|注册时间：${#dates.format(user.createTime,'yyyy-MM-dd')}|"></p>
                         </div>
-                        <div class="m-margin-top"  >
+                        <div class="m-margin-top" >
 
                                 <div class="ui compact menu">
                                     <a class="item" th:href="@{/userLike/like/{id}(id=${user.id})}">关注 <div class="floating ui red label" th:text="${like}">22</div>
                                     </a>
                                     <a class="item" th:href="@{/userLike/fan/{id}(id=${user.id})}">粉丝 <div class="floating ui teal label" th:text="${fan}">22</div>
                                     </a>
-
                                 </div>
-
                                 <a th:unless="${#strings.isEmpty(self)}" type="button" id="save-btn" class="ui teal button" style="float: right;" th:href="@{/editInfo}">修改个人信息</a>
-
                         </div>
 
+                    </div>
+
+
+                    <div class="segments m-margin-top" th:each="blog : ${blogList}">
+                        <div class="ui top attached segment">
+                            <div class="ui grid">
+                                <div class="nine wide column">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">Android Studio下的简单网页解析</a>
+                                </div>
+                                <div class="seven wide column">
+                                    <div class="ui mini horizontal list">
+                                        <div class="item">
+                                            <i class="calendar icon"></i> <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-10-7</span>
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> <span th:text="${blog.views}">2333</span>
+                                        </div>
+                                        <div class="item">
+                                            <i class="like icon"></i> <span th:text="${blog.likeCount}">2333</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

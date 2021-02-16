@@ -97,6 +97,22 @@ public class UserFollowController {
     }
 
 
+
+    @RequestMapping(value = "/userLike/manyFollowCD/{id}",method = RequestMethod.GET)
+    public String manyFollowCD(@PathVariable Long id,Model model){
+        UserEntity userServiceByPhone = setUser(model);
+
+        userFollowService.deleteFollow(userServiceByPhone.getId(),Long.valueOf(id));
+
+        List<UserEntity> userEntities = userFollowService.selectFollowByUId(userServiceByPhone.getId());
+        model.addAttribute("users",userEntities);
+        model.addAttribute("flag","1");
+        model.addAttribute("self","1");
+        return "redirect:/userLike/like/"+userServiceByPhone.getId();
+    }
+
+
+
     @RequestMapping(value = "/fanOperate",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject fan(@RequestParam("UFId") String UFId,
@@ -120,6 +136,20 @@ public class UserFollowController {
         }
 
         return jsonObject;
+    }
+
+
+    @RequestMapping(value = "/userLike/manyFanCD/{id}",method = RequestMethod.GET)
+    public String manyFanCD(@PathVariable Long id,Model model){
+        UserEntity userServiceByPhone = setUser(model);
+
+        userFollowService.deleteFollow(Long.valueOf(id),userServiceByPhone.getId());
+
+        List<UserEntity> userEntities = userFollowService.selectFollowByUFId(userServiceByPhone.getId());
+        model.addAttribute("users",userEntities);
+        model.addAttribute("flag","2");
+        model.addAttribute("self","1");
+        return "redirect:/userLike/fan/"+userServiceByPhone.getId();
     }
 
 }

@@ -4,6 +4,8 @@ import com.soreak.entity.Blog;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TagVO;
+import com.soreak.service.BlogLikeService;
+import com.soreak.service.BlogService;
 import com.soreak.service.UserFollowService;
 import com.soreak.service.UserService;
 import com.soreak.utils.HTMLUtils;
@@ -40,6 +42,12 @@ public class UserController {
     @Autowired
     private UserFollowService userFollowService;
 
+    @Autowired
+    private BlogLikeService blogLikeService;
+
+    @Autowired
+    private BlogService blogService;
+
 
 
     @Value("${absoluteImgPath}")
@@ -72,6 +80,14 @@ public class UserController {
         list = userFollowService.selectFollowByUFId(id);
         model.addAttribute("fan",list.size());
         model.addAttribute("user",userById);
+
+        List<BlogVO> myBlogListByUserId = blogService.getMyBlogListByUserId(id);
+        for (BlogVO b : myBlogListByUserId) {
+            b.setLikeCount(blogLikeService.selectBlogLikeCountByBlogId(b.getId()));
+        }
+
+        model.addAttribute("blogList",myBlogListByUserId);
+
         return "showInfo";
     }
     @RequestMapping(value = "/editInfo",method = RequestMethod.GET)
@@ -101,15 +117,15 @@ public class UserController {
 
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByPhone(phone);
-        String oldAvatar = user.getAvatar();
-        String replace = oldAvatar.replace(sonImgPath, "");
-        String delpath = absoluteImgPath+replace;
-        if (replace != "avatar.jpg"){
-            File f1 = new File(delpath);
-            f1.delete();
-        }
 
-
+        if (!avatar.isEmpty()){
+            String oldAvatar = user.getAvatar();
+            String replace = oldAvatar.replace(sonImgPath, "");
+            String delpath = absoluteImgPath+replace;
+            if (replace != "avatar.jpg"){
+                File f1 = new File(delpath);
+                f1.delete();
+            }
             String originalFilename = avatar.getOriginalFilename();
             //随机生成文件名
             String fileName = RandomNum.createRandomBySize(10) + originalFilename;
@@ -125,6 +141,7 @@ public class UserController {
                 e.printStackTrace();
             }
 
+        }
         user.setNickname(nickname);
         user.setInformation(information);
         user.setGit(git);

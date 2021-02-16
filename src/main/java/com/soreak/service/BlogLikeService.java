@@ -12,6 +12,8 @@ public interface BlogLikeService {
 
     BlogLike SelectBlogLike(Long BlogId,Long UserId);
 
+    int selectBlogLikeCountByBlogId(Long BlogId);
+
     int CreateBlogLike(Long BlogId,Long UserId);
 
     int DeleteBlogLike(Long BlogId,Long UserId);

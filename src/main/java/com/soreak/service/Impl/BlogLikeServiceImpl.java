@@ -29,6 +29,13 @@ public class BlogLikeServiceImpl implements BlogLikeService {
     }
 
     @Override
+    public int selectBlogLikeCountByBlogId(Long BlogId) {
+        QueryWrapper<BlogLike> wrapper = new QueryWrapper<>();
+        wrapper.eq("blog_id",BlogId);
+        return blogLikeDao.selectCount(wrapper);
+    }
+
+    @Override
     public int CreateBlogLike(Long BlogId, Long UserId) {
         BlogLike blogLike = new BlogLike();
         blogLike.setBlogId(BlogId);

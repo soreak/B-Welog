@@ -1,9 +1,11 @@
 package com.soreak.controller;
 
 import com.soreak.entity.Blog;
+import com.soreak.entity.BlogLike;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TagVO;
+import com.soreak.service.BlogLikeService;
 import com.soreak.service.BlogService;
 import com.soreak.service.TagService;
 import com.soreak.service.UserService;
@@ -37,6 +39,9 @@ public class IndexController {
     private BlogService blogService;
 
     @Autowired
+    private BlogLikeService blogLikeService;
+
+    @Autowired
     private TagService tagService;
 
     @Autowired
@@ -65,6 +70,7 @@ public class IndexController {
             HtmlRenderer renderer = HtmlRenderer.builder().build();
             String renderString = renderer.render(document);
             b.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            b.setLikeCount(blogLikeService.selectBlogLikeCountByBlogId(b.getId()));
         }
         model.addAttribute("blogs",blogs);
 
