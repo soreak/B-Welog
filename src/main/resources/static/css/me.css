@@ -88,6 +88,19 @@ body{
     margin-top: 2em !important;
 }
 
+.m-margin-left{
+    margin-left: 1em !important;
+}
+.m-margin-left-larger{
+    margin-left: 2em !important;
+}
+.m-margin-right{
+    margin-right: 1em !important;
+}
+.m-margin-right-larger{
+    margin-right: 2em !important;
+}
+
 .margin-bottom-small {
     margin-bottom: 0.5em !important;
 }

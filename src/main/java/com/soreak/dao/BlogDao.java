@@ -32,7 +32,7 @@ public interface BlogDao extends BaseMapper<Blog> {
 
 
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    @Insert("insert into sk_blog(title,content,create_time,update_time,flag,commentabled,recommend,published,user_id) value(#{title},#{content},#{createTime},#{updateTime},#{flag},#{commentabled},#{recommend},#{published},#{userId})")
+    @Insert("insert into sk_blog(title,content,create_time,update_time,flag,commentabled,recommend,published,views,user_id) value(#{title},#{content},#{createTime},#{updateTime},#{flag},#{commentabled},#{recommend},#{published},#{views},#{userId})")
     Long saveBlog(Blog blog);
 
 

@@ -30,10 +30,21 @@ public class TagServiceImpl implements TagService {
         return tagDao.getTagByBlogId(blogId);
     }
 
+    @Override
+    public List<Tag> getTagByNewsId(Long newsId) {
+        return tagDao.getTagByNewsId(newsId);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public List<TagVO> getTagNameAndCount() {
         return tagDao.getTagNameAndCount();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public List<TagVO> getTagNameAndCountByNews() {
+        return tagDao.getTagNameAndCountByNews();
     }
 
     @Override

@@ -1,0 +1,47 @@
+package com.soreak.dao;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.soreak.entity.Blog;
+import com.soreak.entity.News;
+import com.soreak.entity.VO.BlogVO;
+import com.soreak.entity.VO.NewsVO;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * @program: welog
+ * @author: soreak
+ * @description:
+ * @create: 2021-02-20 21:06
+ **/
+@Repository
+public interface NewsDao extends BaseMapper<News> {
+
+    @Select("SELECT n.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_news n,sk_user u WHERE n.user_id = u.id ORDER BY n.update_time DESC")
+    List<NewsVO> getNewsList();
+
+
+    @Select("SELECT n.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_news n,sk_user u WHERE n.user_id = u.id and n.id=#{id}")
+    NewsVO getOneNewsById(@Param("id") Long id);
+
+
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    @Insert("insert into sk_news(title,content,create_time,update_time,commentabled,views,user_id) value(#{title},#{content},#{createTime},#{updateTime},#{commentabled},#{views},#{userId})")
+    Long saveNews(News news);
+
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    @Insert("update sk_news set title=#{title},content=#{content},update_time=#{updateTime},commentabled=#{commentabled} where sk_news.id = #{id}")
+    Long updateNews(News news);
+
+    @Update("update sk_news n set n.views = n.views+1 where n.id=#{id}")
+    int updateViews(@Param("id")Long id);
+
+    @Select("SELECT n.* FROM sk_news n,sk_news_tag nt WHERE n.id = nt.news_id and n.title like concat('%',#{title},'%') and nt.tag_id=#{tagId} ")
+    List<News> searchNewsListByTT(@Param("title")String title,@Param("tagId")String tagId);
+
+    @Select("SELECT n.* FROM sk_news n,sk_news_tag nt WHERE n.id = nt.news_id and nt.tag_id=#{tagId}")
+    List<News> searchNewsListByT(@Param("tagId")String tagId);
+
+}

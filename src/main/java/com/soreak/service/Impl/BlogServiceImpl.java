@@ -51,7 +51,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> getHotBlogList() {
 
-        QueryWrapper queryWrapper = new QueryWrapper();
+        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
 
         queryWrapper.orderByDesc("views");
         queryWrapper.last("limit 5");
@@ -85,9 +85,6 @@ public class BlogServiceImpl implements BlogService {
         blog.setCreateTime(new Date());
         blog.setUpdateTime(new Date());
         blog.setViews(0);
-
-
-
         return blogDao.saveBlog(blog);
     }
 

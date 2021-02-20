@@ -15,8 +15,8 @@
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">管理后台</h2>
                 <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="target icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>新闻</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="target icon"></i>话题</a>
 
                 <div class="right m-item m-mobile-hide menu">
 
@@ -49,7 +49,7 @@
         <!--container 响应移动端-->
         <div class="ui container">
             <div class="ui secondary form segment">
-                <input type="hidden" name="page">
+
                 <!--默认是占满宽度，inline 就缩小宽度-->
                 <div class="inline fields">
                     <div class="field">
@@ -143,10 +143,6 @@
         on:'hover'
     });
 
-    function page(obj) {
-        $("[name='page']").val($(obj).data("page"));
-        loaddata();
-    }
 
     $("#search-btn").click(function () {
         $('[name="page"]').val(0);

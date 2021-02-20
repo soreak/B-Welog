@@ -19,8 +19,10 @@ public interface BlogService {
 
     List<Blog> getHotBlogList();
 
+    /* 修改的时候  显示Blog方法 */
     BlogVO getBlogById(Long id);
 
+    /* 查看的时候  显示Blog方法 */
     BlogVO getOneBlog(Long id);
 
     Long saveBlog(Blog blog);

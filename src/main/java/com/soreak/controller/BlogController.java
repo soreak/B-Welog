@@ -88,7 +88,7 @@ public class BlogController {
             if (!c.matches("^[0-9]*$")){
                 tag.setName(c);
                 Long aLong = tagService.saveTag(tag);
-                System.out.println("tagid+++++"+aLong);
+                System.out.println("tagid============"+aLong);
                 System.out.println(tag.getId());
                 tagIdList.add(tag.getId());
                 tag = new Tag();
@@ -108,7 +108,6 @@ public class BlogController {
         blog1.setCommentabled(blog.isCommentabled());
         blog1.setRecommend(blog.isRecommend());
         blog1.setPublished(blog.isPublished());
-
         Long id;
         if (blog.getId() == null){
             blog1.setUserId(userEntity.getId());

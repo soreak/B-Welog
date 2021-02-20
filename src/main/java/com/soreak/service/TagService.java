@@ -16,7 +16,11 @@ public interface TagService {
 
     List<Tag> getTagByBlogId(Long blogId);
 
+    List<Tag> getTagByNewsId(Long newsId);
+
     List<TagVO> getTagNameAndCount();
+
+    List<TagVO> getTagNameAndCountByNews();
 
     Long saveTag(Tag tag);
 }
