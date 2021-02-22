@@ -143,6 +143,7 @@ public class BlogController {
         UserEntity byPhone = new UserEntity();
         if (phone!=null){
            byPhone = userService.findByPhone(phone);
+           byPhone.setPassword("");
             model.addAttribute("master",byPhone);
         }
         return byPhone;

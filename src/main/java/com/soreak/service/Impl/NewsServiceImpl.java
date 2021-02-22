@@ -44,13 +44,13 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getHotNewsList() {
+    public List<News> getOneDayHotNews() {
+        return newsDao.getOneDayHotNews();
+    }
 
-        QueryWrapper<News> queryWrapper = new QueryWrapper<>();
-
-        queryWrapper.orderByDesc("views");
-        queryWrapper.last("limit 5");
-        return newsDao.selectList(queryWrapper);
+    @Override
+    public List<News> getWeekHotNews() {
+        return newsDao.getWeekHotNews();
     }
 
     @Override

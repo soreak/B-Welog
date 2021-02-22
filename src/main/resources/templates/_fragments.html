@@ -20,7 +20,7 @@
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">welog</h2>
             <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i><span>首页</span></a><!--th:text="#{nav.index}"-->
-            <a href="#" th:href="@{/news/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="newspaper icon"></i><span >新闻</span></a><!--th:text="#{nav.news}"-->
+            <a href="#" th:href="@{/news}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="newspaper icon"></i><span >新闻</span></a><!--th:text="#{nav.news}"-->
             <a href="#" th:href="@{/topic/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="bullhorn icon"></i><span >话题</span></a><!--th:text="#{nav.topic}"-->
             <a href="#" sec:authorize="isAuthenticated()" th:href="@{/MY}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="info icon"></i><span >MY</span></a><!--th:text="#{nav.MY}"-->
 

@@ -19,7 +19,10 @@ public interface NewsService {
 
     List<NewsVO> getNewsList();
 
-    List<News> getHotNewsList();
+    List<News> getOneDayHotNews();
+
+    List<News> getWeekHotNews();
+
     /* 修改的时候  */
     NewsVO getNewsById(Long id);
 
