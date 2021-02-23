@@ -47,8 +47,6 @@ public class BlogController {
     @Autowired
     private BlogLikeService blogLikeService;
 
-    @Autowired
-    private BlogCommentService blogCommentService;
 
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model){
@@ -139,11 +137,9 @@ public class BlogController {
 
     private UserEntity setUser(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         UserEntity byPhone = new UserEntity();
         if (phone!=null){
            byPhone = userService.findByPhone(phone);
-           byPhone.setPassword("");
             model.addAttribute("master",byPhone);
         }
         return byPhone;

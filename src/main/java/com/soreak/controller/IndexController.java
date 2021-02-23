@@ -52,7 +52,6 @@ public class IndexController {
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         if (phone!="anonymousUser"){
             UserEntity entity = userService.findByPhone(phone);
-            entity.setPassword("");
             userService.updateTime(entity.getId());
             model.addAttribute("master",entity);
         }

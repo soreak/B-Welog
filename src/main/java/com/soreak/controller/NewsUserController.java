@@ -1,15 +1,13 @@
 package com.soreak.controller;
 
+import com.soreak.entity.BlogLike;
 import com.soreak.entity.News;
 import com.soreak.entity.NewsLike;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.NewsVO;
 import com.soreak.entity.VO.TagVO;
-import com.soreak.service.NewsLikeService;
-import com.soreak.service.NewsService;
-import com.soreak.service.TagService;
-import com.soreak.service.UserService;
+import com.soreak.service.*;
 import com.soreak.utils.HTMLUtils;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
@@ -19,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,6 +36,10 @@ public class NewsUserController {
     private NewsLikeService newsLikeService;
 
     @Autowired
+    private NewsTagService newsTagService;
+
+
+    @Autowired
     private TagService tagService;
 
     @Autowired
@@ -51,8 +54,7 @@ public class NewsUserController {
             userService.updateTime(entity.getId());
             model.addAttribute("master",entity);
         }
-        List<TagVO> tags = tagService.getTagNameAndCountByNews();
-        model.addAttribute("tags",tags);
+        setTag(model);
 
         List<NewsVO> newsVOS = newsService.getNewsList();
 
@@ -73,5 +75,40 @@ public class NewsUserController {
         model.addAttribute("WeekHotNewsList",weekNewsList);
         return "news";
 
+    }
+
+    private void setTag(Model model){
+        model.addAttribute("tags",tagService.getTagNameAndCountByNews());
+
+    }
+
+    private UserEntity setUser(Model model){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity byPhone = new UserEntity();
+        if (phone!=null){
+            byPhone = userService.findByPhone(phone);
+            model.addAttribute("master",byPhone);
+        }
+        return byPhone;
+    }
+
+    @GetMapping("/news/{id}")
+    public String showNews(@PathVariable Long id, Model model){
+        UserEntity userEntity = setUser(model);
+        NewsLike newsLike = null;
+        if (userEntity !=null){
+            newsLike = newsLikeService.SelectNewsLike(id, userEntity.getId());
+        }
+
+
+        if (newsLike !=null){
+            model.addAttribute("NewsLikeFlag","1");
+        }else {
+            model.addAttribute("NewsLikeFlag","0");
+        }
+
+        NewsVO newsVO =newsService.getNewsById(id);
+        model.addAttribute("news",newsVO);
+        return "showNews";
     }
 }

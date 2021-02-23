@@ -60,17 +60,11 @@
                 </div>
 
             </div>
-            <!--图片-->
-            <!--<div class="ui attached segment">
-                &lt;!&ndash;fluid撑满外层&ndash;&gt;
-                &lt;!&ndash;rounded image 没有加image rounded 无效&ndash;&gt;
-                <img src="http://lorempixel.com/800/400/" th:src="@{${blog.firstPicture}}" alt="" class="ui fluid rounded image">
-            </div>-->
             <!--内容-->
             <div class="ui attached padded segment">
                 <!--basic 去掉segment外部的框框-->
                 <div class="ui right aligned basic segment">
-                    <div class="ui orange basic label" th:text="${blog.flag}">原创</div>
+                    <div class="ui orange basic label" th:text="${blog.flag}">转载</div>
                 </div>
                 <h2 class="ui center aligned header" th:text="${blog.title}">非暴力沟通</h2>
                 <br>
@@ -115,7 +109,7 @@
             <div  class="ui bottom attached segment" th:if="${blog.commentabled}">
                 <!--留言列表-->
                 <div id="comment-container" class="ui teal segment">
-                    <div th:fragment="commentList">
+                    <div th:fragment="blogCommentList">
                         <div class="ui threaded comments" style="max-width: 100%;">
                             <h3 class="ui dividing header">评论</h3>
                             <div class="comment" th:each="comment : ${comments}">
@@ -305,11 +299,11 @@
 
     // 页面加载完成后加载评论
     $(function () {
-        ($('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/0"));
+        ($('#comment-container').load(/*[[@{/blogComments/{id}(id=${blog.id})}]]*/"blogComments/0"));
     });
 
     function postData() {
-        $("#comment-container").load(/*[[@{/comments}]]*/"",{
+        $("#comment-container").load(/*[[@{/blogComments}]]*/"",{
             "parentCommentId" : $("[name='parentComment.id']").val(),
             "blogId" : $("[name='blog.id']").val(),
             "content" : $("[name='content']").val(),

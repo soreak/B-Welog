@@ -13,11 +13,11 @@
     <nav th:replace="_fragments :: menu(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">WeBlog</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i>新闻</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i>话题</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>MY</a>
+                <h2 class="ui teal header item">welog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i><span>首页</span></a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i><span >新闻</span></a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i><span >话题</span></a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i><span >MY</span></a>
 
                 <div class="right item m-mobile-hide">
                     <div class="ui icon inverted transparent input">
@@ -27,22 +27,21 @@
                 </div>
 
 
-                    <div class="ui dropdown item">
-                        <div class="text">
-                            <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
-                            soreaK
-                        </div>
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a href="#" class="item">个人信息</a>
-                            <a href="#" class="item">发表</a>
-                            <a href="#" class="item">注销</a>
-                        </div>
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
+                        soreaK
                     </div>
-
-
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">个人信息</a>
+                        <a href="#" class="item">发表</a>
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
             </div>
         </div>
+
         <!--menu toggle 用于jQuery选择-->
         <!--加了menu 使得按钮会在导航栏水平居中位置-->
         <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
@@ -144,7 +143,7 @@
                             <i class="list icon"></i>今日最热
                         </div>
                         <div class="ui segment" th:each="news : ${TodayHotNewsList}">
-                            <a href="#"  th:href="@{/news/{id}(id=${news.id})}" target="_blank" class="m-black m-text-thin " th:text="${news.title}">用户故事</a>
+                            <a href="#" th:href="@{/news/{id}(id=${news.id})}" target="_blank" class="m-black m-text-thin " th:text="${news.title}">用户故事</a>
                         </div>
                     </div>
 
