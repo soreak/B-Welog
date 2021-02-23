@@ -32,6 +32,14 @@ public class CommentVO {
      * 博客ID
      */
     private Long blogId;
+    /**
+     * 新闻ID
+     */
+    private Long newsId;
+    /**
+     * 话题ID
+     */
+    private Long topicId;
 
     /**
      * 评论内容
@@ -65,6 +73,8 @@ public class CommentVO {
                 "id=" + id +
                 ", userId=" + userId +
                 ", blogId=" + blogId +
+                ", newsId=" + newsId +
+                ", topicId=" + topicId +
                 ", content='" + content + '\'' +
                 ", status=" + status +
                 ", createTime=" + createTime +

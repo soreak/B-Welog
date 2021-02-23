@@ -91,7 +91,7 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}">1</td>
                     <td th:text="${user.nickname}">sorea1k</td>
-                    <td th:text="${user.role}">管理员</td>
+                    <td th:text="${user.role} eq 1 ? '管理员':'用户'">管理员</td>
                     <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
                     <td th:text="${#dates.format(user.updateTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
                     <td>

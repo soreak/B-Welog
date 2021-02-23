@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>新闻详情</title>
+</head>
+<body>
+<!--导航-->
+<!--m 自定义 间距 上下 -->
+<nav th:replace="_fragments :: menu(-1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">welog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i><span>首页</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i><span >新闻</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i><span >话题</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i><span >MY</span></a>
+
+            <div class="right item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+
+            <div class="ui dropdown item">
+                <div class="text">
+                    <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
+                    soreaK
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">个人信息</a>
+                    <a href="#" class="item">发表</a>
+                    <a href="#" class="item">注销</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--menu toggle 用于jQuery选择-->
+    <!--加了menu 使得按钮会在导航栏水平居中位置-->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+<!--中间内容-->
+<div id="waypoint" class="m-container-small m-padded-tb-big animated fadeIn">
+    <!--container 响应移动端-->
+    <div class="ui container">
+        <!--内容-->
+        <div class="ui attached padded segment">
+            <h2 class="ui center aligned header" th:text="${news.title}">起售价17999！“手机界茅台”发布，华为接下来的路怎么走？</h2>
+            <div class="ui center aligned attached basic grid m-margin-top">
+                <div class="ui horizontal link list">
+                    <div class="item">
+                        <span>来源：<a href="#" style="color: blue;" th:text="${news.userName}">soreaK</a></span>
+                    </div>
+                    <div class="item">
+                        发布于&nbsp;</i><span th:text="${#dates.format(news.updateTime,'yyyy-MM-dd')}">2020-8-6</span>
+                    </div>
+                    <div class="item">
+                        阅读量：</i><span th:text="${news.views}">2333</span>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div id="content" class="typo typo-selection js-toc-content m-padded-lr-response m-padded-tb-large" th:utext="${news.content}">
+                <p>文/巴里</p>
+
+                　<p>　来源：创业邦</p>
+
+                　<p>　2 月 22 日晚间，华为如期发布了其全新折叠屏旗舰手机——华为 Mate X2。</p>
+
+                <p>　　发布会一开始，华为消费者业务 CEO、常务董事余承东登台亮相。他表示，2020 年经历了美国的多轮制裁，尽管十分艰难，但在合作伙伴和供应商的支持下，“我们还是活过来了！”</p>
+
+                　<p>　紧接着，余承东回顾了过去一年的市场表现。他说到，在中国市场，华为的手机和穿戴做到了市场份额第一名，TWS 耳机实现超过 80% 以上的增长。目前，华为的智能连接设备已经超过了 10 亿台，HiLink 生态用户超过了 5000 万，HMS 月活用户超过 5.8 亿。</p>
+
+                　<p>　华为 Mate X2 相比上代 Xs 机型稍有涨价，256GB 版本售价 17999 元，512GB 版本售价 18999 元，可谓“手机界的茅台”。据悉，新机将于 2021 年 2 月 25 日正式开售，共有蓝色、粉色、白色、黑色四种配色。</p>
+
+                　<p>　余承东承诺，这次 Mate X2 提供了足够大的产能，希望每个消费者都可以平价买到。但正处“缺芯”中的华为，这也免不了成为一款“理财手机”。</p>
+
+                　<p>　那么，手机之后，华为的下一个增长点在哪里？</p>
+
+                　<p>　首款华为内折，主打“无折痕、无缝隙”</p>
+
+                　　<p>作为开年重磅新品，华为首款“内折”设计的折叠屏手机 Mate X2 自然备受关注。</p>
+
+
+
+                　<p>　华为 Mate X2 采用 8 英寸接近正方形的折叠大屏，6.45 英寸 21:9 外屏，刷新率均为 90Hz。核心规格上，搭载 5nm 制程工艺的麒麟 9000 5G SoC，拥有超薄大振幅双扬声器，配备 4500mAh 电池，采用 55W 超级快充。</p>
+
+                　<p>　拍照方面，华为 Mate X2 搭载超感知徕卡四摄，全时段全焦段。5000 万像素的超感知主摄；长焦摄像头沿用潜望式光学变焦结构，可实现 10 倍光学变焦、20 倍混合变焦和 100 倍数字变焦；1600 万像素超广角摄像头，支持 2.5cm 超近距离的对焦。</p>
+
+
+
+                　<p>　软件部分，华为携手软件绿色联盟 1000+ 家会员企业，不断完善折叠屏手机生态建设，提供完备的折叠开发框架和完善的折叠设计规范。目前，华为 Mate X2 已完成 TOP 200 应用的 100% 适配，TOP 1000 应用的 95% 适配。</p>
+
+                　　<p>发布会现场，华为还公布了 HarmonyOS（鸿蒙系统）的最新进展，余承东表示：“今年 4 月份开始，华为旗舰手机可陆续升级 HarmonyOS，华为 Mate X2 将首批升级。”</p>
+
+                　　<p>根据计划，HarmonyOS 将实现华为所有终端产品的覆盖，包括手机、电视、手表、车机、智能家居等众多设备。华为方面称，由于其天生面向 IoT 设备的特点，是安卓和 iOS 完全无法比拟的。</p>
+
+
+
+                　<p>　作为一款折叠屏手机，“可折叠”还是最大卖点。但自从折叠屏手机诞生两年来，其高昂售价、技术不成熟一直制约了其普及。</p>
+
+                　　<p>专家曾表示，折叠手机目前的零部件挑战主要仍在于折叠 OLED 面板，特别是在折叠耐受性与折叠半径上的挑战。其次，为了满足折叠需求同时在保护强度上又不能有太多妥协，盖板的材料也会是一个开发瓶颈。手机本身设计的问题上，则是如何在体积上维持与目前主流产品类似的大小。</p>
+
+                　　<p>此次的 Mate X2 在这几方面都有着一定程度的突破。</p>
+
+                　　<p>首先是华为 Mate X2 首次采用双楔形一体设计以及重心偏移设计，最薄处只有 4.4mm，整机重量 295g。对于三星、柔派一直没有解决的折叠缝隙难题，Mate X2 采用双旋水滴铰链，可实现无缝微痕折叠。</p>
+            </div>
+
+            <!--标签-->
+            <div class="m-padded-lr-response">
+                <div class="ui basic teal left pointing label" th:each="tag : ${news.tags}" th:text="${tag.name}">零碎</div>
+            </div>
+            <!--点赞-->
+            <div style="text-align: center" th:switch="${NewsLikeFlag}" sec:authorize="isAuthenticated()">
+                <div th:case="0" >
+                    <input type="hidden" name="likeStyle" value="-1">
+                    <button class="ui toggle button ">👍</button>
+                </div>
+                <div th:case="1">
+                    <input type="hidden" name="likeStyle" value="1">
+                    <button class="ui toggle button orange">👍</button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!--留言区域-->
+        <div  class="ui bottom attached segment" th:if="${news.commentabled}">
+            <!--留言列表-->
+            <div id="comment-container" class="ui teal segment">
+                <div th:fragment="newsCommentList">
+                    <div class="ui threaded comments" style="max-width: 100%;">
+                        <h3 class="ui dividing header">评论</h3>
+                        <div class="comment" th:each="comment : ${comments}">
+                            <div class="content">
+                                <a class="author">
+                                    <span th:text="${comment.nickname}">Matt</span>
+                                    <div class="ui mini basic teal left pointing label m-padded-mini" th:if="${comment.userId} eq ${authorId}">博主</div>
+                                </a>
+                                <div class="metadata">
+                                    <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+                                </div>
+                                <div class="text" th:text="${comment.content}">
+                                    How artistic!
+                                </div>
+                                <div class="actions">
+                                    <a class="reply" one-link-mark="yes" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}" onclick="reply(this)">回复</a>
+                                </div>
+                            </div>
+                            <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+                                <div class="comment" th:each="reply : ${comment.replyComments}">
+                                    <div class="content">
+                                        <a class="author" ><span th:text="${reply.nickname}"> Matt</span>
+                                            <div class="ui mini basic teal left pointing label m-padded-mini" th:if="${reply.userId} eq ${authorId}">博主</div>
+                                            &nbsp;
+                                            <span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@ xiaobai</span></a>
+                                        <div class="metadata">
+                                            <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+                                        </div>
+                                        <div class="text" th:text="${reply.content}">
+                                            How artistic!
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply" one-link-mark="yes" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}" onclick="reply(this)">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--ui form 表格样式-->
+            <div id="comment-form" class="ui form">
+                <input type="hidden" name="news.id" th:value="${news.id}">
+                <input type="hidden" name="parentComment.id" th:value="-1">
+
+
+
+                <div sec:authorize="!isAuthenticated()">
+                    <div class="field">
+                        <textarea name="content" placeholder="请登录..."  cols="30" rows="10" readonly="readonly"></textarea>
+                    </div>
+                    <div class="fields">
+                        <div class="field m-mobile-wide margin-bottom-small">
+                            <a href="#" class="ui teal button" th:href="@{/login}">登录</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div sec:authorize="isAuthenticated()">
+                    <div class="field">
+                        <textarea name="content" placeholder="请输入评论信息..."  cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="fields">
+                        <div class="field m-mobile-wide margin-bottom-small">
+                            <button type="button" id="commentpost-btn" class="ui teal m-mobile-wide button"> <i class="edit icon"></i>发布</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<div id="toolbar" class="m-padded m-fixed m-right-bottom" style="display: none">
+    <div class="ui vertical icon buttons">
+        <button type="button" class="ui toc teal button">目录</button>
+        <a href='#comment-container' type="button" class="ui teal button">留言</a>
+        <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
+    </div>
+</div>
+
+<div class="ui toc-container flowing popup transition hidden" style="width: 250px !important;">
+    <!--生成目录-->
+    <ol class="js-toc"></ol>
+</div>
+
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+<script src="../static/lib/prism/prism.js"></script>
+<script src="../static/lib/tocbot/tocbot.min.js"></script>
+<script src="../static/lib/qrcode/qrcode.min.js"></script>
+<script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script th:inline="javascript">
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+    $('.toc.button').popup( {
+        popup : $('.toc-container.popup'),
+        on : 'click',
+        position : 'left center'
+    });
+
+    $('#toTop-button').click(function () {
+        /*0 最开头 500 间隔时间*/
+        $(window).scrollTo(0,500);
+    });
+
+    var waypoint = new Waypoint({
+        element: document.getElementById('waypoint'),
+        handler: function(direction) {
+            // console.log('Scrolled to waypoint!')
+            if(direction == 'down'){
+                $('#toolbar').show(500);
+            }else{
+                $('#toolbar').hide(500);
+            }
+        }
+    })
+
+
+    /*表单数据校验*/
+    $('.ui.form').form({
+        fields : {
+            title : {
+                identifier : 'content',
+                rules : [{
+                    /*非空校验*/
+                    type : 'empty',
+                    prompt : '请输入评论内容'
+
+                }]
+            },
+        }
+    });
+
+    $('#commentpost-btn').click(function () {
+        var boo = $('.ui.form').form('validate form');
+        if (boo){
+            console.log('校验成功');
+            postData();
+        }else {
+            console.log('校验失败');
+        }
+    });
+
+    $('.ui.toggle.button').click(function() {
+        like()
+        if ($("[name='likeStyle']").val() == -1) {
+            $('.ui.toggle.button').addClass("orange");
+            $("[name='likeStyle']").val(1);
+        } else {
+            $('.ui.toggle.button').removeClass("orange");
+            $("[name='likeStyle']").val(-1);
+
+        }
+    });
+
+
+
+    // 页面加载完成后加载评论
+    $(function () {
+        $('#comment-container').load(/*[[@{/newsComments/{id}(id=${news.id})}]]*/"newsComments/0");
+    });
+
+    function postData() {
+        $("#comment-container").load(/*[[@{/newsComments}]]*/"",{
+            "parentCommentId" : $("[name='parentComment.id']").val(),
+            "newsId" : $("[name='news.id']").val(),
+            "content" : $("[name='content']").val(),
+        },function (responseTxt,statusTxt,xhr) {
+            // $(window).scrollTo($('#comment-container'),500);
+            clearContent();
+        });
+    }
+
+    function like() {
+        $.ajax({
+            type: "POST",
+            url: "/NewsLike",
+            data: {
+                newsId: $("[name='news.id']").val(),
+                likeStyle: $("[name='likeStyle']").val(),
+            },
+            success:function (data) {
+                console.log(data.status);
+            }
+        });
+    }
+
+    function clearContent() {
+        $("[name='content']").val('');
+        $("[name='parentComment.id']").val(-1);
+        $("[name='content']").attr("placeholder","请输入评论信息....");
+
+    }
+
+    function reply(obj) {
+        var commentId = $(obj).data('commentid');
+        var commentNickname = $(obj).data('commentnickname');
+        $("[name='content']").attr("placeholder","@"+commentNickname).focus();
+        $("[name='parentComment.id']").val(commentId);
+        $(window).scrollTo($('#comment-form'),500);
+    }
+
+</script>
+</body>
+</html>
