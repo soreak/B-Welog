@@ -10,12 +10,12 @@ import java.io.Serializable;
 /**
  * @program: welog
  * @author: soreak
- * @description: 博客标签表
- * @create: 2020-12-17 16:18
+ * @description: 话题标签连接
+ * @create: 2021-02-28 21:56
  **/
 @Data
-@TableName(value = "sk_blog_tag")
-public class BlogTag implements Serializable {
+@TableName(value = "sk_topic_tag")
+public class TopicTag implements Serializable {
     /**
      * 标识符Id
      */
@@ -30,8 +30,5 @@ public class BlogTag implements Serializable {
     /**
      * 对应博客Id
      */
-    private Long blogId;
-
-
-
+    private Long topicId;
 }

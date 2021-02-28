@@ -26,9 +26,8 @@ public interface NewsDao extends BaseMapper<News> {
     @Select("select * from sk_news n where to_days(create_time) = to_days(now()) ORDER BY n.views DESC limit 5")
     List<News> getOneDayHotNews();
 
-    @Select("select * from sk_news n WHERE YEARWEEK(date_format(create_time,'%Y-%m-%d')) = YEARWEEK(now()) ORDER BY n.views DESC limit 5")
+    @Select("select * from sk_news n WHERE YEARWEEK(date_format(create_time,'%Y-%m-%d')) = YEARWEEK(now(),1) ORDER BY n.views DESC limit 5")
     List<News> getWeekHotNews();
-
 
 
     @Select("SELECT n.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_news n,sk_user u WHERE n.user_id = u.id and n.id=#{id}")

@@ -67,7 +67,9 @@ public class IndexController {
             Node document = parser.parse(content);
             HtmlRenderer renderer = HtmlRenderer.builder().build();
             String renderString = renderer.render(document);
-            b.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            if (HTMLUtils.convert(renderString).length()>100){
+                b.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            }
             b.setLikeCount(blogLikeService.selectBlogLikeCountByBlogId(b.getId()));
         }
         model.addAttribute("blogs",blogs);

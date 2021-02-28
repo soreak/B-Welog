@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public interface BlogDao extends BaseMapper<Blog> {
 
-    @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id ORDER BY b.update_time DESC")
+    @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC")
     List<BlogVO> getBlogList();
 
     @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.user_id=#{id} ORDER BY b.create_time DESC")
