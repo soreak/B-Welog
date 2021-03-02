@@ -67,6 +67,11 @@ public class CommentVO {
 
     private String nickname;
 
+    private String userAvatar;
+
+    private String timeFromNow;
+
+
     @Override
     public String toString() {
         return "CommentVO{" +

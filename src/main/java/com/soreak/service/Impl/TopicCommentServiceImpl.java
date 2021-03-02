@@ -6,10 +6,13 @@ import com.soreak.dao.TopicCommentVODao;
 import com.soreak.entity.TopicComment;
 import com.soreak.entity.VO.CommentVO;
 import com.soreak.service.TopicCommentService;
+import com.soreak.utils.TimeFromNow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +29,8 @@ public class TopicCommentServiceImpl implements TopicCommentService {
 
     @Autowired
     private TopicCommentVODao topicCommentVODao;
+
+    TimeFromNow timeFromNow = new TimeFromNow();
 
 
     @Override
@@ -61,9 +66,11 @@ public class TopicCommentServiceImpl implements TopicCommentService {
     private void combineChildren(List<CommentVO> comments) {
         for (CommentVO comment : comments) {
             List<CommentVO> replies = topicCommentVODao.getChildCommentByParentId(comment.getId());
-
+            comment.setTimeFromNow(timeFromNow.CalculateTime(comment.getCreateTime()));
             for (CommentVO reply : replies) {
                 // 循环找出子代
+                System.out.println(reply.getCreateTime());
+                reply.setTimeFromNow(timeFromNow.CalculateTime(reply.getCreateTime()));
                 reply.setParentComment(topicCommentVODao.selectById(reply.getParentCommentId()));
                 headComment(reply);
 
@@ -95,6 +102,7 @@ public class TopicCommentServiceImpl implements TopicCommentService {
         List<CommentVO> childCommentByParentId = topicCommentVODao.getChildCommentByParentId(comment.getId());
         if(childCommentByParentId.size()>0){
             for (CommentVO reply1 : childCommentByParentId) {
+                reply1.setTimeFromNow(timeFromNow.CalculateTime(reply1.getCreateTime()));
                 reply1.setParentComment(topicCommentVODao.selectById(reply1.getParentCommentId()));
                 tempReplies.add(reply1);
                 if( topicCommentVODao.getChildCommentByParentId(reply1.getId()).size()>0){

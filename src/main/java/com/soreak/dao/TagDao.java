@@ -26,11 +26,17 @@ public interface TagDao extends BaseMapper<Tag> {
     @Select("select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_news n,sk_news_tag nt where t.id = nt.tag_id and n.id = nt.news_id GROUP BY t.`Name` ORDER BY COUNT(*) desc  LIMIT 8")
     List<TagVO> getTagNameAndCountByNews();
 
+    @Select("select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_topic tp,sk_topic_tag tt where t.id = tt.tag_id and tp.id = tt.topic_id GROUP BY t.`Name` ORDER BY COUNT(*) desc  LIMIT 8")
+    List<TagVO> getTagNameAndCountByTopics();
+
     @Select("select t.`id`,t.`Name` FROM sk_tag t,sk_blog_tag bt WHERE t.id = bt.tag_id and bt.blog_id=#{blogId}")
     List<Tag> getTagByBlogId(@Param("blogId") Long blogId);
 
     @Select("select t.`id`,t.`Name` FROM sk_tag t,sk_news_tag nt WHERE t.id = nt.tag_id and nt.news_id=#{newsId}")
     List<Tag> getTagByNewsId(@Param("newsId") Long newsId);
+
+    @Select("select t.`id`,t.`Name` FROM sk_tag t,sk_topic_tag tt WHERE t.id = tt.tag_id and tt.topic_id=#{newsId}")
+    List<Tag> getTagByTopicId(@Param("newsId") Long newsId);
 
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("insert  into sk_tag(name) value (#{name})")

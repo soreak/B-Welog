@@ -18,6 +18,9 @@ public interface TopicService {
 
     List<TopicVO> getMyTopicListByUserId(Long userId);
 
+    TopicVO getOneTopicById(Long id,int flag);
 
     Long saveTopic(Topic topic);
+
+    Long updateTopic(Topic topic);
 }

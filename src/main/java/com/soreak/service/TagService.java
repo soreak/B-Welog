@@ -22,5 +22,9 @@ public interface TagService {
 
     List<TagVO> getTagNameAndCountByNews();
 
+    List<TagVO> getTagNameAndCountByTopics();
+
     Long saveTag(Tag tag);
+
+    Tag selectTagByName(String name);
 }

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title th:text="${topic.title}"></title>
+</head>
+<body>
+<!--导航-->
+<!--m 自定义 间距 上下 -->
+<nav th:replace="_fragments :: menu(-1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">welog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i><span>首页</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i><span >新闻</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i><span >话题</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i><span >MY</span></a>
+
+            <div class="right item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+
+            <div class="ui dropdown item">
+                <div class="text">
+                    <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
+                    soreaK
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">个人信息</a>
+                    <a href="#" class="item">发表</a>
+                    <a href="#" class="item">注销</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--menu toggle 用于jQuery选择-->
+    <!--加了menu 使得按钮会在导航栏水平居中位置-->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+<!--中间内容-->
+<div id="waypoint" class="m-container-small m-padded-tb-big animated fadeIn">
+    <!--container 响应移动端-->
+    <div class="ui container">
+        <!--内容-->
+        <div class="ui attached padded segment">
+            <h2 class="ui center aligned header" th:text="${topic.title}">起售价17999！“手机界茅台”发布，华为接下来的路怎么走？</h2>
+            <div class="ui center aligned attached basic segment m-margin-top">
+                <div class="ui horizontal link list">
+                    <div class="item">
+                        <span>来源：<a href="#" style="color: blue;" th:text="${topic.userName}">soreaK</a></span>
+                    </div>
+                    <div class="item">
+                        发布于&nbsp;</i><span th:text="${#dates.format(topic.updateTime,'yyyy-MM-dd')}">2020-8-6</span>
+                    </div>
+                    <div class="item">
+                        阅读量：</i><span th:text="${topic.views}">2333</span>
+                    </div>
+                </div>
+                <div class="item">
+                    文章标签：
+                    <span th:each="tag : ${topic.tags}">
+                        <span class="ui mini basic teal label" th:text="${tag.name}">java</span>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <div id="content" class="typo typo-selection js-toc-content m-padded-lr-response m-padded-tb-large" th:utext="${topic.content}">
+                <p>文/巴里</p>
+
+                　<p>　来源：创业邦</p>
+
+                　<p>　2 月 22 日晚间，华为如期发布了其全新折叠屏旗舰手机——华为 Mate X2。</p>
+
+              </div>
+
+
+
+
+        </div>
+        <!--留言区域-->
+        <div  class="ui bottom attached segment m-margin-top">
+            <!--留言列表-->
+            <div id="comment-container" class="ui teal segment">
+                <div th:fragment="topicCommentList">
+                    <div class="ui comments" style="max-width: 100%;">
+                        <h3 class="ui dividing header">评论</h3>
+                        <div class="ui segments"th:each="comment : ${comments}">
+                            <div class="ui basic attached segment m-margin-top" >
+                                <div class="comment" >
+                                    <a class="avatar">
+                                        <img src="../static/images/avatar.jpg" th:src="@{${comment.userAvatar}}" alt="" class="ui avatar image"/>
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">
+                                            <span th:text="${comment.nickname}">Matt</span>
+                                            <div class="ui mini basic teal left pointing label m-padded-mini" th:if="${comment.userId} eq ${authorId}">楼主</div>
+                                        </a>
+                                        <div class="metadata">
+                                            <span class="date" th:text="${comment.timeFromNow}">Today at 5:42PM</span>
+                                        </div>
+                                        <div class="text" th:text="${comment.content}">
+                                            How artistic!
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply" one-link-mark="yes" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}" onclick="reply(this)">回复</a>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="ui dividing header"></h3>
+                                    <div class="ui grid">
+                                        <div class="ui two wide column"></div>
+                                        <div class="ui eleven wide column">
+                                            <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+                                                <div class="comment" th:each="reply : ${comment.replyComments}">
+                                                    <a class="avatar">
+                                                        <img src="../static/images/avatar.jpg" th:src="@{${reply.userAvatar}}" alt="" class="ui avatar image"/>
+                                                    </a>
+                                                    <div class="content">
+                                                        <a class="author" ><span th:text="${reply.nickname}"> Matt</span>
+                                                            <div class="ui mini basic teal left pointing label m-padded-mini" th:if="${reply.userId} eq ${authorId}">楼主</div>
+                                                            &nbsp;
+                                                            <span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@ xiaobai</span></a>
+                                                        <div class="metadata">
+                                                            <span class="date" th:text="${reply.timeFromNow}">Today at 5:42PM</span>
+                                                        </div>
+                                                        <div class="text" th:text="${reply.content}">
+                                                            How artistic!
+                                                        </div>
+                                                        <div class="actions">
+                                                            <a class="reply" one-link-mark="yes" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}" onclick="reply(this)">回复</a>
+                                                        </div>
+                                                    </div>
+                                                    <h3 class="ui dividing header"></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--ui form 表格样式-->
+            <div id="comment-form" class="ui form">
+                <input type="hidden" name="topic.id" th:value="${topic.id}">
+                <input type="hidden" name="parentComment.id" th:value="-1">
+
+
+
+                <div sec:authorize="!isAuthenticated()">
+                    <div class="field">
+                        <textarea name="content" placeholder="请登录..."  cols="30" rows="10" readonly="readonly"></textarea>
+                    </div>
+                    <div class="fields">
+                        <div class="field m-mobile-wide margin-bottom-small">
+                            <a href="#" class="ui teal button" th:href="@{/login}">登录</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div sec:authorize="isAuthenticated()">
+                    <div class="field">
+                        <textarea name="content" placeholder="请输入评论信息..."  cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="fields">
+                        <div class="field m-mobile-wide margin-bottom-small">
+                            <button type="button" id="commentpost-btn" class="ui teal m-mobile-wide button"> <i class="edit icon"></i>发布</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+<script src="../static/lib/prism/prism.js"></script>
+<script src="../static/lib/tocbot/tocbot.min.js"></script>
+<script src="../static/lib/qrcode/qrcode.min.js"></script>
+<script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script th:inline="javascript">
+
+
+    /*表单数据校验*/
+    $('.ui.form').form({
+        fields : {
+            title : {
+                identifier : 'content',
+                rules : [{
+                    /*非空校验*/
+                    type : 'empty',
+                    prompt : '请输入评论内容'
+
+                }]
+            },
+        }
+    });
+
+    $('#commentpost-btn').click(function () {
+        var boo = $('.ui.form').form('validate form');
+        if (boo){
+            console.log('校验成功');
+            postData();
+        }else {
+            console.log('校验失败');
+        }
+    });
+
+    // 页面加载完成后加载评论
+    $(function () {
+        $('#comment-container').load(/*[[@{/topicComments/{id}(id=${topic.id})}]]*/"topicComments/0");
+    });
+
+    function postData() {
+        $("#comment-container").load(/*[[@{/topicComments}]]*/"",{
+            "parentCommentId" : $("[name='parentComment.id']").val(),
+            "topicId" : $("[name='topic.id']").val(),
+            "content" : $("[name='content']").val(),
+        },function (responseTxt,statusTxt,xhr) {
+            // $(window).scrollTo($('#comment-container'),500);
+            clearContent();
+        });
+    }
+
+
+    function clearContent() {
+        $("[name='content']").val('');
+        $("[name='parentComment.id']").val(-1);
+        $("[name='content']").attr("placeholder","请输入评论信息....");
+
+    }
+
+    function reply(obj) {
+        var commentId = $(obj).data('commentid');
+        var commentNickname = $(obj).data('commentnickname');
+        $("[name='content']").attr("placeholder","@"+commentNickname).focus();
+        $("[name='parentComment.id']").val(commentId);
+        $(window).scrollTo($('#comment-form'),500);
+    }
+
+</script>
+</body>
+</html>

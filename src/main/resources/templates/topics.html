@@ -71,7 +71,7 @@
 
                     <!--content-->
                     <!--attached连接segment-->
-                    <div class="ui attached segment m-padded-tb-large" th:each="topic : ${topics}">
+                    <div class="ui attached segment m-padded-tb-large" id="topic-container" th:each="topic : ${topics}">
                         <!--padded 内部边距-->
                         <!--vertical竖直排布 中间会自动加线-->
                         <div class="ui padded vertical segment" >
@@ -125,13 +125,20 @@
                     </div>
 
 
-                    <!--最新推荐-->
+                    <!--标签-->
                     <div class="ui segments m-margin-top-larger">
                         <div class="ui secondary segment">
-                            <i class="bookmark icon"></i>最新推荐
+                            <i class="tags icon"></i>标签
                         </div>
-                        <div class="ui segment" >
-                            <a href="#"  target="_blank" class="m-black m-text-thin " >用户故事</a>
+                        <div class="ui segment" th:each="tag : ${tags}" >
+                            <div class="ui grid">
+                                <div class="two wide column"></div>
+                                <div class="ten wide column">
+                                    <a href="#"  target="_blank" class="m-black m-text-thin" th:text="${tag.name}">用户故事</a>
+                                </div>
+                                <div class="four wide column" th:text="${tag.count}">13</div>
+                            </div>
+
                         </div>
 
 
@@ -151,11 +158,11 @@
                     <div class="ui form">
                         <div class="field">
                             <label>标题</label>
-                            <input class="ui dividing header" placeholder="请输入合适的标题">
+                            <input class="ui dividing header" name="title"  placeholder="请输入合适的标题">
                         </div>
                         <div class="field m-margin-top">
                             <label>内容</label>
-                            <textarea placeholder="请输入......"></textarea>
+                            <textarea name="content" placeholder="请输入......"></textarea>
                         </div>
                         <div class="ui field">
                             <div class="ui grid">
@@ -164,8 +171,12 @@
                                         <label  class="ui compact teal basic label">标签</label>
                                         <!--multiple多选  search可搜索-->
                                         <div class="ui tag fluid multiple search selection dropdown">
+                                            <input type="hidden" name="tagIds">
                                             <i class="dropdown icon"></i>
                                             <div class="default text">标签</div>
+                                            <div class="menu">
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +184,7 @@
                                 <div class="ui eight wide column">
                                     <div class="ui checkbox m-margin-top">
                                         <!--hidden 默认不选中-->
-                                        <input type="checkbox" id="published" name="published" th:checked="*{published}" class="hidden" >
+                                        <input type="checkbox" id="published" name="published"  class="hidden" >
                                         <label for="published">存为草稿</label>
                                     </div>
                                 </div>
@@ -182,7 +193,7 @@
                     </div>
                 </div>
                 <div class="actions">
-                    <div class="ui button">取消</div>
+                    <div class="ui cancel button">取消</div>
                     <div class="ui green button">发布</div>
                 </div>
             </div>
@@ -206,6 +217,26 @@
     $('.ui.big.blue.button').click(function () {
         $('.ui.modal').modal('show');
     })
+
+    $('.ui.tag.dropdown').dropdown({
+        allowAdditions: true
+    });
+
+    $('.ui.green.button').click(function () {
+        postData();
+    });
+
+    function postData() {
+        $("#topic-container").load(/*[[@{/topic/save}]]*/"/topic/save",{
+            "title" : $("[name='title']").val(),
+            "content" : $("[name='content']").val(),
+            "tagIds" : $("[name='tagIds']").val(),
+            "published" : $("[name='published']").val(),
+        },function (responseTxt,statusTxt,xhr) {
+
+            location.reload();
+        });
+    }
 
 
 </script>

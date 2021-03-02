@@ -1,5 +1,6 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.TagDao;
 import com.soreak.entity.Tag;
 import com.soreak.entity.VO.TagVO;
@@ -48,7 +49,19 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    public List<TagVO> getTagNameAndCountByTopics() {
+        return tagDao.getTagNameAndCountByTopics();
+    }
+
+    @Override
     public Long saveTag(Tag tag) {
         return tagDao.saveBlog(tag);
+    }
+
+    @Override
+    public Tag selectTagByName(String name) {
+        QueryWrapper<Tag> wrapper = new QueryWrapper<>();
+        wrapper.eq("name",name);
+        return tagDao.selectOne(wrapper);
     }
 }

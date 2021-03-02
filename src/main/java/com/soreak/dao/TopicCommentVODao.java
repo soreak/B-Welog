@@ -17,12 +17,12 @@ import java.util.List;
 @Repository
 public interface TopicCommentVODao extends BaseMapper<CommentVO> {
 
-    @Select("select tc.*,u.nickname as 'nickname' FROM sk_topic_comment tc, sk_user u WHERE tc.user_id = u.id and tc.topic_id=#{topicId} and tc.parent_comment_id is NULL ORDER BY create_time asc")
+    @Select("select tc.*,u.nickname as 'nickname',u.avatar as 'userAvatar' FROM sk_topic_comment tc, sk_user u WHERE tc.user_id = u.id and tc.topic_id=#{topicId} and tc.parent_comment_id is NULL ORDER BY create_time asc")
     List<CommentVO> getTopicCommentByTopicIdAndParentCommentNull(@Param("topicId") Long topicId);
 
-    @Select("select tc.*,u.nickname as 'nickname' FROM sk_topic_comment tc, sk_user u WHERE tc.user_id = u.id and parent_comment_id=#{id} ORDER BY create_time asc")
+    @Select("select tc.*,u.nickname as 'nickname',u.avatar as 'userAvatar' FROM sk_topic_comment tc, sk_user u WHERE tc.user_id = u.id and parent_comment_id=#{id} ORDER BY create_time asc")
     List<CommentVO> getChildCommentByParentId(Long id);
 
-    @Select("select tc.*,u.nickname as 'nickname' FROM sk_topic_comment tc, sk_user u WHERE tc.user_id = u.id and tc.id = #{id}")
+    @Select("select tc.*,u.nickname as 'nickname',u.avatar as 'userAvatar' FROM sk_topic_comment tc, sk_user u WHERE tc.user_id = u.id and tc.id = #{id}")
     CommentVO selectById(@Param("id") Long id);
 }
