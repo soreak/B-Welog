@@ -64,7 +64,9 @@ public class NewsUserController {
             Node document = parser.parse(content);
             HtmlRenderer renderer = HtmlRenderer.builder().build();
             String renderString = renderer.render(document);
-            n.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            if (n.getContent().length()>50){
+                n.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            }
             n.setLikeCount(newsLikeService.selectNewsLikeCountByNewsId(n.getId()));
         }
         model.addAttribute("newsList",newsVOS);

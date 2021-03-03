@@ -67,7 +67,7 @@ public class newsController {
     }
 
     @GetMapping("/news/input")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('1')")
     public String input(Model model){
         model.addAttribute("tags",tagService.getTagNameAndCountByNews());
 
@@ -77,6 +77,7 @@ public class newsController {
 
 
     @PostMapping("/news")
+    @PreAuthorize("hasRole('1')")
     public String post(NewsVO newsVO, RedirectAttributes attributes,Model model){
 
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();

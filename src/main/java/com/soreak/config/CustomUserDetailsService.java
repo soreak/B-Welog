@@ -41,18 +41,22 @@ public class CustomUserDetailsService implements UserDetailsService {
         // 得到用户角色
         String role = user.getRole();
 
-        // 角色集合
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        // 角色必须以`ROLE_`开头，数据库中没有，则在这里加
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        if (role.equals("-1") ){
+            throw new UsernameNotFoundException("用户被封禁");
+        }else{
+            // 角色集合
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            // 角色必须以`ROLE_`开头，数据库中没有，则在这里加
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
 
-        return new User(
-                user.getPhone(),
-                // 因为数据库是明文，所以这里需加密密码
-               user.getPassword(),
-                authorities
+            return new User(
+                    user.getPhone(),
+                    user.getPassword(),
+                    authorities
 
-        );
+            );
+        }
+
     }
-    }
+}
 

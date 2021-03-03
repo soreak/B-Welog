@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/css/me.css">
     <title>话题</title>
 </head>
-<body>
+<body id="topic-container">
 <!--导航-->
     <!--m 自定义 间距 上下 -->
     <nav th:replace="_fragments :: menu(3)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
@@ -71,7 +71,7 @@
 
                     <!--content-->
                     <!--attached连接segment-->
-                    <div class="ui attached segment m-padded-tb-large" id="topic-container" th:each="topic : ${topics}">
+                    <div class="ui attached segment m-padded-tb-large" th:each="topic : ${topics}">
                         <!--padded 内部边距-->
                         <!--vertical竖直排布 中间会自动加线-->
                         <div class="ui padded vertical segment" >
@@ -181,20 +181,20 @@
                                     </div>
                                 </div>
 
-                                <div class="ui eight wide column">
-                                    <div class="ui checkbox m-margin-top">
-                                        <!--hidden 默认不选中-->
-                                        <input type="checkbox" id="published" name="published"  class="hidden" >
-                                        <label for="published">存为草稿</label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="actions">
-                    <div class="ui cancel button">取消</div>
-                    <div class="ui green button">发布</div>
+                    <div class="ui grid">
+                        <div class="ui eight wide column">
+                            <h4 class="ui eight wide">话题发布需要审核,请发布后耐心等待</h4>
+                        </div>
+                        <div class="ui eight wide column">
+                            <div class="ui cancel button">取消</div>
+                            <div class="ui green button">发布</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -231,10 +231,11 @@
             "title" : $("[name='title']").val(),
             "content" : $("[name='content']").val(),
             "tagIds" : $("[name='tagIds']").val(),
-            "published" : $("[name='published']").val(),
         },function (responseTxt,statusTxt,xhr) {
+            if ([[${#authorization.expression('isAuthenticated()')}]]) {
+                location.reload();
+            }
 
-            location.reload();
         });
     }
 

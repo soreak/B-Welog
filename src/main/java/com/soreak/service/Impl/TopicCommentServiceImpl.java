@@ -47,7 +47,7 @@ public class TopicCommentServiceImpl implements TopicCommentService {
     @Override
     public int selectCommentCount(Long topicId) {
         QueryWrapper<TopicComment> wrapper = new QueryWrapper<>();
-        wrapper.eq("id",topicId);
+        wrapper.eq("topic_id",topicId);
         return topicCommentDao.selectCount(wrapper);
     }
 

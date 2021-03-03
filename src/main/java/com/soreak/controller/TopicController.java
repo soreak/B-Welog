@@ -97,45 +97,48 @@ public class TopicController {
     public String save(@RequestParam("title") String title,
                        @RequestParam("content") String content,
                        @RequestParam("tagIds") String tagIds,
-                       @RequestParam("published") boolean published){
+                       Model model){
 
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity userEntity = new UserEntity();
         if (phone!=null){
             userEntity = userService.findByPhone(phone);
         }
-        String[] split = tagIds.split(",");
-        List<Long> tagIdList = new ArrayList<>();
-        Tag tag = new Tag();
-        for (String c : split){
-            try{
-                tag.setName(c);
-                tagService.saveTag(tag);
-                tagIdList.add(tag.getId());
-                tag = new Tag();
-            }catch (Exception e){
-                tagIdList.add(tagService.selectTagByName(c).getId());
-            }
-        }
+
+
 
 
         Topic topic = new Topic();
         topic.setTitle(title);
         topic.setContent(content);
-        topic.setPublished(published);
+        topic.setPublished(false);
         topic.setUserId(userEntity.getId());
         Long id = topicService.saveTopic(topic);
 
-
-        TopicTag topicTag = new TopicTag();
-        for (Long id1: tagIdList){
-            topicTag.setTopicId(topic.getId());
-            topicTag.setTagId(id1);
-            topicTagService.save(topicTag);
-            topicTag = new TopicTag();
+        if (!tagIds.isEmpty()){
+            String[] split = tagIds.split(",");
+            List<Long> tagIdList = new ArrayList<>();
+            Tag tag = new Tag();
+            for (String c : split){
+                try{
+                    tag.setName(c);
+                    tagService.saveTag(tag);
+                    tagIdList.add(tag.getId());
+                    tag = new Tag();
+                }catch (Exception e){
+                    tagIdList.add(tagService.selectTagByName(c).getId());
+                }
+            }
+            TopicTag topicTag = new TopicTag();
+            for (Long id1: tagIdList){
+                topicTag.setTopicId(topic.getId());
+                topicTag.setTagId(id1);
+                topicTagService.save(topicTag);
+                topicTag = new TopicTag();
+            }
         }
 
-        return "/topics";
+        return "redirect:/topic";
     }
 
 }
