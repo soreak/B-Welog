@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+    <title>话题管理</title>
+</head>
+<body>
+<!--导航-->
+<!--m 自定义 间距 上下 -->
+<nav th:replace="admin/_fragments :: menu(4)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="user icon"></i>用户</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>新闻</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="target icon"></i>话题</a>
+
+            <div class="right m-item m-mobile-hide menu">
+
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
+                        soreaK
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--menu toggle 用于jQuery选择-->
+    <!--加了menu 使得按钮会在导航栏水平居中位置-->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+
+
+
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-big">
+    <!--container 响应移动端-->
+    <div class="ui container">
+        <div class="ui secondary form segment">
+
+            <!--默认是占满宽度，inline 就缩小宽度-->
+            <div class="inline fields">
+                <div class="field">
+                    <input type="text" name="title" placeholder="标题">
+                </div>
+
+                <div class="field">
+                    <div class="ui labeled action input">
+                        <div class="ui type selection dropdown">
+                            <input type="hidden" name="tagId">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">标签</div>
+                            <div class="menu">
+                                <!--data-value="1" 为传入后端的值-->
+                                <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">开发者手册</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <button class="ui compact button">clear</button>
+                </div>
+
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="published" name="published">
+                        <!--关联上面recommend 的 id-->
+                        <label for="published">待审核</label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <button type="button" id="search-btn" class="ui mini teal basic button"> <i class="search icon"></i>搜索</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="table-container">
+            <table th:fragment="topicList" class="ui compact table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>标题</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="topic : ${topics}">
+                    <td th:text="${topic.id}">1</td>
+                    <td th:text="${topic.title}">可以练习</td>
+                    <td th:text="${topic.published} eq 1 ? '发布':(${topic.published} eq 0 ? '待审核':'审核不通过')">发布</td>
+                    <td th:text="${#dates.format(topic.createTime,'yyyy-MM-dd HH:mm')}">2020-08-12 09:45</td>
+                    <td th:text="${#dates.format(topic.updateTime,'yyyy-MM-dd HH:mm')}">2020-08-12 09:45</td>
+                    <td>
+                        <div id="edit" th:onclick="|showTopic(${topic.id})|" class="ui mini teal basic button">编辑</div>
+                        <a href="#" th:href="@{/admin/topics/{id}/delete(id=${topic.id})}" class="ui mini red basic button">删除</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">操作成功!</p>
+            </div>
+        </div>
+
+        <div class="ui modal">
+            <div class="header">
+                发布
+            </div>
+            <div class="content">
+                <div class="ui form">
+                    <div class="field">
+                        <input type="hidden" id="Id">
+                        <label>标题</label>
+                        <input class="ui dividing header" id="title"  >
+                    </div>
+                    <div class="field m-margin-top">
+                        <label>内容</label>
+                        <textarea id="content"></textarea>
+                    </div>
+                    <div class="ui field">
+                        <div class="ui grid">
+                            <div class="ui eight wide column">
+                                <div class="ui left labeled action input">
+                                    <label  class="ui compact teal basic label">标签</label>
+                                    <!--multiple多选  search可搜索-->
+                                    <div class="ui tag fluid multiple search selection dropdown" >
+                                        <input type="hidden" name="tagIds" id="tagIds">
+                                        <div class="default text"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui cancel button">取消</div>
+                <div class="ui red button" onclick="editUser(-1)">审核不通过</div>
+                <div class="ui green button" onclick="editUser(1)">确认发布</div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    $('.menu.toggle').click(function () {
+        /*toggleClass 有则去除没有则加上*/
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+
+    $('.ui.type.dropdown').dropdown({
+        on:'hover'
+    });
+    $('.ui.tag.dropdown').dropdown({
+        allowAdditions:true
+    });
+
+    $("#search-btn").click(function () {
+        loaddata();
+    });
+
+    $('.compact.button')
+        .on('click',function () {
+            $(' .ui.type.dropdown')
+                .dropdown('clear')
+        })
+
+    $('.message .close').on('click',function(){
+        $(this).closest('.message').transition('fade');
+    })
+
+    function loaddata() {
+        $('#table-container').load(/*[[@{/admin/topics/search}]]*/"/admin/topics/search",{
+            title : $("[name='title']").val(),
+            tagId : $("[name='tagId']").val(),
+            published : $("[name='published']").prop('checked'),
+        });
+    }
+
+
+
+    /*model弹出层 数据获取*/
+    function showTopic(id) {
+        console.log(id);
+        $.ajax({
+            type: "POST",
+            url: "oneTopic",
+            //contentType: "application/json",
+            data: {
+                id: id,
+            },
+            success: function (data) {
+                console.log(data);
+                $('#Id').val(data.topic.id);
+                $('#title').val(data.topic.title);
+                $('#content').val(data.topic.content);
+                $('#tagIds').val(data.topic.tagIds);
+                if (data.topic.tags.length >0){
+                    $.each(data.topic.tags,function (index,item) {
+                        $('.ui.tag.dropdown').append(
+                            "<a class=\"ui label\" data-value=\"" + item.id
+                            + "\">" + item.name+"<i class=\"delete icon\"></i>"
+                            + "</a>")
+                    });
+                }
+
+            },
+        });
+        /*弹出层消失的时候，清空标签*/
+        $('.ui.modal').modal({
+            onHide    : function(){
+                $('.ui.tag.dropdown a').each(function (index,element) {
+                    element.parentNode.removeChild(element);
+                })
+            },
+        })
+            .modal('show');
+    }
+    /*数据修改*/
+    function editUser(flag) {
+        $.ajax({
+            type: "POST",
+            url: "editTopic",
+            //contentType: "application/json",
+            data: {
+                id: $('#Id').val(),
+                title: $('#title').val(),
+                content: $('#content').val(),
+                tagIds: $('#tagIds').val(),
+                published : flag,
+            },
+            success: function (data) {
+                location.reload();
+
+            },
+            error: function (data) {
+                alert("error");
+            }
+        });
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

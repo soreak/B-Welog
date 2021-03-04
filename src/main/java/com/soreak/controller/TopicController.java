@@ -111,7 +111,7 @@ public class TopicController {
         Topic topic = new Topic();
         topic.setTitle(title);
         topic.setContent(content);
-        topic.setPublished(false);
+        topic.setPublished(0);
         topic.setUserId(userEntity.getId());
         Long id = topicService.saveTopic(topic);
 

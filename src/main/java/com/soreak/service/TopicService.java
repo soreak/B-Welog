@@ -16,6 +16,8 @@ import java.util.List;
 public interface TopicService {
     List<TopicVO> getTopicList();
 
+    List<TopicVO> getAllTopicList();
+
     List<TopicVO> getMyTopicListByUserId(Long userId);
 
     TopicVO getOneTopicById(Long id,int flag);
@@ -23,4 +25,8 @@ public interface TopicService {
     Long saveTopic(Topic topic);
 
     Long updateTopic(Topic topic);
+
+    int deleteTopicById(Long id);
+
+    List<Topic> searchTopic(String title, String tagId, int published);
 }

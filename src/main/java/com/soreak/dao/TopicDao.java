@@ -22,6 +22,9 @@ public interface TopicDao extends BaseMapper<Topic> {
     @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id and t.published = 1 ORDER BY t.update_time DESC")
     List<TopicVO> getTopicList();
 
+    @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id ORDER BY t.update_time DESC")
+    List<TopicVO> getAllTopicList();
+
     @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id and t.user_id=#{id} ORDER BY t.create_time DESC")
     List<TopicVO> getMyTopicListByUserId(@Param("id") Long userId);
 
@@ -38,7 +41,21 @@ public interface TopicDao extends BaseMapper<Topic> {
 
 
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    @Insert("update sk_topic set title=#{title},content=#{content},update_time=#{updateTime},published=#{published} where sk_blog.id = #{id}")
+    @Insert("update sk_topic set title=#{title},content=#{content},update_time=#{updateTime},published=#{published} where sk_topic.id = #{id}")
     Long updateTopic(Topic topic);
+
+
+    @Select("SELECT t.* FROM sk_topic t,sk_topic_tag tt WHERE t.id = tt.topic_id and t.title like concat('%',#{title},'%') and tt.tag_id=#{tagId} and t.published = #{published}")
+    List<Topic> searchTopicListByTTP(@Param("title")String title,@Param("tagId")String tagId,@Param("published")int published);
+
+    @Select("SELECT t.* FROM sk_topic t,sk_topic_tag tt WHERE t.id = tt.topic_id and t.title like concat('%',#{title},'%') and tt.tag_id=#{tagId} ")
+    List<Topic> searchTopicListByTT(@Param("title")String title,@Param("tagId")String tagId);
+
+    @Select("SELECT t.* FROM sk_topic t,sk_topic_tag tt WHERE t.id = tt.topic_id and tt.tag_id=#{tagId} and t.published = #{published}")
+    List<Topic> searchTopicListByTP(@Param("tagId")String tagId,@Param("published")int published);
+
+    @Select("SELECT t.* FROM sk_topic t,sk_topic_tag tt WHERE t.id = tt.topic_id and tt.tag_id=#{tagId}")
+    List<Topic> searchTopicListByT(@Param("tagId")String tagId);
+
 
 }

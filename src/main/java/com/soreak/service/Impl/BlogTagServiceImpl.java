@@ -1,5 +1,6 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.BlogTagDao;
 import com.soreak.entity.BlogTag;
 import com.soreak.service.BlogTagService;
@@ -22,5 +23,12 @@ public class BlogTagServiceImpl implements BlogTagService {
     @Override
     public int save(BlogTag blogTag) {
         return blogTagDao.insert(blogTag);
+    }
+
+    @Override
+    public int deleteByBlogId(Long id) {
+        QueryWrapper<BlogTag> wrapper = new QueryWrapper<>();
+        wrapper.eq("blog_id",id);
+        return blogTagDao.delete(wrapper);
     }
 }

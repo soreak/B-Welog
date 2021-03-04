@@ -110,6 +110,7 @@ public class BlogController {
              id = blogService.saveBlog(blog1);
         }else {
             blog1.setId(blog.getId());
+            blogTagService.deleteByBlogId(blog.getId());
             id = blogService.updateBlog(blog1);
         }
         if (id == 0){
@@ -122,7 +123,12 @@ public class BlogController {
         for (Long id1: tagIdList){
             blogTag.setBlogId(blog1.getId());
             blogTag.setTagId(id1);
-            blogTagService.save(blogTag);
+            try{
+                blogTagService.save(blogTag);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
             blogTag = new BlogTag();
         }
         return "redirect:/MY";

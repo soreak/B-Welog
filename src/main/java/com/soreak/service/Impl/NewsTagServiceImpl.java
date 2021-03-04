@@ -1,5 +1,6 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.NewsTagDao;
 import com.soreak.entity.NewsTag;
 import com.soreak.service.NewsTagService;
@@ -20,5 +21,12 @@ public class NewsTagServiceImpl implements NewsTagService {
     @Override
     public int save(NewsTag newsTag) {
         return newsTagDao.insert(newsTag);
+    }
+
+    @Override
+    public int deleteByNewsId(Long id) {
+        QueryWrapper<NewsTag> wrapper = new QueryWrapper<>();
+        wrapper.eq("news_id",id);
+        return newsTagDao.delete(wrapper);
     }
 }

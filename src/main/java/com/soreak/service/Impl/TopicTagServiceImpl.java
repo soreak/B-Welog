@@ -1,5 +1,6 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.TopicTagDao;
 import com.soreak.entity.TopicTag;
 import com.soreak.service.TopicTagService;
@@ -22,5 +23,12 @@ public class TopicTagServiceImpl implements TopicTagService {
     @Override
     public int save(TopicTag topicTag) {
         return topicTagDao.insert(topicTag);
+    }
+
+    @Override
+    public int deleteByTopicId(Long id) {
+        QueryWrapper<TopicTag> wrapper= new QueryWrapper<>();
+        wrapper.eq("topic_id",id);
+        return topicTagDao.delete(wrapper);
     }
 }

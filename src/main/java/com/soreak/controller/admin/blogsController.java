@@ -70,6 +70,7 @@ public class blogsController {
         String tagIds = blog.getTagIds();
         String[] split = tagIds.split(",");
         List<Long> tagIdList = new ArrayList<>();
+
         Tag tag = new Tag();
         for (String c : split){
 
@@ -81,10 +82,7 @@ public class blogsController {
                 tagIdList.add(tag.getId());
                 tag = new Tag();
             }else {
-                if (blog.getId() == null){
-                    tagIdList.add(Long.valueOf(c));
-                }
-
+                tagIdList.add(Long.valueOf(c));
             }
         }
         /*创建一个新的blog来接受blogVO里的数据*/
@@ -105,10 +103,15 @@ public class blogsController {
         }
 
         BlogTag blogTag = new BlogTag();
+        blogTagService.deleteByBlogId(blog.getId());
         for (Long id1: tagIdList){
             blogTag.setBlogId(blog1.getId());
             blogTag.setTagId(id1);
-            blogTagService.save(blogTag);
+            try{
+                blogTagService.save(blogTag);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             blogTag = new BlogTag();
         }
         return "redirect:/admin/blogs";

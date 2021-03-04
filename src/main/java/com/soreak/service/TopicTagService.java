@@ -10,4 +10,6 @@ import com.soreak.entity.TopicTag;
  **/
 public interface TopicTagService {
     int save(TopicTag topicTag);
+
+    int deleteByTopicId(Long id);
 }

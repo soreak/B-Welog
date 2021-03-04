@@ -10,4 +10,5 @@ import com.soreak.entity.NewsTag;
  **/
 public interface NewsTagService {
     int save(NewsTag newsTag);
+    int deleteByNewsId(Long id);
 }

@@ -24,7 +24,7 @@ public class TopicVO {
 
     private Date updateTime;
 
-    private boolean published;
+    private int published;
 
     private String views;
 

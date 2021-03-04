@@ -1,10 +1,13 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.TagDao;
 import com.soreak.dao.TopicDao;
 import com.soreak.dao.TopicTagDao;
 import com.soreak.entity.Blog;
+import com.soreak.entity.BlogTag;
 import com.soreak.entity.Topic;
+import com.soreak.entity.TopicTag;
 import com.soreak.entity.VO.TopicVO;
 import com.soreak.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,11 @@ public class TopicServiceImpl implements TopicService{
     }
 
     @Override
+    public List<TopicVO> getAllTopicList() {
+        return topicDao.getAllTopicList();
+    }
+
+    @Override
     public List<TopicVO> getMyTopicListByUserId(Long userId) {
         return topicDao.getMyTopicListByUserId(userId);
     }
@@ -63,5 +71,39 @@ public class TopicServiceImpl implements TopicService{
     public Long updateTopic(Topic topic) {
         topic.setUpdateTime(new Date());
         return topicDao.updateTopic(topic);
+    }
+
+    @Override
+    public int deleteTopicById(Long id) {
+        QueryWrapper<TopicTag> wrapper = new QueryWrapper<>();
+        wrapper.eq("topic_id",id);
+        topicTagDao.delete(wrapper);
+        return topicDao.deleteById(id);
+    }
+
+    @Override
+    public List<Topic> searchTopic(String title, String tagId, int published) {
+        QueryWrapper<Topic> wrapper =new QueryWrapper<>();
+
+        if (tagId.equals("-1")) {
+            if (!title.equals("soreak")) {
+                wrapper.like("title", title);
+            }
+            if (published != -1) {
+                wrapper.eq("published", published);
+            }
+            return topicDao.selectList(wrapper);
+        }else {
+            if (!title.equals("soreak")&&published != -1) {
+                return topicDao.searchTopicListByTTP(title,tagId,published);
+            }else if (title.equals("soreak")&&published != -1) {
+                return topicDao.searchTopicListByTP(tagId,published);
+            }else if (!title.equals("soreak")&&published == -1) {
+                return topicDao.searchTopicListByTT(title,tagId);
+            }else{
+                return topicDao.searchTopicListByT(tagId);
+            }
+
+        }
     }
 }

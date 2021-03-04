@@ -48,7 +48,7 @@ public class Topic implements Serializable {
     /**
      * 发布状态（草稿，发表）
      */
-    private boolean published;
+    private int published;
 
     /**
      * 访问量

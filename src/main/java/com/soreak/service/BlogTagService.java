@@ -11,4 +11,6 @@ import com.soreak.entity.BlogTag;
 public interface BlogTagService {
 
     int save(BlogTag blogTag);
+
+    int deleteByBlogId(Long id);
 }

@@ -181,12 +181,18 @@
         fields : {
             title : {
                 identifier : 'title',
-                rules : [{
+                rules : [
+                    {
                     /*非空校验*/
                     type : 'empty',
                     prompt : '标题：请输入博客标题'
 
-                }]
+                    },
+                    {
+                        type: 'maxLength[20]',
+                        prompt: "标题:长度在20以内"
+                    }
+                ]
             },
 
             content : {

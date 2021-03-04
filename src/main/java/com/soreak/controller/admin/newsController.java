@@ -118,6 +118,7 @@ public class newsController {
             id = newsService.saveNews(news);
         }else {
             news.setId(newsVO.getId());
+            newsTagService.deleteByNewsId(newsVO.getId());
             id = newsService.updateNews(news);
         }
         if (id == 0){
@@ -130,7 +131,12 @@ public class newsController {
         for (Long id1: tagIdList){
             newsTag.setNewsId(news.getId());
             newsTag.setTagId(id1);
-            newsTagService.save(newsTag);
+            try{
+                newsTagService.save(newsTag);
+            }
+           catch (Exception e){
+                e.printStackTrace();
+           }
             newsTag = new NewsTag();
         }
         return "redirect:/admin/news";
