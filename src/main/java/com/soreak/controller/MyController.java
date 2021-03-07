@@ -1,14 +1,16 @@
-package com.soreak.controller.admin;
+package com.soreak.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.soreak.entity.*;
+import com.soreak.entity.Tag;
+import com.soreak.entity.Topic;
+import com.soreak.entity.TopicTag;
+import com.soreak.entity.UserEntity;
+import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TopicVO;
-import com.soreak.service.TagService;
-import com.soreak.service.TopicService;
-import com.soreak.service.TopicTagService;
-import com.soreak.utils.MD5Utils;
+import com.soreak.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,62 +23,54 @@ import java.util.List;
  * @program: welog
  * @author: soreak
  * @description:
- * @create: 2021-03-04 21:21
+ * @create: 2021-03-07 22:16
  **/
 @Controller
-@RequestMapping("/admin")
-public class topicsController {
+public class MyController {
+
+
+    @Autowired
+    private BlogService blogService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private TopicService topicService;
 
     @Autowired
-    private TagService tagService;
-
-    @Autowired
     private TopicTagService topicTagService;
 
-    @RequestMapping(value = "/topics",method = RequestMethod.GET)
-    @PreAuthorize("hasRole('1')")
-    public String blogs(Model model){
-        model.addAttribute("tags",tagService.getTagNameAndCountByTopics());
-        model.addAttribute("topics",topicService.getAllTopicList());
-        return "admin/topics";
+    @Autowired
+    private TagService tagService;
+
+    @GetMapping("/MY")
+    @PreAuthorize("isAuthenticated()")
+    public String my(Model model){
+        UserEntity userEntity = setUser(model);
+
+        List<BlogVO> blogs= blogService.getMyBlogListByUserId(userEntity.getId());
+
+        List<TopicVO> topicVOS = topicService.getMyTopicListByUserId(userEntity.getId());
+        model.addAttribute("blogs",blogs);
+        model.addAttribute("topics",topicVOS);
+        return "/my";
     }
 
-    @PostMapping("/topics/search")
-    @PreAuthorize("hasRole('1')")
-    public String search( @RequestParam(value = "title",defaultValue = "soreak") String title,
-                          @RequestParam(value = "tagId",defaultValue = "-1") String tagId,
-                          @RequestParam(value = "published",required = false) String published,
-                          Model model){
 
-        int published1 = -1;
-        switch (published) {
-            case "true":
-                published1 = 0;
-                break;
-            case "false":
-                published1 = 1;
-                break;
+    private UserEntity setUser(Model model){
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity byPhone = new UserEntity();
+        if (phone!=null){
+            byPhone = userService.findByPhone(phone);
+            model.addAttribute("master",byPhone);
         }
-        List<Topic> topics = topicService.searchTopic(title,tagId,published1);
-        model.addAttribute("topics",topics);
-        return "admin/topics :: topicList";
-    }
-
-
-    @GetMapping("/topics/{id}/delete")
-    @PreAuthorize("hasRole('1')")
-    public String delete(@PathVariable Long id, RedirectAttributes attributes){
-        topicService.deleteTopicById(id);
-        attributes.addFlashAttribute("message","删除成功");
-        return "redirect:/admin/topics";
+        return byPhone;
     }
 
     @RequestMapping(value = "/oneTopic",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
+    @PreAuthorize("isAuthenticated()")
     public JSONObject oneTopic(@RequestParam("id") Long id){
         TopicVO topic = topicService.getOneTopicById(id,0);
         topic.init();
@@ -87,17 +81,15 @@ public class topicsController {
 
     @RequestMapping(value = "/editTopic",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
+    @PreAuthorize("isAuthenticated()")
     public JSONObject  editTopic(@RequestParam("id") Long id,
-                                @RequestParam("title") String title,
-                                @RequestParam("content") String content,
-                                @RequestParam("tagIds") String tagIds,
-                                @RequestParam("published") Integer published){
-       Topic topic = new Topic();
-       topic.setId(id);
-       topic.setTitle(title);
-       topic.setContent(content);
-       topic.setPublished(published);
+                                 @RequestParam("title") String title,
+                                 @RequestParam("content") String content,
+                                 @RequestParam("tagIds") String tagIds){
+        Topic topic = new Topic();
+        topic.setId(id);
+        topic.setTitle(title);
+        topic.setContent(content);
         String[] split = tagIds.split(",");
         List<Long> tagIdList = new ArrayList<>();
         Tag tag = new Tag();
@@ -138,5 +130,13 @@ public class topicsController {
         return jsonObject;
     }
 
+
+    @GetMapping("/topic/{id}/delete")
+    @PreAuthorize("isAuthenticated()")
+    public String delete(@PathVariable Long id, RedirectAttributes attributes){
+        topicService.deleteTopicById(id);
+        attributes.addFlashAttribute("message","删除成功");
+        return "redirect:/MY";
+    }
 
 }

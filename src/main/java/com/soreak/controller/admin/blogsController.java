@@ -77,7 +77,6 @@ public class blogsController {
             if (!c.matches("^[0-9]*$")){
                 tag.setName(c);
                 Long aLong = tagService.saveTag(tag);
-                System.out.println("tagid+++++"+aLong);
                 System.out.println(tag.getId());
                 tagIdList.add(tag.getId());
                 tag = new Tag();

@@ -224,11 +224,13 @@
                 $('#tagIds').val(data.topic.tagIds);
                 if (data.topic.tags.length >0){
                     $.each(data.topic.tags,function (index,item) {
-                        $('.ui.tag.dropdown').append(
+                        $('.ui.tag.dropdown').prepend(
                             "<a class=\"ui label\" data-value=\"" + item.id
                             + "\">" + item.name+"<i class=\"delete icon\"></i>"
                             + "</a>")
                     });
+
+
                 }
 
             },

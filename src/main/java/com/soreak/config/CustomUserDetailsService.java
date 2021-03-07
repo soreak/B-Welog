@@ -37,7 +37,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("用户不存在");
         }
-
         // 得到用户角色
         String role = user.getRole();
 

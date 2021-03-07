@@ -89,10 +89,7 @@ public class BlogController {
                 tagIdList.add(tag.getId());
                 tag = new Tag();
             }else {
-                if (blog.getId() == null){
-                    tagIdList.add(Long.valueOf(c));
-                }
-
+                tagIdList.add(Long.valueOf(c));
             }
         }
         /*创建一个新的blog来接受blogVO里的数据*/
@@ -181,15 +178,6 @@ public class BlogController {
     }
 
 
-    @GetMapping("/MY")
-    @PreAuthorize("isAuthenticated()")
-    public String my(Model model){
-        UserEntity userEntity = setUser(model);
-
-        List<BlogVO> blogs= blogService.getMyBlogListByUserId(userEntity.getId());
-        model.addAttribute("blogs",blogs);
-        return "/my";
-    }
 
 
 }

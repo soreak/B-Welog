@@ -35,7 +35,7 @@ public class MD5Utils {
         }
     }
     public static void main(String[] args) {
-        System.out.println(code("123456"));
+        System.out.println(code("123123"));
         System.out.println(UUID.randomUUID().toString());
     }
 }

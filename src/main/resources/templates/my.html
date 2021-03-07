@@ -73,16 +73,15 @@
                         <div class="ui middle aligned two column grid">
                              <div class="column">
                                  <!--teal 青绿色-->
-                                 <div class="ui teal header">我的博客</div>
+                                 <div class="ui title teal header">我的博客</div>
                              </div>
 
                         </div>
                     </div>
 
                     <!--content-->
-                    <div id="table-container" th:fragment="blogList">
-                        <table class="ui compact table">
-                            <thead>
+                    <table id="blogList" class="ui compact table">
+                        <thead>
                             <tr>
                                 <th>标题</th>
                                 <th>推荐</th>
@@ -90,8 +89,8 @@
                                 <th>更新时间</th>
                                 <th>操作</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             <tr th:each="blog : ${blogs}">
                                 <td><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">文章标题</a></td>
                                 <td th:text="${blog.recommend} ? '是':'否'">是</td>
@@ -101,35 +100,87 @@
                                     <a href="#" th:href="@{/blog/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
                                     <a href="#" th:href="@{/blog/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
                                 </td>
-
                             </tr>
-                            </tbody>
+                        </tbody>
+                    </table>
 
-                        </table>
+                    <table id="topicList" class="ui compact table" style="display: none">
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>状态</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="topic : ${topics}">
+                                <td><a href="#" th:href="@{/topic/{id}(id=${topic.id})}" target="_blank" class="m-black" th:text="${topic.title}">文章标题</a></td>
+                                <td th:text="${topic.published} eq 1 ? '发布':(${topic.published} eq 0 ? '待审核':'审核不通过')">发布</td>
+                                <td th:text="${#dates.format(topic.updateTime,'yyyy-MM-dd HH:mm')}">2020-08-12 09:45</td>
+                                <td>
+                                    <a href="#" th:onclick="|showTopic(${topic.id})|" class="ui mini teal basic button">编辑</a>
+                                    <a href="#" th:href="@{/topic/{id}/delete(id=${topic.id})}" class="ui mini red basic button">删除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
-                            <i class="close icon"></i>
-                            <div class="header">提示：</div>
-                            <p th:text="${message}">操作成功!</p>
-                        </div>
+
+
+                    <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                        <i class="close icon"></i>
+                        <div class="header">提示：</div>
+                        <p th:text="${message}">操作成功!</p>
                     </div>
-
-
-
-
-
-
-
                 </div>
                 <!--右侧 top-->
                 <div class="five wide column">
                     <div class="ui vertical buttons">
-                        <button class="ui red basic button">博客</button>
-                        <button class="ui blue basic button">话题</button>
+                        <button class="ui red basic button" onclick="blog()">博客</button>
+                        <button class="ui blue basic button" onclick="topic()">话题</button>
                     </div>
                 </div>
             </div>
 
+
+            <div class="ui modal">
+                <div class="header">
+                    发布
+                </div>
+                <div class="content">
+                    <div class="ui form">
+                        <div class="field">
+                            <input type="hidden" id="Id">
+                            <label>标题</label>
+                            <input class="ui dividing header" id="title"  >
+                        </div>
+                        <div class="field m-margin-top">
+                            <label>内容</label>
+                            <textarea id="content"></textarea>
+                        </div>
+                        <div class="ui field">
+                            <div class="ui grid">
+                                <div class="ui eight wide column">
+                                    <div class="ui left labeled action input">
+                                        <label  class="ui compact teal basic label">标签</label>
+                                        <!--multiple多选  search可搜索-->
+                                        <div class="ui tag fluid multiple search selection dropdown" >
+                                            <input type="hidden" name="tagIds" id="tagIds">
+                                            <div class="default text"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="ui cancel button">取消</div>
+                    <div class="ui green button" onclick="editUser()">确认发布</div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -147,6 +198,81 @@
     $('.ui.dropdown').dropdown({
         on:'hover'
     });
+
+    function blog(){
+        $('#blogList').css("display","table");
+        $('#topicList').css("display","none");
+        $('.ui.title.teal.header').text("我的博客");
+    }
+    function topic(){
+        $('#blogList').css("display","none");
+        $('#topicList').css("display","table");
+        $('.ui.title.teal.header').text("我的话题");
+    }
+
+    /*model弹出层 数据获取*/
+    function showTopic(id) {
+        console.log(id);
+        $.ajax({
+            type: "POST",
+            url: "oneTopic",
+            //contentType: "application/json",
+            data: {
+                id: id,
+            },
+            success: function (data) {
+                console.log(data);
+                $('#Id').val(data.topic.id);
+                $('#title').val(data.topic.title);
+                $('#content').val(data.topic.content);
+                $('#tagIds').val(data.topic.tagIds);
+                if (data.topic.tags.length >0){
+                    $.each(data.topic.tags,function (index,item) {
+                        $('.ui.tag.dropdown').prepend(
+                            "<a class=\"ui label\" data-value=\"" + item.id
+                            + "\">" + item.name+"<i class=\"delete icon\"></i>"
+                            + "</a>")
+                    });
+
+
+                }
+
+            },
+        });
+        /*弹出层消失的时候，清空标签*/
+        $('.ui.modal').modal({
+            onHide    : function(){
+                $('.ui.tag.dropdown a').each(function (index,element) {
+                    element.parentNode.removeChild(element);
+                })
+            },
+        })
+            .modal('show');
+    }
+    /*数据修改*/
+    function editUser() {
+        $.ajax({
+            type: "POST",
+            url: "editTopic",
+            //contentType: "application/json",
+            data: {
+                id: $('#Id').val(),
+                title: $('#title').val(),
+                content: $('#content').val(),
+                tagIds: $('#tagIds').val(),
+            },
+            success: function (data) {
+                location.reload();
+
+            },
+            error: function (data) {
+                alert("error");
+            }
+        });
+
+    }
+
+
 
     $('.message .close')
         .on('click', function() {
