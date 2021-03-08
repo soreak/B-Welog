@@ -11,7 +11,11 @@ import com.soreak.entity.News;
 import com.soreak.entity.NewsTag;
 import com.soreak.entity.VO.NewsVO;
 import com.soreak.service.NewsService;
+import com.soreak.utils.HTMLUtils;
 import com.soreak.utils.MarkdownUtils;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +55,24 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public List<News> getWeekHotNews() {
         return newsDao.getWeekHotNews();
+    }
+
+    @Override
+    public List<NewsVO> getNewsListByTagId(Long tagId) {
+        List<NewsVO> newsListByTagId = newsDao.getNewsListByTagId(tagId);
+        for (NewsVO n :
+                newsListByTagId) {
+            String content = n.getContent();
+            Parser parser = Parser.builder().build();
+            Node document = parser.parse(content);
+            HtmlRenderer renderer = HtmlRenderer.builder().build();
+            String renderString = renderer.render(document);
+            if (n.getContent().length()>50){
+                n.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            }
+            n.setTags(tagDao.getTagByNewsId(n.getId()));
+        }
+        return newsListByTagId;
     }
 
     @Override

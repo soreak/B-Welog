@@ -30,6 +30,9 @@ public interface BlogDao extends BaseMapper<Blog> {
     @Update("update sk_blog b set b.views = b.views+1 where b.id=#{id}")
     int updateViews(@Param("id")Long id);
 
+    @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_blog_tag bt,sk_user u WHERE b.user_id = u.id and b.id = bt.blog_id and bt.tag_id=#{tagId} and b.published = 1 ORDER BY b.update_time DESC")
+    List<BlogVO> getBlogListByTagId(@Param("tagId") Long tagId);
+
 
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("insert into sk_blog(title,content,create_time,update_time,flag,commentabled,recommend,published,views,user_id) value(#{title},#{content},#{createTime},#{updateTime},#{flag},#{commentabled},#{recommend},#{published},#{views},#{userId})")

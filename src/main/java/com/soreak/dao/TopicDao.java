@@ -34,6 +34,9 @@ public interface TopicDao extends BaseMapper<Topic> {
     @Update("update sk_topic t set t.views = t.views+1 where t.id=#{id}")
     int updateViews(@Param("id")Long id);
 
+    @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_topic_tag tt,sk_user u WHERE t.user_id = u.id and t.id = tt.topic_id and tt.tag_id=#{tagId} and t.published = 1 ORDER BY t.update_time DESC")
+    List<TopicVO> getTopicListByTagId(@Param("tagId") Long tagId);
+
 
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("insert into sk_topic(title,content,create_time,update_time,published,views,user_id) value(#{title},#{content},#{createTime},#{updateTime},#{published},#{views},#{userId})")

@@ -57,8 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //session失效后跳转
         http.sessionManagement().invalidSessionUrl("/login");
 
+        //后登录的会挤掉前面登录的
+        http.sessionManagement().maximumSessions(1);
+
         //单用户登录，如果有一个登录了，同一个用户在其他地方不能登录
-        http.sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(true);
+       /* http.sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(true);*/
 
 
     }

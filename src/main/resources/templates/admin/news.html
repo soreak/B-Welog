@@ -60,7 +60,7 @@
                             <div class="ui type selection dropdown">
                                 <input type="hidden" name="tagId">
                                 <i class="dropdown icon"></i>
-                                <div class="default text">分类</div>
+                                <div class="default text">标签</div>
                                 <div class="menu">
                                     <!--data-value="1" 为传入后端的值-->
                                     <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">开发者手册</div>

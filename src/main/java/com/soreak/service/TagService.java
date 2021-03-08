@@ -2,6 +2,7 @@ package com.soreak.service;
 
 import com.soreak.entity.Tag;
 import com.soreak.entity.VO.TagVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ public interface TagService {
     List<TagVO> getTagNameAndCountByNews();
 
     List<TagVO> getTagNameAndCountByTopics();
+
+    Tag getTagById(Long id);
 
     Long saveTag(Tag tag);
 

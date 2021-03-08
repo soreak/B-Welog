@@ -4,6 +4,7 @@ import com.soreak.entity.Blog;
 import com.soreak.entity.News;
 
 import com.soreak.entity.VO.NewsVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public interface NewsService {
     List<News> getOneDayHotNews();
 
     List<News> getWeekHotNews();
+
+    List<NewsVO> getNewsListByTagId(Long tagId);
 
     /* 修改的时候  */
     NewsVO getNewsById(Long id);

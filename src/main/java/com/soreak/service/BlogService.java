@@ -3,6 +3,7 @@ package com.soreak.service;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.soreak.entity.Blog;
 import com.soreak.entity.VO.BlogVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface BlogService {
     List<BlogVO> getMyBlogListByUserId(Long userId);
 
     List<Blog> getHotBlogList();
+
+    List<BlogVO> getBlogListByTagId(Long tagId);
 
     /* 修改的时候  显示Blog方法 */
     BlogVO getBlogById(Long id);

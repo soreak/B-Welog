@@ -50,6 +50,19 @@ public class TopicServiceImpl implements TopicService{
     }
 
     @Override
+    public List<TopicVO> getTopicListByTagId(Long tagId) {
+        List<TopicVO> topicListByTagId = topicDao.getTopicListByTagId(tagId);
+        for (TopicVO topicVO:
+             topicListByTagId) {
+            if (topicVO.getContent().length()>50){
+                topicVO.setContent(topicVO.getContent().substring(0,50));
+            }
+            topicVO.setTags(tagDao.getTagByTopicId(topicVO.getId()));
+        }
+        return topicListByTagId;
+    }
+
+    @Override
     public TopicVO getOneTopicById(Long id,int flag) {
         TopicVO topicVO= topicDao.getOneTopicById(id);
         topicVO.setTags(tagDao.getTagByTopicId(id));

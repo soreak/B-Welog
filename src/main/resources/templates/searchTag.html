@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title th:text="|关于 标签:${tag.name} 的搜索|">搜索</title>
+</head>
+<body>
+<!--导航-->
+    <!--m 自定义 间距 上下 -->
+<nav th:replace="_fragments :: menu(-1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">WeBlog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i>新闻</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i>话题</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>MY</a>
+
+            <div class="right item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+
+
+            <div class="ui item" sec:authorize="!isAuthenticated()">
+                <span style="display: none" name="phone" ></span>
+                <a href="#" class="ui teal button" th:href="@{/login}">登录</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="#" class="ui teal button" th:href="@{/registered}">注册</a>
+            </div>
+
+
+            <div class="ui dropdown item" sec:authorize="isAuthenticated()">
+
+                <div class="text">
+                    <span th:text="${master.nickname}"></span>
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">个人信息</a>
+                    <a href="#" class="item">发表</a>
+                    <a href="#" class="item">注销</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--menu toggle 用于jQuery选择-->
+    <!--加了menu 使得按钮会在导航栏水平居中位置-->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+<!--中间内容-->
+    <div class="m-container-small m-padded-tb-big">
+        <!--container 响应移动端-->
+        <div class="ui container">
+            <!--header-->
+            <div class="ui top attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <h3 class="ui teal header" th:text="|标签搜索:${tag.name}|">搜索</h3>
+                    </div>
+                    <div class="right aligned column">
+                        共<h2 class="ui orange header m-inline-block m-text-thin" id="count" th:text="${blogs.size}">14</h2>个
+                    </div>
+                </div>
+            </div>
+
+                <div class="ui three top attached buttons">
+                    <div id="showBlogButton" class="ui button active" th:onclick="|blogList(${blogs.size})|">博客</div>
+                    <div id="showNewsButton" class="ui button" th:onclick="|newsList(${news.size})|">新闻</div>
+                    <div id="showTopicButton" class="ui button" th:onclick="|topicList(${topics.size})|">话题</div>
+                </div>
+
+
+            <!--博客-->
+            <div id="blogList" class="ui attached segment">
+                <div class="ui attached segment m-padded-tb-large" th:each="blog : ${blogs}">
+                    <div class="ui padded vertical segment" >
+                        <div class="ui middle aligned mobile reversed stackable grid" >
+                            <div class="column">
+                                <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">文章标题</a></h3>
+                                <p class="m-text" th:text="|${blog.content}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
+
+                                <div class="ui grid">
+                                    <div class="eight wide column">
+                                        <!--每个item水平摆放-->
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="http://lorempixel.com/100/100/" th:src="@{${blog.userAvatar}}" alt="" class="ui avatar image">
+                                                <div class="content"> <a href="#" th:href="@{/showInfo/{id}(id=${blog.userId})}" class="header" th:text="${blog.userName}">soreaK</a></div>
+
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i><span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-8-5</span>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i> <span th:text="${blog.views}">2333</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <a href="#" class="ui label teal basic m-padded-tiny" target="_blank" th:each="tag : ${blog.tags}" th:text="${tag.name}">认知升级</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--新闻-->
+            <div id="newsList" class="ui attached segment" style="display:none;">
+                <div class="ui attached segment m-padded-tb-large" th:each="new : ${news}">
+
+                    <div class="ui padded vertical segment" >
+                        <div class="ui middle aligned mobile reversed stackable grid" >
+                            <div class="column">
+                                <h3 class="ui header"><a href="#" th:href="@{/new/{id}(id=${new.id})}" target="_blank" class="m-black" th:text="${new.title}">文章标题</a></h3>
+                                <p class="m-text" th:text="|${new.content}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
+
+                                <div class="ui grid">
+                                    <div class="eight wide column">
+                                        <!--每个item水平摆放-->
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="http://lorempixel.com/100/100/" th:src="@{${new.userAvatar}}" alt="" class="ui avatar image">
+                                                <div class="content"> <a href="#" th:href="@{/showInfo/{id}(id=${new.userId})}" class="header" th:text="${new.userName}">soreaK</a></div>
+
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i><span th:text="${#dates.format(new.createTime,'yyyy-MM-dd')}">2020-8-5</span>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i> <span th:text="${new.views}">2333</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <a href="#" class="ui label teal basic m-padded-tiny" target="_blank" th:each="tag : ${new.tags}" th:text="${tag.name}">认知升级</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--话题-->
+            <div id="topicList" class="ui attached segment" style="display: none">
+                <div class="ui attached segment m-padded-tb-large" th:each="topic : ${topics}">
+
+                    <div class="ui padded vertical segment" >
+                        <div class="ui middle aligned mobile reversed stackable grid" >
+                            <div class="column">
+                                <h3 class="ui header"><a href="#" th:href="@{/topic/{id}(id=${topic.id})}" target="_blank" class="m-black" th:text="${topic.title}">文章标题</a></h3>
+                                <p class="m-text" th:text="|${topic.content}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
+
+                                <div class="ui grid">
+                                    <div class="eight wide column">
+                                        <!--每个item水平摆放-->
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="http://lorempixel.com/100/100/" th:src="@{${topic.userAvatar}}" alt="" class="ui avatar image">
+                                                <div class="content"> <a href="#" th:href="@{/showInfo/{id}(id=${topic.userId})}" class="header" th:text="${topic.userName}">soreaK</a></div>
+
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i><span th:text="${#dates.format(topic.createTime,'yyyy-MM-dd')}">2020-8-5</span>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i> <span th:text="${topic.views}">2333</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <a href="#" class="ui label teal basic m-padded-tiny" target="_blank" th:each="tag : ${topic.tags}" th:text="${tag.name}">认知升级</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        /*toggleClass 有则去除没有则加上*/
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+
+    function blogList(id) {
+        $('#showBlogButton').addClass("active");
+        $('#showNewsButton').removeClass("active");
+        $('#showTopicButton').removeClass("active");
+        $('#count').text(id);
+        $('#blogList').css("display","block");
+        $('#newsList').css("display","none");
+        $('#topicList').css("display","none");
+    }
+    function newsList(id) {
+        $('#showBlogButton').removeClass("active");
+        $('#showNewsButton').addClass("active");
+        $('#showTopicButton').removeClass("active");
+        $('#count').text(id);
+        $('#blogList').css("display","none");
+        $('#newsList').css("display","block");
+        $('#topicList').css("display","none");
+    }
+    function topicList(id) {
+        $('#showBlogButton').removeClass("active");
+        $('#showNewsButton').removeClass("active");
+        $('#showTopicButton').addClass("active");
+        $('#count').text(id);
+        $('#blogList').css("display","none");
+        $('#newsList').css("display","none");
+        $('#topicList').css("display","block");
+    }
+</script>
+</body>
+</html>

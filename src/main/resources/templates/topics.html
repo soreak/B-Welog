@@ -134,7 +134,7 @@
                             <div class="ui grid">
                                 <div class="two wide column"></div>
                                 <div class="ten wide column">
-                                    <a href="#"  target="_blank" class="m-black m-text-thin" th:text="${tag.name}">用户故事</a>
+                                    <a href="#" th:href="@{/tags/{id}(id=${tag.id})}"  target="_blank" class="m-black m-text-thin" th:text="${tag.name}">用户故事</a>
                                 </div>
                                 <div class="four wide column" th:text="${tag.count}">13</div>
                             </div>

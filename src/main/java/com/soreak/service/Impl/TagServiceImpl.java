@@ -54,6 +54,11 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    public Tag getTagById(Long id) {
+        return tagDao.getTagById(id);
+    }
+
+    @Override
     public Long saveTag(Tag tag) {
         return tagDao.saveBlog(tag);
     }

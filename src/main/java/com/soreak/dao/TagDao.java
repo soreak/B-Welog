@@ -1,13 +1,16 @@
 package com.soreak.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.soreak.entity.Blog;
 import com.soreak.entity.Tag;
+import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.TagVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -37,6 +40,10 @@ public interface TagDao extends BaseMapper<Tag> {
 
     @Select("select t.`id`,t.`Name` FROM sk_tag t,sk_topic_tag tt WHERE t.id = tt.tag_id and tt.topic_id=#{newsId}")
     List<Tag> getTagByTopicId(@Param("newsId") Long newsId);
+
+    @Select("select * from sk_tag where id=#{id}")
+    Tag getTagById(@Param("id") Long id);
+
 
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("insert  into sk_tag(name) value (#{name})")
