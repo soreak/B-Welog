@@ -19,15 +19,29 @@ public interface TagService {
 
     List<Tag> getTagByNewsId(Long newsId);
 
+    List<Tag> getTagByTopicId(Long topicId);
+
     List<TagVO> getTagNameAndCount();
+
+    List<TagVO> getAllTagNameAndCountByBlog();
 
     List<TagVO> getTagNameAndCountByNews();
 
+    List<TagVO> getAllTagNameAndCountByNews();
+
     List<TagVO> getTagNameAndCountByTopics();
+
+    List<TagVO> getAllTagNameAndCountByTopics();
 
     Tag getTagById(Long id);
 
     Long saveTag(Tag tag);
+
+    int updateTag(Tag tag);
+
+    int deleteTag(Long id);
+
+    List<Tag> getAllTag();
 
     Tag selectTagByName(String name);
 }

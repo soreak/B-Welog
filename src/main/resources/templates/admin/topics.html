@@ -155,8 +155,8 @@
             </div>
             <div class="actions">
                 <div class="ui cancel button">取消</div>
-                <div class="ui red button" onclick="editUser(-1)">审核不通过</div>
-                <div class="ui green button" onclick="editUser(1)">确认发布</div>
+                <div class="ui red button" onclick="editTopic(-1)">审核不通过</div>
+                <div class="ui green button" onclick="editTopic(1)">确认发布</div>
             </div>
         </div>
 
@@ -246,7 +246,7 @@
             .modal('show');
     }
     /*数据修改*/
-    function editUser(flag) {
+    function editTopic(flag) {
         $.ajax({
             type: "POST",
             url: "editTopic",

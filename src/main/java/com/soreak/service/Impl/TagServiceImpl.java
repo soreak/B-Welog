@@ -31,9 +31,15 @@ public class TagServiceImpl implements TagService {
         return tagDao.getTagByBlogId(blogId);
     }
 
+
     @Override
     public List<Tag> getTagByNewsId(Long newsId) {
         return tagDao.getTagByNewsId(newsId);
+    }
+
+    @Override
+    public List<Tag> getTagByTopicId(Long topicId) {
+        return tagDao.getTagByTopicId(topicId);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -44,13 +50,32 @@ public class TagServiceImpl implements TagService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
+    public List<TagVO> getAllTagNameAndCountByBlog() {
+        return tagDao.getAllTagNameAndCountByBlog();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
     public List<TagVO> getTagNameAndCountByNews() {
         return tagDao.getTagNameAndCountByNews();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public List<TagVO> getAllTagNameAndCountByNews() {
+        return tagDao.getAllTagNameAndCountByNews();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public List<TagVO> getTagNameAndCountByTopics() {
         return tagDao.getTagNameAndCountByTopics();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public List<TagVO> getAllTagNameAndCountByTopics() {
+        return tagDao.getAllTagNameAndCountByTopics();
     }
 
     @Override
@@ -62,6 +87,22 @@ public class TagServiceImpl implements TagService {
     public Long saveTag(Tag tag) {
         return tagDao.saveBlog(tag);
     }
+
+    @Override
+    public int updateTag(Tag tag) {
+        return tagDao.updateById(tag);
+    }
+
+    @Override
+    public int deleteTag(Long id) {
+        return tagDao.delete(new QueryWrapper<Tag>().eq("id",id));
+    }
+
+    @Override
+    public List<Tag> getAllTag() {
+        return tagDao.selectList(new QueryWrapper<Tag>().orderByAsc("id"));
+    }
+
 
     @Override
     public Tag selectTagByName(String name) {

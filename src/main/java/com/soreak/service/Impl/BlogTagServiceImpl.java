@@ -31,4 +31,12 @@ public class BlogTagServiceImpl implements BlogTagService {
         wrapper.eq("blog_id",id);
         return blogTagDao.delete(wrapper);
     }
+
+    @Override
+    public int deleteByTagId(Long id) {
+        QueryWrapper<BlogTag> wrapper = new QueryWrapper<>();
+        wrapper.eq("tag_id",id);
+        return blogTagDao.delete(wrapper);
+
+    }
 }

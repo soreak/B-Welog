@@ -12,4 +12,6 @@ public interface TopicTagService {
     int save(TopicTag topicTag);
 
     int deleteByTopicId(Long id);
+
+    int deleteByTagId(Long id);
 }

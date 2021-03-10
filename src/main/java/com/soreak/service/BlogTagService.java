@@ -13,4 +13,6 @@ public interface BlogTagService {
     int save(BlogTag blogTag);
 
     int deleteByBlogId(Long id);
+
+    int deleteByTagId(Long id);
 }

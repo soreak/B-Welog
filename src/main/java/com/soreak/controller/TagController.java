@@ -4,6 +4,7 @@ import com.soreak.entity.Tag;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.NewsVO;
+import com.soreak.entity.VO.TagVO;
 import com.soreak.entity.VO.TopicVO;
 import com.soreak.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,22 @@ public class TagController {
         }
         return byPhone;
     }
+
+    @GetMapping("/tags")
+    public String Tag(Model model){
+        setUser(model);
+
+        List<TagVO> blogTag = tagService.getAllTagNameAndCountByBlog();
+        List<TagVO> newsTag = tagService.getAllTagNameAndCountByNews();
+        List<TagVO> topicTag = tagService.getAllTagNameAndCountByTopics();
+
+
+        model.addAttribute("blogTagList",blogTag);
+        model.addAttribute("newsTagList",newsTag);
+        model.addAttribute("topicTagList",topicTag);
+        return "/tags";
+    }
+
+
 
 }

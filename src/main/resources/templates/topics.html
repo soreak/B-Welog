@@ -128,7 +128,14 @@
                     <!--标签-->
                     <div class="ui segments m-margin-top-larger">
                         <div class="ui secondary segment">
-                            <i class="tags icon"></i>标签
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <i class="tags icon"></i>标签
+                                </div>
+                                <div class="right aligned column">
+                                    <a href="#" th:href="@{/tags}" target="_blank">more<i class="angle double right icon"></i></a>
+                                </div>
+                            </div>
                         </div>
                         <div class="ui segment" th:each="tag : ${tags}" >
                             <div class="ui grid">
