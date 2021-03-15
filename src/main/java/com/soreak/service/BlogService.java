@@ -35,4 +35,6 @@ public interface BlogService {
     int deleteBlogById(Long id);
 
     List<Blog> searchBlog(String title,String tagId,int recommend);
+
+    List<BlogVO> searchBlogByQuery(String query);
 }

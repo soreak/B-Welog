@@ -119,4 +119,9 @@ public class TopicServiceImpl implements TopicService{
 
         }
     }
+
+    @Override
+    public List<TopicVO> searchTopicByQuery(String query) {
+        return topicDao.searchTopicByQuery(query);
+    }
 }

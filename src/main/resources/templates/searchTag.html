@@ -84,6 +84,11 @@
 
             <!--博客-->
             <div id="blogList" class="ui attached segment">
+                <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(blogs)}">
+                    <div class="ui center aligned grid">
+                        <h3>没有关于 <span th:text="${tag.name}"></span>的博客</h3>
+                    </div>
+                </div>
                 <div class="ui attached segment m-padded-tb-large" th:each="blog : ${blogs}">
                     <div class="ui padded vertical segment" >
                         <div class="ui middle aligned mobile reversed stackable grid" >
@@ -123,34 +128,38 @@
             </div>
             <!--新闻-->
             <div id="newsList" class="ui attached segment" style="display:none;">
-                <div class="ui attached segment m-padded-tb-large" th:each="new : ${news}">
-
+                <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(news)}">
+                    <div class="ui center aligned grid">
+                        <h3>没有关于 <span th:text="${tag.name}"></span>的新闻</h3>
+                    </div>
+                </div>
+                <div class="ui attached segment m-padded-tb-large" th:each="newT : ${news}">
                     <div class="ui padded vertical segment" >
                         <div class="ui middle aligned mobile reversed stackable grid" >
                             <div class="column">
-                                <h3 class="ui header"><a href="#" th:href="@{/new/{id}(id=${new.id})}" target="_blank" class="m-black" th:text="${new.title}">文章标题</a></h3>
-                                <p class="m-text" th:text="|${new.content}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
+                                <h3 class="ui header"><a href="#" th:href="@{/news/{id}(id=${newT.id})}" target="_blank" class="m-black" th:text="${newT.title}">文章标题</a></h3>
+                                <p class="m-text" th:text="|${newT.content}......|">文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  文章内容  </p>
 
                                 <div class="ui grid">
                                     <div class="eight wide column">
                                         <!--每个item水平摆放-->
                                         <div class="ui mini horizontal link list">
                                             <div class="item">
-                                                <img src="http://lorempixel.com/100/100/" th:src="@{${new.userAvatar}}" alt="" class="ui avatar image">
-                                                <div class="content"> <a href="#" th:href="@{/showInfo/{id}(id=${new.userId})}" class="header" th:text="${new.userName}">soreaK</a></div>
+                                                <img src="http://lorempixel.com/100/100/" th:src="@{${newT.userAvatar}}" alt="" class="ui avatar image">
+                                                <div class="content"> <a href="#" th:href="@{/showInfo/{id}(id=${newT.userId})}" class="header" th:text="${newT.userName}">soreaK</a></div>
 
                                             </div>
                                             <div class="item">
-                                                <i class="calendar icon"></i><span th:text="${#dates.format(new.createTime,'yyyy-MM-dd')}">2020-8-5</span>
+                                                <i class="calendar icon"></i><span th:text="${#dates.format(newT.createTime,'yyyy-MM-dd')}">2020-8-5</span>
                                             </div>
 
                                             <div class="item">
-                                                <i class="eye icon"></i> <span th:text="${new.views}">2333</span>
+                                                <i class="eye icon"></i> <span th:text="${newT.views}">2333</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="eight wide column">
-                                        <a href="#" class="ui label teal basic m-padded-tiny" target="_blank" th:each="tag : ${new.tags}" th:text="${tag.name}">认知升级</a>
+                                        <a href="#" class="ui label teal basic m-padded-tiny" target="_blank" th:each="tag : ${newT.tags}" th:text="${tag.name}">认知升级</a>
 
                                     </div>
 
@@ -163,8 +172,12 @@
             </div>
             <!--话题-->
             <div id="topicList" class="ui attached segment" style="display: none">
+                <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(topics)}">
+                    <div class="ui center aligned grid">
+                        <h3>没有关于 <span th:text="${tag.name}"></span>的话题</h3>
+                    </div>
+                </div>
                 <div class="ui attached segment m-padded-tb-large" th:each="topic : ${topics}">
-
                     <div class="ui padded vertical segment" >
                         <div class="ui middle aligned mobile reversed stackable grid" >
                             <div class="column">

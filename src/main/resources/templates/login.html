@@ -39,17 +39,16 @@
                             </div>
                             <button type="button" class="ui large teal submit button m-padded-lr-response">登     录</button>
                             <a href="#" th:href="@{/registered}"><button type="button" class="ui large teal button m-padded-lr-response">注册</button></a>
-
                         </div>
-
+                        <div class="ui mini message">
+                            忘记密码？试试<a href="#">找回密码</a>
+                        </div>
                         <div class="ui error mini message">
-
                         </div>
                         <div class="ui mini negative message" th:if="${param.error}" >
                             <span th:if="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message} eq 'Bad credentials'">账号密码错误</span>
                             <span th:unless="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message} eq 'Bad credentials'" th:text="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}">账号密码错误</span>
                         </div>
-
                     </form>
             </div>
         </div>

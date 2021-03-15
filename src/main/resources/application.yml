@@ -1,6 +1,6 @@
 spring:
   thymeleaf:
-    mode: LEGACYHTML5
+    mode: HTML
     prefix: classpath:/templates/
 
   datasource:

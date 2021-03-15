@@ -79,6 +79,11 @@
                         </div>
                     </div>
 
+                    <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(blogs)}">
+                        <div class="ui center aligned grid">
+                            <h3>啊咧，居然没有一篇博客，快去发布吧</h3>
+                        </div>
+                    </div>
                     <!--content-->
                     <!--attached连接segment-->
                     <div class="ui attached segment m-padded-tb-large" th:each="blog : ${blogs}">
@@ -151,6 +156,9 @@
                     <div class="ui segments m-margin-top-larger">
                         <div class="ui secondary segment">
                             <i class="bookmark icon"></i>最热推荐
+                        </div>
+                        <div class="ui center aligned segment" th:if="${#lists.isEmpty(recommendBlogs)}">
+                            <span>没有推荐的博客</span>
                         </div>
                         <div class="ui segment" th:each="blog : ${recommendBlogs}">
                             <a href="#"  th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin " th:text="${blog.title}">用户故事</a>

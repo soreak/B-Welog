@@ -3,6 +3,7 @@ package com.soreak.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.soreak.entity.Blog;
 import com.soreak.entity.VO.BlogVO;
+import com.soreak.entity.VO.TopicVO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,6 @@ public interface BlogDao extends BaseMapper<Blog> {
 
     @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.user_id=#{id} ORDER BY b.create_time DESC")
     List<BlogVO> getMyBlogListByUserId(@Param("id") Long userId);
-
 
     @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.id=#{id}")
     BlogVO getOneBlogById(@Param("id") Long id);
@@ -55,6 +55,9 @@ public interface BlogDao extends BaseMapper<Blog> {
 
     @Select("SELECT b.* FROM sk_blog b,sk_blog_tag bt WHERE b.id = bt.blog_id and bt.tag_id=#{tagId}")
     List<Blog> searchBlogListByT(@Param("tagId")String tagId);
+
+    @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.title like concat('%',#{query},'%') or b.content like concat('%',#{query},'%')  GROUP BY b.id ORDER BY b.update_time")
+    List<BlogVO> searchBlogByQuery(@Param("query")String query);
 
 
 

@@ -87,27 +87,6 @@ public class newsController {
         model.addAttribute("master",userEntity);
 
 
-        String tagIds = newsVO.getTagIds();
-
-        String[] split = tagIds.split(",");
-        List<Long> tagIdList = new ArrayList<>();
-        Tag tag = new Tag();
-        for (String c : split){
-
-            if (!c.matches("^[0-9]*$")){
-                tag.setName(c);
-                Long aLong = tagService.saveTag(tag);
-                System.out.println("tagid============"+aLong);
-                System.out.println(tag.getId());
-                tagIdList.add(tag.getId());
-                tag = new Tag();
-            }else {
-                if (newsVO.getId() == null){
-                    tagIdList.add(Long.valueOf(c));
-                }
-
-            }
-        }
         News news = new News();
         news.setTitle(newsVO.getTitle());
         news.setContent(newsVO.getContent());
@@ -126,18 +105,40 @@ public class newsController {
         }else {
             attributes.addFlashAttribute("message","操作成功");
         }
+        if (!newsVO.getTagIds().isEmpty()){
+            String tagIds = newsVO.getTagIds();
 
-        NewsTag newsTag = new NewsTag();
-        for (Long id1: tagIdList){
-            newsTag.setNewsId(news.getId());
-            newsTag.setTagId(id1);
-            try{
-                newsTagService.save(newsTag);
+            String[] split = tagIds.split(",");
+            List<Long> tagIdList = new ArrayList<>();
+            Tag tag = new Tag();
+            for (String c : split){
+
+                if (!c.matches("^[0-9]*$")){
+                    tag.setName(c);
+                    Long aLong = tagService.saveTag(tag);
+                    System.out.println("tagid============"+aLong);
+                    System.out.println(tag.getId());
+                    tagIdList.add(tag.getId());
+                    tag = new Tag();
+                }else {
+                    if (newsVO.getId() == null){
+                        tagIdList.add(Long.valueOf(c));
+                    }
+
+                }
             }
-           catch (Exception e){
-                e.printStackTrace();
-           }
-            newsTag = new NewsTag();
+            NewsTag newsTag = new NewsTag();
+            for (Long id1: tagIdList){
+                newsTag.setNewsId(news.getId());
+                newsTag.setTagId(id1);
+                try{
+                    newsTagService.save(newsTag);
+                }
+               catch (Exception e){
+                    e.printStackTrace();
+               }
+                newsTag = new NewsTag();
+            }
         }
         return "redirect:/admin/news";
     }

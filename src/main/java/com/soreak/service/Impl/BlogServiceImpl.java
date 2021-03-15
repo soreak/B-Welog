@@ -152,5 +152,10 @@ public class BlogServiceImpl implements BlogService {
         }
     }
 
+    @Override
+    public List<BlogVO> searchBlogByQuery(String query) {
+        return blogDao.searchBlogByQuery(query);
+    }
+
 
 }

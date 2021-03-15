@@ -39,4 +39,6 @@ public interface NewsService {
     int deleteNewsById(Long id);
 
     List<News> searchNews(String title,String tagId);
+
+    List<NewsVO> searchNewsByQuery(String query);
 }

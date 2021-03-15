@@ -34,4 +34,6 @@ public interface UserService {
     List<UserEntity> searchUser(String nickname,String role);
 
     int deleteUser(Long id);
+
+    List<UserEntity> searchUserByQuery(String query);
 }

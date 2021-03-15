@@ -32,4 +32,6 @@ public interface TopicService {
     int deleteTopicById(Long id);
 
     List<Topic> searchTopic(String title, String tagId, int published);
+
+    List<TopicVO> searchTopicByQuery(String query);
 }

@@ -132,4 +132,9 @@ public class NewsServiceImpl implements NewsService {
             return newsDao.searchNewsListByT(tagId);
         }
     }
+
+    @Override
+    public List<NewsVO> searchNewsByQuery(String query) {
+        return newsDao.searchNewsByQuery(query);
+    }
 }

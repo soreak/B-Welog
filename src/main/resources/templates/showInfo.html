@@ -116,7 +116,11 @@
 
                     </div>
 
-
+                    <div class="segments m-margin-top-larger" th:if="${#lists.isEmpty(blogList)}">
+                        <div class="ui center aligned grid">
+                            <h4>该用户太懒了，没有博客</h4>
+                        </div>
+                    </div>
                     <div class="segments m-margin-top" th:each="blog : ${blogList}">
                         <div class="ui top attached segment">
                             <div class="ui grid">

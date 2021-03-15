@@ -5,6 +5,7 @@ import com.soreak.entity.Blog;
 import com.soreak.entity.News;
 import com.soreak.entity.VO.BlogVO;
 import com.soreak.entity.VO.NewsVO;
+import com.soreak.entity.VO.TopicVO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -53,5 +54,9 @@ public interface NewsDao extends BaseMapper<News> {
 
     @Select("SELECT n.* FROM sk_news n,sk_news_tag nt WHERE n.id = nt.news_id and nt.tag_id=#{tagId}")
     List<News> searchNewsListByT(@Param("tagId")String tagId);
+
+    @Select("SELECT n.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_news n,sk_user u WHERE n.user_id = u.id and n.title like concat('%',#{query},'%') or n.content like concat('%',#{query},'%')  GROUP BY n.id ORDER BY n.update_time")
+    List<NewsVO> searchNewsByQuery(@Param("query")String query);
+
 
 }

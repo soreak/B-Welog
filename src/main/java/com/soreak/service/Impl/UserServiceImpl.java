@@ -85,5 +85,12 @@ public class UserServiceImpl implements UserService {
         return userDao.deleteById(id);
     }
 
+    @Override
+    public List<UserEntity> searchUserByQuery(String query) {
+        QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
+        wrapper.like("nickname",query);
+        return userDao.selectList(wrapper);
+    }
+
 
 }

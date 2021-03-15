@@ -76,22 +76,7 @@ public class BlogController {
             blog.setFlag("原创");
         }
 
-        String tagIds = blog.getTagIds();
 
-        String[] split = tagIds.split(",");
-        List<Long> tagIdList = new ArrayList<>();
-        Tag tag = new Tag();
-        for (String c : split){
-
-            if (!c.matches("^[0-9]*$")){
-                tag.setName(c);
-                Long aLong = tagService.saveTag(tag);
-                tagIdList.add(tag.getId());
-                tag = new Tag();
-            }else {
-                tagIdList.add(Long.valueOf(c));
-            }
-        }
         /*创建一个新的blog来接受blogVO里的数据*/
         Blog blog1 = new Blog();
 
@@ -115,18 +100,36 @@ public class BlogController {
         }else {
             attributes.addFlashAttribute("message","操作成功");
         }
+        if (!blog.getTagIds().isEmpty()) {
+            String tagIds = blog.getTagIds();
 
-        BlogTag blogTag = new BlogTag();
-        for (Long id1: tagIdList){
-            blogTag.setBlogId(blog1.getId());
-            blogTag.setTagId(id1);
-            try{
-                blogTagService.save(blogTag);
-            }catch (Exception e){
-                e.printStackTrace();
+            String[] split = tagIds.split(",");
+            List<Long> tagIdList = new ArrayList<>();
+            Tag tag = new Tag();
+            for (String c : split) {
+
+                if (!c.matches("^[0-9]*$")) {
+                    tag.setName(c);
+                    Long aLong = tagService.saveTag(tag);
+                    tagIdList.add(tag.getId());
+                    tag = new Tag();
+                } else {
+                    tagIdList.add(Long.valueOf(c));
+                }
             }
 
-            blogTag = new BlogTag();
+            BlogTag blogTag = new BlogTag();
+            for (Long id1 : tagIdList) {
+                blogTag.setBlogId(blog1.getId());
+                blogTag.setTagId(id1);
+                try {
+                    blogTagService.save(blogTag);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                blogTag = new BlogTag();
+            }
         }
         return "redirect:/MY";
     }

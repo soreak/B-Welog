@@ -60,5 +60,8 @@ public interface TopicDao extends BaseMapper<Topic> {
     @Select("SELECT t.* FROM sk_topic t,sk_topic_tag tt WHERE t.id = tt.topic_id and tt.tag_id=#{tagId}")
     List<Topic> searchTopicListByT(@Param("tagId")String tagId);
 
+    @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id and t.title like concat('%',#{query},'%') or t.content like concat('%',#{query},'%')  GROUP BY t.id ORDER BY t.update_time")
+    List<TopicVO> searchTopicByQuery(@Param("query")String query);
+
 
 }

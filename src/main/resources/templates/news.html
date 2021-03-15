@@ -68,6 +68,12 @@
                         </div>
                     </div>
 
+                    <!--当没有新闻的时候显示-->
+                    <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(newsList)}" >
+                        <div class="ui center aligned grid">
+                            <h3>暂无新闻</h3>
+                        </div>
+                    </div>
                     <!--content-->
                     <!--attached连接segment-->
                     <div class="ui attached segment m-padded-tb-large" th:each="news : ${newsList}">
@@ -142,6 +148,9 @@
                         <div class="ui secondary segment">
                             <i class="list icon"></i>今日最热
                         </div>
+                        <div class="ui center aligned segment" th:if="${#lists.isEmpty(TodayHotNewsList)}">
+                            暂无推荐
+                        </div>
                         <div class="ui segment" th:each="news : ${TodayHotNewsList}">
                             <a href="#" th:href="@{/news/{id}(id=${news.id})}" target="_blank" class="m-black m-text-thin " th:text="${news.title}">用户故事</a>
                         </div>
@@ -151,6 +160,9 @@
                     <div class="ui segments m-margin-top-larger">
                         <div class="ui secondary segment">
                             <i class="list icon"></i>本周最热
+                        </div>
+                        <div class="ui center aligned segment" th:if="${#lists.isEmpty(WeekHotNewsList)}" >
+                            暂无推荐
                         </div>
                         <div class="ui segment" th:each="news : ${WeekHotNewsList}">
                             <a href="#"  th:href="@{/news/{id}(id=${news.id})}" target="_blank" class="m-black m-text-thin " th:text="${news.title}">用户故事</a>

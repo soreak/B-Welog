@@ -69,6 +69,13 @@
                         </div>
                     </div>
 
+                    <!--当没有话题使用-->
+                    <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(topics)}">
+                        <div class="ui center aligned grid">
+                            <h3>暂无话题</h3>
+                        </div>
+                    </div>
+
                     <!--content-->
                     <!--attached连接segment-->
                     <div class="ui attached segment m-padded-tb-large" th:each="topic : ${topics}">

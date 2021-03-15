@@ -1,26 +1,18 @@
 package com.soreak.controller;
 
-import com.soreak.entity.Blog;
 import com.soreak.entity.UserEntity;
 import com.soreak.entity.VO.BlogVO;
-import com.soreak.entity.VO.TagVO;
 import com.soreak.service.BlogLikeService;
 import com.soreak.service.BlogService;
 import com.soreak.service.UserFollowService;
 import com.soreak.service.UserService;
-import com.soreak.utils.HTMLUtils;
 import com.soreak.utils.phoneVerify.util.RandomNum;
-import org.commonmark.node.Node;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
