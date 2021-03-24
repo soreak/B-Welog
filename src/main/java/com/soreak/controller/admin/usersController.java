@@ -23,6 +23,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasRole('1') or hasRole('2')")
 public class usersController {
     @Autowired
     private UserService userService;
@@ -31,15 +32,13 @@ public class usersController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/index")
-    @PreAuthorize("hasRole('1')")
-    public String index(Model model)
+    public String index()
     {
 
         return "admin/index";
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasRole('1')")
     public String list(Model model)
     {
         model.addAttribute("users",userService.getAllUser());
@@ -48,7 +47,6 @@ public class usersController {
 
     @RequestMapping(value = "/oneUser",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
     public JSONObject oneUser(@RequestParam("id") Long id){
         UserEntity userById = userService.getUserById(id);
         userById.setPassword("");
@@ -58,7 +56,6 @@ public class usersController {
     }
     @RequestMapping(value = "/editUser",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
     public JSONObject  editUser(@RequestParam("id") Long id,
                             @RequestParam("nickname") String nickname,
                             @RequestParam("phone") String phone,
@@ -87,7 +84,6 @@ public class usersController {
     }
 
     @PostMapping("/users/search")
-    @PreAuthorize("hasRole('1')")
     public String search( @RequestParam(value = "nickname",defaultValue = "soreak") String nickname,
                           @RequestParam(value = "role",defaultValue = "-1") String role,
                           Model model){
@@ -96,7 +92,6 @@ public class usersController {
         return "admin/users :: userList";
     }
     @GetMapping("/users/{id}/delete")
-    @PreAuthorize("hasRole('1')")
     public String delete(@PathVariable Long id,RedirectAttributes attributes){
         userService.deleteUser(id);
         attributes.addFlashAttribute("message","删除成功");

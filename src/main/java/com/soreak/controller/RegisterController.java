@@ -3,6 +3,7 @@ package com.soreak.controller;
 import com.soreak.entity.UserEntity;
 import com.soreak.service.RegisterService;
 import com.soreak.service.UserService;
+import com.soreak.utils.Captcha;
 import com.soreak.utils.MD5Utils;
 import com.soreak.utils.phoneVerify.util.SMSUtil;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.alibaba.fastjson.JSONObject;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,8 +31,7 @@ import java.util.regex.Pattern;
 @Controller
 public class RegisterController {
 
-    private static final String FLAGHEADER = "soreak";
-    private String Encode;
+    private Map<String, Captcha> codeMap = new HashMap<>() ;
 
     @Autowired
     private RegisterService registerService;
@@ -48,22 +52,24 @@ public class RegisterController {
     public JSONObject registered(@RequestParam String phone,
                         @RequestParam String password,
                         @RequestParam String username,
-                        @RequestParam String flag,
                         @RequestParam String code){
         JSONObject jsonObject = new JSONObject();
-        System.out.println(flag);
-        System.out.println(FLAGHEADER+phone);
-        if (!code.equals(Encode)){
+
+        Captcha captcha = codeMap.get(phone);
+        if (captcha== null){
             jsonObject.put("status",500);
-            jsonObject.put("message","验证码错误");
+            jsonObject.put("message","手机号码错误");
+            return jsonObject;
+        }
+        if((new Date().getTime() - captcha.getCreateTime().getTime())/1000/60>1){
+            jsonObject.put("status",500);
+            jsonObject.put("message","验证码已过期，请重新发送");
             return jsonObject;
         }
 
-        System.out.println(flag);
-        System.out.println(FLAGHEADER+phone);
-        if(!flag.equals( FLAGHEADER + phone)){
+        if(!captcha.getCode().equals(code)){
             jsonObject.put("status",500);
-            jsonObject.put("message","请重新输入手机号码");
+            jsonObject.put("message","验证码错误");
             return jsonObject;
         }
 
@@ -77,12 +83,11 @@ public class RegisterController {
             int result = registerService.insUser(userEntity);
             if (result >0){
                 jsonObject.put("status",200);
-                return jsonObject;
             }else {
                 jsonObject.put("status",500);
                 jsonObject.put("message","注册失败");
-                return jsonObject;
             }
+            return jsonObject;
         }else {
             jsonObject.put("status",500);
             jsonObject.put("message","用户名已被注册");
@@ -95,12 +100,19 @@ public class RegisterController {
     @ResponseBody
     public JSONObject getCode(@RequestParam("phone") String phone){
         try {
-            //Encode = SMSUtil.sendSMS(phone);
-            Encode = "123456";
+            String Encode = SMSUtil.sendSMS(phone);
+            //Encode = "123456";
+            Captcha one = new Captcha();
+            one.setPhone(phone);
+            one.setCode(Encode);
+            one.setCreateTime(new Date());
+            codeMap.put(phone,one);
+            System.out.println("one == > "+one);
+            System.out.println("map == > "+codeMap);
+
             System.out.println(Encode);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("status",200);
-            jsonObject.put("flag",FLAGHEADER+phone);
             return jsonObject;
         }catch (Exception e){
             JSONObject jsonObject = new JSONObject();

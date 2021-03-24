@@ -29,6 +29,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAnyRole('1', '2')")
 public class tagsController {
 
     @Autowired
@@ -44,7 +45,6 @@ public class tagsController {
     private TagService tagService;
 
     @GetMapping("/tags")
-    @PreAuthorize("hasRole('1')")
     public String Tag(Model model){
         List<Tag> tagList = tagService.getAllTag();
 
@@ -53,14 +53,12 @@ public class tagsController {
     }
 
     @GetMapping("/tags/input")
-    @PreAuthorize("hasRole('1')")
     public String inputTag(Model model){
         model.addAttribute("tag",new Tag());
         return "admin/tags-input";
     }
 
     @PostMapping("/tags/save")
-    @PreAuthorize("hasRole('1')")
     public String saveTag(Tag tag,Model model){
         try{
             tagService.saveTag(tag);
@@ -72,7 +70,6 @@ public class tagsController {
     }
 
     @GetMapping("/tags/{id}/delete")
-    @PreAuthorize("hasRole('1')")
     public String inputTag(@PathVariable Long id, RedirectAttributes attributes){
         blogTagService.deleteByTagId(id);
         newsTagService.deleteByTagId(id);
@@ -84,7 +81,6 @@ public class tagsController {
 
     @RequestMapping(value = "/oneTag",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
     public JSONObject oneTag(@RequestParam("id") Long id){
         Tag tag = tagService.getTagById(id);
         JSONObject jsonObject = new JSONObject();

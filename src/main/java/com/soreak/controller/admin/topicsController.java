@@ -25,6 +25,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAnyRole('1', '2')")
 public class topicsController {
 
     @Autowired
@@ -37,7 +38,6 @@ public class topicsController {
     private TopicTagService topicTagService;
 
     @RequestMapping(value = "/topics",method = RequestMethod.GET)
-    @PreAuthorize("hasRole('1')")
     public String blogs(Model model){
         model.addAttribute("tags",tagService.getTagNameAndCountByTopics());
         model.addAttribute("topics",topicService.getAllTopicList());
@@ -45,7 +45,6 @@ public class topicsController {
     }
 
     @PostMapping("/topics/search")
-    @PreAuthorize("hasRole('1')")
     public String search( @RequestParam(value = "title",defaultValue = "soreak") String title,
                           @RequestParam(value = "tagId",defaultValue = "-1") String tagId,
                           @RequestParam(value = "published",required = false) String published,
@@ -67,7 +66,6 @@ public class topicsController {
 
 
     @GetMapping("/topics/{id}/delete")
-    @PreAuthorize("hasRole('1')")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
         topicService.deleteTopicById(id);
         attributes.addFlashAttribute("message","删除成功");
@@ -76,7 +74,6 @@ public class topicsController {
 
     @RequestMapping(value = "/oneTopic",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
     public JSONObject oneTopic(@RequestParam("id") Long id){
         TopicVO topic = topicService.getOneTopicById(id,0);
         topic.init();
@@ -87,7 +84,6 @@ public class topicsController {
 
     @RequestMapping(value = "/editTopic",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('1')")
     public JSONObject  editTopic(@RequestParam("id") Long id,
                                 @RequestParam("title") String title,
                                 @RequestParam("content") String content,
@@ -98,19 +94,7 @@ public class topicsController {
        topic.setTitle(title);
        topic.setContent(content);
        topic.setPublished(published);
-        String[] split = tagIds.split(",");
-        List<Long> tagIdList = new ArrayList<>();
-        Tag tag = new Tag();
-        for (String c : split){
-            if (!c.matches("^[0-9]*$")){
-                tag.setName(c);
-                Long aLong = tagService.saveTag(tag);
-                tagIdList.add(tag.getId());
-                tag = new Tag();
-            }else {
-                tagIdList.add(Long.valueOf(c));
-            }
-        }
+
 
 
         Long i = topicService.updateTopic(topic);
@@ -121,18 +105,33 @@ public class topicsController {
         }else {
             jsonObject.put("message","操作成功");
         }
-
-        TopicTag topicTag = new TopicTag();
-        topicTagService.deleteByTopicId(id);
-        for (Long id1: tagIdList){
-            topicTag.setTopicId(topic.getId());
-            topicTag.setTagId(id1);
-            try{
-                topicTagService.save(topicTag);
-            }catch (Exception e){
-                e.printStackTrace();
+        if(!tagIds.isEmpty()){
+            String[] split = tagIds.split(",");
+            List<Long> tagIdList = new ArrayList<>();
+            Tag tag = new Tag();
+            for (String c : split){
+                if (!c.matches("^[0-9]*$")){
+                    tag.setName(c);
+                    Long aLong = tagService.saveTag(tag);
+                    tagIdList.add(tag.getId());
+                    tag = new Tag();
+                }else {
+                    tagIdList.add(Long.valueOf(c));
+                }
             }
-            topicTag = new TopicTag();
+            TopicTag topicTag = new TopicTag();
+            topicTagService.deleteByTopicId(id);
+            for (Long id1: tagIdList){
+                topicTag.setTopicId(topic.getId());
+                topicTag.setTagId(id1);
+                try{
+                    topicTagService.save(topicTag);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                topicTag = new TopicTag();
+            }
+
         }
 
         return jsonObject;

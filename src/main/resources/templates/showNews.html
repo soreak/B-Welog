@@ -147,6 +147,9 @@
                 <div th:fragment="newsCommentList">
                     <div class="ui threaded comments" style="max-width: 100%;">
                         <h3 class="ui dividing header">评论</h3>
+                        <div class="comment" th:if="${#lists.isEmpty(comments)}">
+                            <span>空空如也,快来评论吧</span>
+                        </div>
                         <div class="comment" th:each="comment : ${comments}">
                             <div class="content">
                                 <a class="author">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width ,initial-scale=1.0">
@@ -91,10 +91,10 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}">1</td>
                     <td th:text="${user.nickname}">sorea1k</td>
-                    <td th:text="${user.role} eq 1 ? '管理员':( ${user.role} eq -1 ? '封禁':'用户')">管理员</td>
+                    <td th:text="${user.role} eq 1 ? '管理员':( ${user.role} eq -1 ? '封禁':( ${user.role} eq '1,2' ? '超级管理员':'用户'))">管理员</td>
                     <td th:text="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
                     <td th:text="${#dates.format(user.updateTime,'yyyy-MM-dd HH:mm:ss')}">2020-08-12 09:45</td>
-                    <td>
+                    <td th:unless="${user.role} eq '1,2'">
                         <div id="edit" th:onclick="|showUser(${user.id})|" class="ui mini teal basic button">编辑</div>
                     </td>
 
@@ -135,7 +135,7 @@
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">密码</div>
-                        <input type="text" placeholder="重置密码">
+                        <input type="text" id="password" placeholder="重置密码">
                     </div>
                     <div class="ui labeled input m-margin-top">
                         <div class="ui label">权限</div>
@@ -145,7 +145,7 @@
                             <div class="text" id="role"></div>
                             <div class="menu">
                                 <div class="item" data-value="0" >用户</div>
-                                <div class="item" data-value="1" >管理员</div>
+                                <div class="item"  data-value="1" sec:authorize="hasRole('2')">管理员</div>
                                 <div class="item" data-value="-1" >封禁</div>
                             </div>
                         </div>

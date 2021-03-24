@@ -137,7 +137,7 @@
                         <div class="ui teal segment">
                             <div class="ui celled list" th:each="tag : ${tags}">
                                 <div class="item">
-                                    <div  class="m-margin-tb-tiny" th:text="${tag.name}">数据结构</div>
+                                    <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="m-margin-tb-tiny" th:text="${tag.name}">数据结构</a>
                                 </div>
                             </div>
                         </div>

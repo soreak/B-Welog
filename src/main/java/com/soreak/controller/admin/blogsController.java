@@ -26,6 +26,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAnyRole('1', '2')")
 public class blogsController {
 
     @Autowired
@@ -38,7 +39,7 @@ public class blogsController {
     private BlogTagService blogTagService;
 
     @RequestMapping(value = "/blogs",method = RequestMethod.GET)
-    @PreAuthorize("hasRole('1')")
+
     public String blogs(Model model){
         model.addAttribute("tags",tagService.getTagNameAndCount());
         model.addAttribute("blogs",blogService.getBlogList());
@@ -46,7 +47,7 @@ public class blogsController {
     }
 
     @RequestMapping(value = "/blogs/{id}/input",method = RequestMethod.GET)
-    @PreAuthorize("hasRole('1')")
+
     public String one(@PathVariable Long id, Model model){
         model.addAttribute("tags",tagService.getTagNameAndCount());
         BlogVO blog= blogService.getOneBlog(id);
@@ -56,7 +57,7 @@ public class blogsController {
     }
 
     @GetMapping("/blogs/{id}/delete")
-    @PreAuthorize("hasRole('1')")
+
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
         blogService.deleteBlogById(id);
         attributes.addFlashAttribute("message","删除成功");
@@ -118,7 +119,6 @@ public class blogsController {
 
 
     @PostMapping("/blogs/search")
-    @PreAuthorize("hasRole('1')")
     public String search( @RequestParam(value = "title",defaultValue = "soreak") String title,
                           @RequestParam(value = "tagId",defaultValue = "-1") String tagId,
                           @RequestParam(value = "recommend",required = false) String recommend,

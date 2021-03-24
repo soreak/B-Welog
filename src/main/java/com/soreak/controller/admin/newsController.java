@@ -26,6 +26,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAnyRole('1', '2')")
 public class newsController {
 
     @Autowired
@@ -41,7 +42,6 @@ public class newsController {
     private NewsTagService newsTagService;
 
     @RequestMapping(value = "/news",method = RequestMethod.GET)
-    @PreAuthorize("hasRole('1')")
     public String news(Model model){
         model.addAttribute("tags",tagService.getTagNameAndCountByNews());
         model.addAttribute("news",newsService.getNewsList());
@@ -49,7 +49,6 @@ public class newsController {
     }
 
     @RequestMapping(value = "/news/{id}/input",method = RequestMethod.GET)
-    @PreAuthorize("hasRole('1')")
     public String one(@PathVariable Long id, Model model){
         model.addAttribute("tags",tagService.getTagNameAndCountByNews());
         NewsVO news = newsService.getOneNews(id);
@@ -59,7 +58,6 @@ public class newsController {
     }
 
     @GetMapping("/news/{id}/delete")
-    @PreAuthorize("hasRole('1')")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
         newsService.deleteNewsById(id);
         attributes.addFlashAttribute("message","删除成功");
@@ -67,7 +65,6 @@ public class newsController {
     }
 
     @GetMapping("/news/input")
-    @PreAuthorize("hasRole('1')")
     public String input(Model model){
         model.addAttribute("tags",tagService.getTagNameAndCountByNews());
 
@@ -77,7 +74,6 @@ public class newsController {
 
 
     @PostMapping("/news")
-    @PreAuthorize("hasRole('1')")
     public String post(NewsVO newsVO, RedirectAttributes attributes,Model model){
 
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -144,7 +140,6 @@ public class newsController {
     }
 
     @PostMapping("/news/search")
-    @PreAuthorize("hasRole('1')")
     public String search( @RequestParam(value = "title",defaultValue = "soreak") String title,
                           @RequestParam(value = "tagId",defaultValue = "-1") String tagId,
                           Model model){
