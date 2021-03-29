@@ -87,12 +87,11 @@ public class RegisterController {
                 jsonObject.put("status",500);
                 jsonObject.put("message","注册失败");
             }
-            return jsonObject;
         }else {
             jsonObject.put("status",500);
             jsonObject.put("message","用户名已被注册");
-            return jsonObject;
         }
+        return jsonObject;
 
     }
 

@@ -28,8 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -47,19 +45,10 @@ public class CustomUserDetailsService implements UserDetailsService {
             // 角色集合
             List<GrantedAuthority> authorities = new ArrayList<>();
             // 角色必须以`ROLE_`开头，数据库中没有，则在这里加
-            for (String s1:
-                 split) {
+            for (String s1: split) {
                 authorities.add(new SimpleGrantedAuthority("ROLE_" + s1));
             }
-
-
-            System.out.println(authorities);
-            return new User(
-                    user.getPhone(),
-                    user.getPassword(),
-                    authorities
-
-            );
+            return new User(user.getPhone(),user.getPassword(),authorities);
         }
 
     }

@@ -85,8 +85,12 @@
                     </div>
                 </div>
 
-                <!--content-->
 
+                <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(users)}" >
+                    <div class="ui center aligned grid">
+                        <h3>无人问津</h3>
+                    </div>
+                </div>
                     <div th:fragment="UserLikeList">
                         <div class="ui attached segment" th:each="user : ${users}" >
                             <div class="ui grid">

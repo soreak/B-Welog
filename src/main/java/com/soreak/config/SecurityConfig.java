@@ -40,15 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("1");
 
 
-        http.formLogin().loginPage("/login")
+        http.formLogin().loginPage("/login")   //登录页面
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .loginProcessingUrl("/login")
-                .failureUrl("/login?error=true");
+                .loginProcessingUrl("/login") //后端验证方法的URL
+                .failureUrl("/login?error=true"); //失败后的跳转页面
 
 
 
-        http.csrf().disable();
+        http.csrf().disable();//关闭csrf保护
 
         http.logout().logoutSuccessUrl("/").logoutUrl("/logout");
 

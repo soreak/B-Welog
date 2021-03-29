@@ -189,6 +189,7 @@
             if (phone1.length == 0 || phone1.length != 11 ||!myreg.test(phone1) ) {
                 alert("手机号码有误");
                 codeBtn.attr("disabled", false);
+                return
             }
             await checkPhone(phone1)
 

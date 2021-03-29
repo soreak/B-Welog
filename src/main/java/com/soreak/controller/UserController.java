@@ -127,9 +127,7 @@ public class UserController {
             try{
                 avatar.transferTo(dest);
                 user.setAvatar(imgUrl);
-            }catch (IllegalStateException e){
-                e.printStackTrace();
-            }catch (IOException e){
+            }catch (IllegalStateException | IOException e){
                 e.printStackTrace();
             }
 

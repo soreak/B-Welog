@@ -63,7 +63,7 @@
                             <div class="default text">权限</div>
                             <div class="menu">
                                 <div class="item" data-value="0" >用户</div>
-                                <div class="item" data-value="1" >管理员</div>
+                                <div class="item" data-value="1" sec:authorize="hasRole('2')">管理员</div>
                             </div>
                         </div>
                     </div>
