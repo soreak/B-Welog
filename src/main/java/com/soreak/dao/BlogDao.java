@@ -43,6 +43,9 @@ public interface BlogDao extends BaseMapper<Blog> {
     @Insert("update sk_blog set title=#{title},content=#{content},update_time=#{updateTime},flag=#{flag},commentabled=#{commentabled},recommend=#{recommend},published=#{published} where sk_blog.id = #{id}")
     Long updateBlog(Blog blog);
 
+    @Select("SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' from sk_blog b,sk_user u,sk_user_follow uf where uf.user_id = #{userId} and uf.user_follow_id = u.id and b.user_id = uf.user_follow_id ORDER BY b.update_time DESC")
+    List<BlogVO> getBlogByUserFollow(@Param("userId")Long id);
+
 
     @Select("SELECT b.* FROM sk_blog b,sk_blog_tag bt WHERE b.id = bt.blog_id and b.title like concat('%',#{title},'%') and bt.tag_id=#{tagId} and b.recommend = #{recommend}")
     List<Blog> searchBlogListByTTR(@Param("title")String title,@Param("tagId")String tagId,@Param("recommend")int recommend);

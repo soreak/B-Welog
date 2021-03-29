@@ -69,6 +69,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserEntity> getUserNotAdmin() {
+        QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("role",0);
+        return userDao.selectList(wrapper);
+    }
+
+    @Override
     public List<UserEntity> searchUser(String nickname,String role) {
         QueryWrapper<UserEntity> wrapper =new QueryWrapper<>();
         if (!nickname.equals("soreak")){

@@ -127,6 +127,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<BlogVO> getBlogByUserFollow(Long id) {
+        return blogDao.getBlogByUserFollow(id);
+    }
+
+    @Override
     public List<Blog> searchBlog(String title, String tagId, int recommend) {
         QueryWrapper<Blog> wrapper =new QueryWrapper<>();
 

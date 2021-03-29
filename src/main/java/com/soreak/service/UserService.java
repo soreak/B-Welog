@@ -31,6 +31,8 @@ public interface UserService {
 
     List<UserEntity> getAllUser();
 
+    List<UserEntity> getUserNotAdmin();
+
     List<UserEntity> searchUser(String nickname,String role);
 
     int deleteUser(Long id);

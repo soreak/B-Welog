@@ -38,6 +38,7 @@ public class BlogController {
     @Autowired
     private UserService userService;
 
+
     @Autowired
     private BlogTagService blogTagService;
 
@@ -51,6 +52,7 @@ public class BlogController {
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model){
         UserEntity userEntity = setUser(model);
+
         BlogLike blogLike = null;
         if (userEntity !=null){
             blogLike = blogLikeService.SelectBlogLike(id, userEntity.getId());
@@ -179,6 +181,28 @@ public class BlogController {
         attributes.addFlashAttribute("message","删除成功");
         return "redirect:/MY";
     }
+
+
+    @GetMapping("/showFollow")
+    @PreAuthorize("isAuthenticated()")
+    public String showFollow(Model model){
+        UserEntity entity = setUser(model);;
+        List<BlogVO> blogs = blogService.getBlogByUserFollow(entity.getId());
+        for (BlogVO b :  blogs) {
+            String content = b.getContent();
+            Parser parser = Parser.builder().build();
+            Node document = parser.parse(content);
+            HtmlRenderer renderer = HtmlRenderer.builder().build();
+            String renderString = renderer.render(document);
+            if (HTMLUtils.convert(renderString).length()>100){
+                b.setContent(HTMLUtils.convert(renderString).substring(0,100));
+            }
+            b.setLikeCount(blogLikeService.selectBlogLikeCountByBlogId(b.getId()));
+        }
+        model.addAttribute("blogs",blogs);
+        return "/showFollow";
+    }
+
 
 
 

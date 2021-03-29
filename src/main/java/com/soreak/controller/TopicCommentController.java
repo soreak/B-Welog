@@ -42,6 +42,13 @@ public class TopicCommentController {
         model.addAttribute("comments",topicCommentService.listCommentByTopicId(id));
         TopicVO topicVO = topicService.getOneTopicById(id,0);
         model.addAttribute("authorId",topicVO.getUserId());
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (phone !="anonymousUser"){
+            UserEntity entity = userService.findByPhone(phone);
+            if (entity.getId().equals(topicVO.getUserId())){
+                model.addAttribute("authorFlag","true");
+            }
+        }
         return "showTopics :: topicCommentList";
     }
 

@@ -25,7 +25,7 @@ public interface TopicDao extends BaseMapper<Topic> {
     @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id ORDER BY t.update_time DESC")
     List<TopicVO> getAllTopicList();
 
-    @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id and t.user_id=#{id} ORDER BY t.create_time DESC")
+    @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id and t.user_id=#{id} ORDER BY t.update_time DESC")
     List<TopicVO> getMyTopicListByUserId(@Param("id") Long userId);
 
     @Select("SELECT t.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_topic t,sk_user u WHERE t.user_id = u.id and t.id=#{id}")

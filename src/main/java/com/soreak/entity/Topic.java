@@ -46,7 +46,7 @@ public class Topic implements Serializable {
     private Date updateTime;
 
     /**
-     * 发布状态（草稿，发表）
+     * 发布状态（审核，待审核）
      */
     private int published;
 

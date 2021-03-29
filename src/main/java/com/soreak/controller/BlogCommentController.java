@@ -44,6 +44,13 @@ public class BlogCommentController {
         model.addAttribute("comments",commentService.listCommentByBlogId(id));
         BlogVO oneBlog = blogService.getOneBlog(id);
         model.addAttribute("authorId",oneBlog.getUserId());
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (phone !="anonymousUser"){
+            UserEntity entity = userService.findByPhone(phone);
+            if (entity.getId().equals(oneBlog.getUserId())){
+                model.addAttribute("authorFlag","true");
+            }
+        }
         return "blog :: blogCommentList";
     }
 

@@ -51,7 +51,7 @@ public class IndexController {
     public String index(Model model){
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         if (phone!="anonymousUser"){
-            UserEntity entity = userService.findByPhone(phone);
+                UserEntity entity = userService.findByPhone(phone);
             userService.updateTime(entity.getId());
             model.addAttribute("master",entity);
         }

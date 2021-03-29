@@ -157,7 +157,9 @@
                                 </a>
                                 <div class="metadata">
                                     <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+                                    <i sec:authorize="hasAnyRole('1', '2')" class="close icon button"></i>
                                 </div>
+
                                 <div class="text" th:text="${comment.content}">
                                     How artistic!
                                 </div>
@@ -172,6 +174,7 @@
                                             <span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@ xiaobai</span></a>
                                         <div class="metadata">
                                             <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+                                            <i sec:authorize="hasAnyRole('1', '2')" class="close icon button"></i>
                                         </div>
                                         <div class="text" th:text="${reply.content}">
                                             How artistic!
