@@ -15,4 +15,7 @@ public interface BlogCommentService {
     List<CommentVO> listCommentByBlogId(Long blogId);
 
     int saveOne(BlogComment comment);
+
+    // 批量删除评论
+    void batchDelete(Long blogId,Long id);
 }

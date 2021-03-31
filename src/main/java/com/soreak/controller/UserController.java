@@ -55,6 +55,9 @@ public class UserController {
         UserEntity master = userService.findByPhone(phone);
         model.addAttribute("master",master);
         UserEntity userById = userService.getUserById(id);
+        if (userById == null){
+            return "/error/404";
+        }
         if (phone.equals(userById.getPhone())){
             model.addAttribute("self","1");
         }

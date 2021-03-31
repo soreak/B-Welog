@@ -45,6 +45,9 @@ public class TagController {
         setUser(model);
 
         Tag tag = tagService.getTagById(id);
+        if (tag == null){
+            return "/error/404";
+        }
         model.addAttribute("tag",tag);
 
         List<BlogVO> blogVOS = blogService.getBlogListByTagId(id);

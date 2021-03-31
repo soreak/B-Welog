@@ -76,4 +76,14 @@ public class BlogCommentController {
 
         return "redirect:/blogComments/"+blogId;
     }
+
+    @PostMapping("/blogComments/delete")
+    public String delete(@RequestParam String id,
+                       @RequestParam String blogId){
+
+
+        commentService.batchDelete(Long.valueOf(blogId),Long.valueOf(id));
+
+        return "redirect:/blogComments/"+blogId;
+    }
 }

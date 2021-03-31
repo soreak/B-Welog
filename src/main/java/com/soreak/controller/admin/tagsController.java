@@ -70,7 +70,7 @@ public class tagsController {
     }
 
     @GetMapping("/tags/{id}/delete")
-    public String inputTag(@PathVariable Long id, RedirectAttributes attributes){
+    public String deleteTag(@PathVariable Long id, RedirectAttributes attributes){
         blogTagService.deleteByTagId(id);
         newsTagService.deleteByTagId(id);
         topicTagService.deleteByTagId(id);

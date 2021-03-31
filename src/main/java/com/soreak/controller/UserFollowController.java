@@ -21,6 +21,7 @@ import java.util.List;
  * @create: 2021-01-29 16:48
  **/
 @Controller
+@PreAuthorize("isAuthenticated()")
 public class UserFollowController {
     @Autowired
     private UserService userService;
@@ -34,6 +35,9 @@ public class UserFollowController {
     public String like(@PathVariable Long id, Model model){
         UserEntity byPhone = setUser(model);
         UserEntity userById = userService.getUserById(id);
+        if (userById == null){
+            return "/error/404";
+        }
         if (id.equals(byPhone.getId())){
             model.addAttribute("self","1");
         }
@@ -60,6 +64,9 @@ public class UserFollowController {
     public String fan(@PathVariable Long id,Model model){
         UserEntity byPhone = setUser(model);
         UserEntity userById = userService.getUserById(id);
+        if (userById == null){
+            return "/error/404";
+        }
         if (id.equals(byPhone.getId())){
             model.addAttribute("self","1");
         }

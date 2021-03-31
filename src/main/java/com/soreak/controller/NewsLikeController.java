@@ -5,6 +5,7 @@ import com.soreak.entity.UserEntity;
 import com.soreak.service.NewsLikeService;
 import com.soreak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create: 2021-02-23 21:41
  **/
 @Controller
+@PreAuthorize("isAuthenticated()")
 public class NewsLikeController {
     @Autowired
     private NewsLikeService newsLikeService;

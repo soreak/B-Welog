@@ -77,6 +77,9 @@ public class TopicController {
         UserEntity userEntity = setUser(model);
 
         TopicVO topicVO =topicService.getOneTopicById(id,1);
+        if (topicVO == null){
+            return "/error/404";
+        }
         model.addAttribute("topic",topicVO);
         return "showTopics";
     }

@@ -58,6 +58,7 @@ public class NewsUserController {
 
         List<NewsVO> newsVOS = newsService.getNewsList();
 
+
         for (NewsVO n :  newsVOS) {
             String content = n.getContent();
             Parser parser = Parser.builder().build();
@@ -110,6 +111,9 @@ public class NewsUserController {
         }
 
         NewsVO newsVO =newsService.getNewsById(id);
+        if (newsVO == null){
+            return "/error/404";
+        }
         model.addAttribute("news",newsVO);
         return "showNews";
     }

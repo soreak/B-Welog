@@ -97,7 +97,6 @@ public class NewsServiceImpl implements NewsService {
         news.setCreateTime(new Date());
         news.setUpdateTime(new Date());
         news.setViews(0);
-
         return newsDao.saveNews(news);
     }
 

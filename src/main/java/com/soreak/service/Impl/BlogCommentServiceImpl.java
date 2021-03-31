@@ -1,5 +1,6 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.BlogCommentDao;
 import com.soreak.dao.BlogCommentVODao;
 import com.soreak.entity.BlogComment;
@@ -40,6 +41,35 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         return blogCommentDao.insert(comment);
     }
 
+    @Override
+    public void batchDelete(Long blogId,Long id) {
+        ArrayList<Long> deleteList = new ArrayList<>();
+        List<BlogComment> commentVOS = blogCommentDao.selectList(new QueryWrapper<BlogComment>().eq("blog_id",blogId));
+
+
+
+        deleteList.add(id);
+
+        findDeleteId(id,deleteList);
+
+        System.out.println(deleteList);
+
+
+    }
+
+    private void findDeleteId(Long id, ArrayList<Long> deleteList) {
+        List<BlogComment> childCommentByParentId = blogCommentDao.selectList(new QueryWrapper<BlogComment>().eq("parent_comment_id",id));
+        if(childCommentByParentId.size()>0){
+            for (BlogComment reply1 : childCommentByParentId) {
+                deleteList.add(reply1.getId());
+                if(blogCommentVODao.getChildCommentByParentId(reply1.getId()).size()>0){
+                    findDeleteId(reply1.getId(),deleteList);
+                }
+            }
+        }
+
+    }
+
     /**
      * 循环顶层结点
      * @param comments
@@ -54,6 +84,8 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     }
 
     private void combineChildren(List<CommentVO> comments) {
+
+
         for (CommentVO comment : comments) {
             List<CommentVO> replies = blogCommentVODao.getChildCommentByParentId(comment.getId());
 

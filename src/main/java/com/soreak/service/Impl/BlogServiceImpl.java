@@ -84,11 +84,12 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public BlogVO getBlogById(Long id) {
         BlogVO Blog = blogDao.getOneBlogById(id);
-        String content = Blog.getContent();
-        Blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
-        Blog.setTags(tagDao.getTagByBlogId(id));
-
-        blogDao.updateViews(id);
+        if (Blog != null){
+            String content = Blog.getContent();
+            Blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+            Blog.setTags(tagDao.getTagByBlogId(id));
+            blogDao.updateViews(id);
+        }
         return Blog;
     }
 

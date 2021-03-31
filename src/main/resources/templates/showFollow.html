@@ -80,14 +80,14 @@
 
                 </div>
 
-                <div class="ui attached segment m-padded-tb-large" th:if="${#lists.isEmpty(blogs)}">
+                <div class="ui attached segment" th:if="${#lists.isEmpty(blogs)}">
                     <div class="ui center aligned grid">
                         <h3>啊咧，居然没有一篇博客，快去关注吧</h3>
                     </div>
                 </div>
                 <!--content-->
                 <!--attached连接segment-->
-                <div class="ui attached segment m-padded-tb-large" th:each="blog : ${blogs}">
+                <div class="ui attached segment" th:each="blog : ${blogs}">
 
                     <div class="ui padded vertical segment" >
                         <div class="header">

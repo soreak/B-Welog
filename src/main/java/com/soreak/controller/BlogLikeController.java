@@ -6,6 +6,7 @@ import com.soreak.entity.VO.BlogVO;
 import com.soreak.service.BlogLikeService;
 import com.soreak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @create: 2021-01-28 15:45
  **/
 @Controller
+@PreAuthorize("isAuthenticated()")
 public class BlogLikeController {
     @Autowired
     private BlogLikeService blogLikeService;

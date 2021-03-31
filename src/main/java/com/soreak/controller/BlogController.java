@@ -66,6 +66,9 @@ public class BlogController {
         }
 
         BlogVO blog =blogService.getBlogById(id);
+        if (blog == null){
+            return "/error/404";
+        }
         model.addAttribute("blog",blog);
         return "blog";
     }
