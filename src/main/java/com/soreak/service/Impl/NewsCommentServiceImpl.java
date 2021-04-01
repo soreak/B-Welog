@@ -1,7 +1,9 @@
 package com.soreak.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.NewsCommentDao;
 import com.soreak.dao.NewsCommentVODao;
+import com.soreak.entity.BlogComment;
 import com.soreak.entity.NewsComment;
 import com.soreak.entity.VO.CommentVO;
 import com.soreak.service.NewsCommentService;
@@ -36,6 +38,27 @@ public class NewsCommentServiceImpl implements NewsCommentService {
     @Override
     public int saveOne(NewsComment comment) {
         return newsCommentDao.insert(comment);
+    }
+
+
+    @Override
+    public void batchDelete(Long newsId,Long id) {
+        ArrayList<Long> deleteList = new ArrayList<>();
+        deleteList.add(id);
+        findDeleteId(id,deleteList);
+        newsCommentDao.deleteBatchIds(deleteList);
+    }
+
+    private void findDeleteId(Long id, ArrayList<Long> deleteList) {
+        List<NewsComment> childCommentByParentId = newsCommentDao.selectList(new QueryWrapper<NewsComment>().eq("parent_comment_id",id));
+        if(childCommentByParentId.size()>0){
+            for (NewsComment reply1 : childCommentByParentId) {
+                deleteList.add(reply1.getId());
+                if(newsCommentVODao.getChildCommentByParentId(reply1.getId()).size()>0){
+                    findDeleteId(reply1.getId(),deleteList);
+                }
+            }
+        }
     }
 
 

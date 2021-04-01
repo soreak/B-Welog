@@ -18,4 +18,6 @@ public interface TopicCommentService {
     int saveOne(TopicComment comment);
 
     int selectCommentCount(Long topicId);
+
+    void batchDelete(Long topicId,Long id);
 }

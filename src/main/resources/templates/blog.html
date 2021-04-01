@@ -124,7 +124,7 @@
                                     <div class="metadata">
                                         <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
 
-                                        <i sec:authorize="isAuthenticated()" th:if="${authorFlag} eq 'true'" class="close icon button"></i>
+                                        <i sec:authorize="isAuthenticated()" th:if="${authorFlag} eq 'true'" th:attr="data-commentid=${comment.id}" class="close icon button" onclick="deleteContent(this)"></i>
 
 
                                     </div>
@@ -144,7 +144,7 @@
                                                 <span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@ xiaobai</span></a>
                                             <div class="metadata">
                                                 <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
-                                                <i sec:authorize="isAuthenticated()" th:if="${authorFlag} eq 'true'" class="close icon button"></i>
+                                                <i sec:authorize="isAuthenticated()" th:if="${authorFlag} eq 'true'" th:attr="data-commentid=${reply.id}" class="close icon button" onclick="deleteContent(this)"></i>
                                             </div>
                                             <div class="text" th:text="${reply.content}">
                                                 How artistic!
@@ -193,10 +193,21 @@
                         </div>
                     </div>
                 </div>
+
+                <!--ui model-->
+                <div class="ui tiny modal">
+                    <input type="hidden" name="idBlog" th:value="${blog.id}">
+                    <input type="hidden" name="commentId" th:value="-1">
+                    <div class="header">删除评论</div>
+                    <div class="content">
+                        <p>你确定删除评论吗</p>
+                    </div>
+                    <div class="actions">
+                        <div class="ui cancel button">取消</div>
+                        <div class="ui green button" onclick="deleteComment()">确认删除</div>
+                    </div>
+                </div>
             </div>
-
-
-
         </div>
     </div>
 
@@ -321,6 +332,26 @@
         });
     }
 
+    function deleteContent(obj) {
+        var commentId = $(obj).data('commentid');
+        $("[name='commentId']").val(commentId);
+        $('.tiny.modal')
+            .modal('show')
+        ;
+    }
+
+
+    function deleteComment() {
+        $("#comment-container").load(/*[[@{/blogComments/delete}]]*/"",{
+            "id" : $("[name='commentId']").val(),
+            "blogId" : $("[name='idBlog']").val(),
+        },function (responseTxt,statusTxt,xhr) {
+            $('.tiny.modal')
+                .modal('hide')
+            ;
+        });
+    }
+
     function like() {
         $.ajax({
             type: "POST",
@@ -350,7 +381,6 @@
         $("[name='parentComment.id']").val(commentId);
         $(window).scrollTo($('#comment-form'),500);
     }
-
 
 
 

@@ -41,7 +41,7 @@
                             <a href="#" th:href="@{/registered}"><button type="button" class="ui large teal button m-padded-lr-response">注册</button></a>
                         </div>
                         <div class="ui mini message">
-                            忘记密码？试试<a href="#">找回密码</a>
+                            忘记密码？试试<a href="#" id="resetPassword">找回密码</a>
                         </div>
                         <div class="ui error mini message">
                         </div>
@@ -54,7 +54,33 @@
         </div>
     </div>
     </div>
+    <!--ui model-->
+    <div class="ui tiny modal">
+        <input type="hidden" name="idBlog" th:value="${blog.id}">
+        <input type="hidden" name="commentId" th:value="-1">
+        <div class="header">重置密码</div>
+        <div class="content">
+            <div class="ui left icon input fluid">
+                <i class="phone icon"></i>
+                <input type="tel" name="phone" id="phone" placeholder="手机号">
+                        &nbsp;
+                <button class="ui right button" id="codeBtn">获取验证码</button>
+            </div>
+            <div class="ui left icon input fluid m-margin-top">
+                <i class="envelope outline icon"></i>
+                <input name="code" id="code" placeholder="验证码">
+            </div>
+            <div class="ui left icon input fluid m-margin-top">
+                <i class="lock icon"></i>
+                <input type="password" name="resetPwd" id="resetPwd" placeholder="请输入新密码">
+            </div>
 
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">取消</div>
+            <div class="ui green button" onclick="deleteComment()">确认修改</div>
+        </div>
+    </div>
 
     <!--/*/<th:block th:replace="_fragments :: script">/*/-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
@@ -84,6 +110,136 @@
                 }
             }
         });
+
+        $('#resetPassword').click(function () {
+            $('.ui.tiny.modal')
+                .modal('show')
+            ;
+        })
+        /**
+         * 手机号校验
+         * @param data
+         */
+        function checkPhone(phoneNum) {
+            $.ajax({
+                type: "POST",
+                url: "phoneCheck",
+                // contentType: "application/x-www-form-urlencoded",
+                data: {
+                    phone: phoneNum,
+                },
+                success: function (data) {
+                    //放入数据
+                    console.log(data);
+                    if (data.status == 200) {
+                        $.ajax({
+                            type: "POST",
+                            url: "getCode",
+                            // contentType: "application/x-www-form-urlencoded",
+                            data: {
+                                phone: phoneNum,
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                //放入数据
+                                if (data.status == 200) {
+                                    alert("手机验证码发送成功！");
+                                    codeBtn.attr("disabled", true);
+                                    timeCount();
+                                } else {
+                                    alert("手机验证码发送失败，请重新发送！");
+                                    codeBtn.attr("disabled", false);
+                                }
+                            },
+                            error: function (res) {
+                                alert("客官，慢点按(⊙o⊙)？");
+                                codeBtn.attr("disabled", false);
+                            }
+                        });
+                        return
+                    }
+                    alert("手机号码已注册");
+                    codeBtn.attr("disabled", false);
+                },
+                error: function (res) {
+                    alert("客官，慢点按(⊙o⊙)？");
+
+                }
+            });
+
+        }
+
+
+
+        var phone = $("#phone");
+        /**
+         * 点击获取验证码
+         */
+
+        var codeBtn = $("#codeBtn");
+        var my_interval;
+        my_interval = 60;
+        var timeLeft = my_interval;
+        //重新发送计时函数
+        var timeCount = function () {
+            window.setTimeout(function () {
+                if (timeLeft > 0) {
+                    timeLeft -= 1;
+                    codeBtn.html(timeLeft + "秒重新发送");
+                    codeBtn.attr('disabled', true);
+                    timeCount();
+                } else {
+                    codeBtn.html("重新发送");
+                    timeLeft = 60;
+                    codeBtn.attr('disabled', false);
+                }
+            }, 1000);
+        };
+
+        var myreg = /^1[3-578]\d{9}$/;
+
+        /**
+         * 验证码获取
+         */
+        codeBtn.click(async function () {
+            codeBtn.attr("disabled", true);
+            var phone1 = phone.val().trim();
+            if (phone1.length == 0 || phone1.length != 11 ||!myreg.test(phone1) ) {
+                alert("手机号码有误");
+                codeBtn.attr("disabled", false);
+                return
+            }
+            await checkPhone(phone1)
+        });
+
+
+
+
+        function sub() {
+            $.ajax({
+                type: "POST",
+                url: "registered",
+                // contentType: "application/x-www-form-urlencoded",
+                data: {
+                    phone: $("#phone").val(),
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    code: $("#code").val()
+                },
+                success: function (data) {
+                    //放入数据
+                    console.log(data);
+                    if (data.status == 200) {
+                        alert("注册成功")
+                        window.location.href = "login";
+                    }else {
+                        alert(data.message);
+                    }
+                },
+
+            });
+        }
+
     </script>
 </body>
 

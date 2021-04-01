@@ -78,6 +78,7 @@ public class BlogCommentController {
     }
 
     @PostMapping("/blogComments/delete")
+    @PreAuthorize("isAuthenticated()")
     public String delete(@RequestParam String id,
                        @RequestParam String blogId){
 

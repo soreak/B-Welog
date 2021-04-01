@@ -68,4 +68,13 @@ public class NewsCommentController {
         return "redirect:/newsComments/"+newsId;
     }
 
+    @PostMapping("/admin/newsComments/delete")
+    @PreAuthorize("hasAnyRole('1', '2')")
+    public String delete(@RequestParam String id,
+                         @RequestParam String newsId){
+        newsCommentService.batchDelete(Long.valueOf(newsId),Long.valueOf(id));
+
+        return "redirect:/newsComments/"+newsId;
+    }
+
 }

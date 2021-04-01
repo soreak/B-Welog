@@ -76,5 +76,12 @@ public class TopicCommentController {
         return "redirect:/topicComments/"+topicId;
     }
 
+    @PostMapping("/topicComments/delete")
+    @PreAuthorize("isAuthenticated()")
+    public String delete(@RequestParam String id,
+                         @RequestParam String topicId){
+        topicCommentService.batchDelete(Long.valueOf(topicId),Long.valueOf(id));
 
+        return "redirect:/topicComments/"+topicId;
+    }
 }

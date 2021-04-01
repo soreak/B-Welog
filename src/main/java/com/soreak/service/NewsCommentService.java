@@ -16,4 +16,6 @@ public interface NewsCommentService {
     List<CommentVO> listCommentByNewsId(Long newsId);
 
     int saveOne(NewsComment comment);
+
+    void batchDelete(Long newId,Long id);
 }

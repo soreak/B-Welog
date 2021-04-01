@@ -3,6 +3,7 @@ package com.soreak.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.TopicCommentDao;
 import com.soreak.dao.TopicCommentVODao;
+import com.soreak.entity.BlogComment;
 import com.soreak.entity.TopicComment;
 import com.soreak.entity.VO.CommentVO;
 import com.soreak.service.TopicCommentService;
@@ -49,6 +50,28 @@ public class TopicCommentServiceImpl implements TopicCommentService {
         QueryWrapper<TopicComment> wrapper = new QueryWrapper<>();
         wrapper.eq("topic_id",topicId);
         return topicCommentDao.selectCount(wrapper);
+    }
+
+
+    @Override
+    public void batchDelete(Long topicId,Long id) {
+        ArrayList<Long> deleteList = new ArrayList<>();
+        deleteList.add(id);
+        findDeleteId(id,deleteList);
+        topicCommentDao.deleteBatchIds(deleteList);
+    }
+
+    private void findDeleteId(Long id, ArrayList<Long> deleteList) {
+        List<TopicComment> childCommentByParentId = topicCommentDao.selectList(new QueryWrapper<TopicComment>().eq("parent_comment_id",id));
+        if(childCommentByParentId.size()>0){
+            for (TopicComment reply1 : childCommentByParentId) {
+                deleteList.add(reply1.getId());
+                if(topicCommentVODao.getChildCommentByParentId(reply1.getId()).size()>0){
+                    findDeleteId(reply1.getId(),deleteList);
+                }
+            }
+        }
+
     }
 
     private List<CommentVO> eachComment(List<CommentVO> comments) {

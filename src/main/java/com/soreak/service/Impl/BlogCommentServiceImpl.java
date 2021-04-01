@@ -44,17 +44,9 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     @Override
     public void batchDelete(Long blogId,Long id) {
         ArrayList<Long> deleteList = new ArrayList<>();
-        List<BlogComment> commentVOS = blogCommentDao.selectList(new QueryWrapper<BlogComment>().eq("blog_id",blogId));
-
-
-
         deleteList.add(id);
-
         findDeleteId(id,deleteList);
-
-        System.out.println(deleteList);
-
-
+        blogCommentDao.deleteBatchIds(deleteList);
     }
 
     private void findDeleteId(Long id, ArrayList<Long> deleteList) {
@@ -67,7 +59,6 @@ public class BlogCommentServiceImpl implements BlogCommentService {
                 }
             }
         }
-
     }
 
     /**
