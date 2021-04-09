@@ -8,6 +8,7 @@ import com.soreak.utils.MD5Utils;
 import com.soreak.utils.phoneVerify.util.SMSUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,8 @@ public class RegisterController {
     @Autowired
     private UserService userService;
 
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/registered")
@@ -94,6 +96,54 @@ public class RegisterController {
         return jsonObject;
 
     }
+
+
+
+
+    @PostMapping("/resetPassword")
+    @ResponseBody
+    public JSONObject resetPassword(@RequestParam String phone,
+                                 @RequestParam String newPassword,
+                                 @RequestParam String code){
+        JSONObject jsonObject = new JSONObject();
+        Captcha captcha = codeMap.get(phone);
+        if (captcha== null){
+            jsonObject.put("status",500);
+            jsonObject.put("message","手机号码错误");
+            return jsonObject;
+        }
+        if((new Date().getTime() - captcha.getCreateTime().getTime())/1000/60>1){
+            jsonObject.put("status",500);
+            jsonObject.put("message","验证码已过期，请重新发送");
+            return jsonObject;
+        }
+
+        if(!captcha.getCode().equals(code)){
+            jsonObject.put("status",500);
+            jsonObject.put("message","验证码错误");
+            return jsonObject;
+        }
+
+        UserEntity userServiceByPhone = userService.findByPhone(phone);
+        if (userServiceByPhone != null){
+            String newPwd = passwordEncoder.encode(newPassword);
+            userServiceByPhone.setPassword(newPwd);
+            int result = userService.saveUser(userServiceByPhone);
+            if (result >0){
+                jsonObject.put("status",200);
+                jsonObject.put("message","修改成功");
+            }else {
+                jsonObject.put("status",500);
+                jsonObject.put("message","修改失败");
+            }
+        }else {
+            jsonObject.put("status",500);
+            jsonObject.put("message","该手机未注册");
+        }
+        return jsonObject;
+
+    }
+
 
     @PostMapping("/getCode")
     @ResponseBody

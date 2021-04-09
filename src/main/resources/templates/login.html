@@ -56,8 +56,6 @@
     </div>
     <!--ui model-->
     <div class="ui tiny modal">
-        <input type="hidden" name="idBlog" th:value="${blog.id}">
-        <input type="hidden" name="commentId" th:value="-1">
         <div class="header">重置密码</div>
         <div class="content">
             <div class="ui left icon input fluid">
@@ -78,7 +76,7 @@
         </div>
         <div class="actions">
             <div class="ui cancel button">取消</div>
-            <div class="ui green button" onclick="deleteComment()">确认修改</div>
+            <div class="ui green button" onclick="sub()">确认修改</div>
         </div>
     </div>
 
@@ -131,7 +129,7 @@
                 success: function (data) {
                     //放入数据
                     console.log(data);
-                    if (data.status == 200) {
+                    if (data.status == 500) {
                         $.ajax({
                             type: "POST",
                             url: "getCode",
@@ -158,7 +156,7 @@
                         });
                         return
                     }
-                    alert("手机号码已注册");
+                    alert("手机号码未注册");
                     codeBtn.attr("disabled", false);
                 },
                 error: function (res) {
@@ -218,19 +216,18 @@
         function sub() {
             $.ajax({
                 type: "POST",
-                url: "registered",
+                url: "resetPassword",
                 // contentType: "application/x-www-form-urlencoded",
                 data: {
                     phone: $("#phone").val(),
-                    username: $("#username").val(),
-                    password: $("#password").val(),
+                    newPassword: $("#resetPwd").val(),
                     code: $("#code").val()
                 },
                 success: function (data) {
                     //放入数据
                     console.log(data);
                     if (data.status == 200) {
-                        alert("注册成功")
+                        alert(data.message);
                         window.location.href = "login";
                     }else {
                         alert(data.message);

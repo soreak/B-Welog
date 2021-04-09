@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.soreak.dao.RegisterDao;
 import com.soreak.entity.UserEntity;
 import com.soreak.service.RegisterService;
+import com.soreak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Autowired
     private RegisterDao registerDao;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
