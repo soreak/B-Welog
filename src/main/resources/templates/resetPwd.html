@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="multipart/form-data">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>修改密码</title>
+
+</head>
+<body>
+<!--导航-->
+<!--m 自定义 间距 上下 -->
+<nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">welog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i><span>首页</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="newspaper icon"></i><span >新闻</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="bullhorn icon"></i><span >话题</span></a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i><span >MY</span></a>
+
+            <div class="right item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+
+            <div class="ui dropdown item">
+                <div class="text">
+                    <img src="http://lorempixel.com/100/100/" alt="" class="ui avatar image">
+                    soreaK
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">个人信息</a>
+                    <a href="#" class="item">发表</a>
+                    <a href="#" class="item">注销</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--menu toggle 用于jQuery选择-->
+    <!--加了menu 使得按钮会在导航栏水平居中位置-->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<div class="m-container-small m-padded-tb-massive" style="max-width: 30em !important;">
+    <div class="ui container">
+        <div class="ui middle aligned center aligned grid">
+            <div class="column">
+                <div class="ui large form">
+                    <h2 class="ui teal image header">
+                        <div class="content">
+                            修改密码
+                        </div>
+                    </h2>
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui input">
+                                <input class="ui one column wide" type="password" name="oldPwd" id="oldPwd" placeholder="原密码">
+                                <button class="ui center aligned mini button" onclick="see()"><i class="ui large eye icon" style="margin: 0;!important;"></i></button>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui input">
+                                <input type="password" name="newPwd" id="newPwd" placeholder="新密码">
+                            </div>
+                        </div>
+                        <div class="field check">
+                            <div class="ui  input">
+                                <input type="password" name="checkPwd" id="checkPwd" placeholder="确认新密码">
+                            </div>
+                            <span id="remind" style="color: red"></span>
+                        <button class="ui fluid large teal submit button m-margin-top" onclick="sub()">重置密码</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    $('.menu.toggle').click(function () {
+        /*toggleClass 有则去除没有则加上*/
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+
+    $('.ui.form').form({
+        fields : {
+            password : {
+                identifier : 'newPwd',
+                rules : [{
+                    /*非空校验*/
+                    type : 'empty',
+                    prompt : '请输入密码'
+                },
+                    {
+                        type   : 'minLength[6]',
+                        prompt : '密码不少于6位'
+                    }
+                ]
+            },
+        }
+    });
+
+
+
+    function see() {
+        var type = $('#oldPwd').attr("type");
+        if (type == 'text'){
+            $('.ui.eye.icon').removeClass("black");
+            $('#oldPwd').attr("type","password");
+        }else if (type == 'password'){
+            $('.ui.eye.icon').addClass("black");
+            $('#oldPwd').attr("type","text");
+        }
+    }
+
+    document.getElementById("checkPwd").addEventListener("focus", checkPwd);
+    document.getElementById("checkPwd").addEventListener("blur", checkPwd);
+    function checkPwd(){
+        if(!$("#checkPwd").val()){
+            $('.field.check').addClass("error");
+            $("#remind").text("请输入确认密码").show();
+        } else if($("#newPwd").val() != $("#checkPwd").val()){
+            $('.field.check').addClass("error");
+            $("#remind").text("两次密码输入不一致").show();
+        } else {
+            $('.field.check').removeClass("error");
+            $("#remind").text("").show();
+        }
+    }
+
+    function sub() {
+        if(!$("#checkPwd").val()){
+            $('.field.check').addClass("error");
+            $("#remind").text("请输入确认密码").show();
+            alert("信息有误");
+        } else if($("#newPwd").val() != $("#checkPwd").val()){
+            $('.field.check').addClass("error");
+            $("#remind").text("两次密码输入不一致").show();
+            alert("信息有误");
+        } else {
+            $('.field.check').removeClass("error");
+            $("#remind").text("").show();
+            $.ajax({
+                type: "POST",
+                url: "loginResetPwd",
+                // contentType: "application/x-www-form-urlencoded",
+                data: {
+                    oldPwd: $("#oldPwd").val(),
+                    newPwd: $("#newPwd").val(),
+                },
+                success: function (data) {
+                    //放入数据
+                    console.log(data);
+                    if (data.status == 200) {
+                        alert(data.message);
+                        window.location.href = "login";
+                    }else {
+                        alert(data.message);
+                    }
+                },
+            });
+        }
+    }
+
+</script>
+</body>
+</html>

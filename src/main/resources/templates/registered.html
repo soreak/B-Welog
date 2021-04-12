@@ -31,6 +31,14 @@
                                     <input type="password" name="password" id="password" placeholder="密码">
                                 </div>
                             </div>
+                            <div class="field check">
+                                <div class="ui left icon input">
+                                    <i class="book icon"></i>
+                                    <input type="text"  name="checkPwd" id="checkPwd" placeholder="确认密码">
+                                </div>
+                                <span id="remind" style="color: red"></span>
+                            </div>
+
                             <div class="field">
                                     <div class="ui left icon input">
                                         <i class="phone icon"></i>
@@ -51,7 +59,6 @@
                         </div>
 
                         <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}}">验证码错误</div>
-
                     </div>
                 </div>
             </div>
@@ -79,7 +86,12 @@
                         /*非空校验*/
                         type : 'empty',
                         prompt : '请输入密码'
-                                }]
+                                },
+                        {
+                            type   : 'minLength[6]',
+                            prompt : '密码不少于6位'
+                        }
+                    ]
                 },
                 phone : {
                     identifier : 'phone',
@@ -96,6 +108,22 @@
                 }
             }
         });
+
+        document.getElementById("checkPwd").addEventListener("focus", checkPwd);
+        document.getElementById("checkPwd").addEventListener("blur", checkPwd);
+        function checkPwd(){
+            if(!$("#checkPwd").val()){
+                $('.field.check').addClass("error");
+                $("#remind").text("请输入确认密码").show();
+            } else if($("#password").val() != $("#checkPwd").val()){
+                $('.field.check').addClass("error");
+                $("#remind").text("两次密码输入不一致").show();
+            } else {
+                $('.field.check').removeClass("error");
+                $("#remind").text("").show();
+            }
+        }
+
 
 
         /**
@@ -198,28 +226,39 @@
 
 
         function sub() {
-            $.ajax({
-                type: "POST",
-                url: "registered",
-                // contentType: "application/x-www-form-urlencoded",
-                data: {
-                    phone: $("#phone").val(),
-                    username: $("#username").val(),
-                    password: $("#password").val(),
-                    code: $("#code").val()
-                },
-                success: function (data) {
-                    //放入数据
-                    console.log(data);
-                    if (data.status == 200) {
-                        alert("注册成功")
-                        window.location.href = "login";
-                    }else {
-                        alert(data.message);
-                    }
-                },
-
-            });
+            if(!$("#checkPwd").val()){
+                $('.field.check').addClass("error");
+                $("#remind").text("请输入确认密码").show();
+                alert("信息有误");
+            } else if($("#pwd").val() != $("#checkPwd").val()){
+                $('.field.check').addClass("error");
+                $("#remind").text("两次密码输入不一致").show();
+                alert("信息有误");
+            } else {
+                $('.field.check').removeClass("error");
+                $("#remind").text("").show();
+                $.ajax({
+                    type: "POST",
+                    url: "registered",
+                    // contentType: "application/x-www-form-urlencoded",
+                    data: {
+                        phone: $("#phone").val(),
+                        username: $("#username").val(),
+                        password: $("#password").val(),
+                        code: $("#code").val()
+                    },
+                    success: function (data) {
+                        //放入数据
+                        console.log(data);
+                        if (data.status == 200) {
+                            alert("注册成功")
+                            window.location.href = "login";
+                        }else {
+                            alert(data.message);
+                        }
+                    },
+                });
+            }
         }
 
     </script>

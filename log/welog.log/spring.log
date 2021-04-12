@@ -1,1174 +1,256 @@
-2021-04-09 21:14:19.464  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:14:19.471 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:14:19.472  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:14:19.534  INFO 9412 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\14989\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
-2021-04-09 21:14:19.599  INFO 9412 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-04-09 21:14:19.599  INFO 9412 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-04-09 21:14:22.079  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:14:22.093  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:14:22.094  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:14:22.238  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:14:22.238  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2638 ms
-2021-04-09 21:14:22.759  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.BlogCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:14:23.266  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.NewsCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:14:23.482  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.TopicCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:14:23.694  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fc800ba, org.springframework.security.web.context.SecurityContextPersistenceFilter@139fe52f, org.springframework.security.web.header.HeaderWriterFilter@382fe0b, org.springframework.security.web.authentication.logout.LogoutFilter@17ed3e58, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5ced693, org.springframework.security.web.session.ConcurrentSessionFilter@27a29671, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3047cf48, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@131dfbd2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25c06074, org.springframework.security.web.session.SessionManagementFilter@5c0a89e4, org.springframework.security.web.access.ExceptionTranslationFilter@1ac6760f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a16b3f5]
-2021-04-09 21:14:23.809  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:14:23.942  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:14:24.773  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:14:24.823  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:14:24.836  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 6.471 seconds (JVM running for 9.065)
-2021-04-09 21:16:35.047  INFO 9412 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:16:35.228  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:16:35.228 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:16:35.228  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:16:35.417  WARN 9412 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.soreak.dao]' package. Please check your configuration.
-2021-04-09 21:16:35.535  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:16:35.535  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:16:35.536  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:16:35.581  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:16:35.581  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 351 ms
-2021-04-09 21:16:35.649  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:16:35.667  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:16:35.737  INFO 9412 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
-
-Using generated security password: b322fcc9-1924-48ba-8054-1c66ca411722
-
-2021-04-09 21:16:35.769  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@166123c5, org.springframework.security.web.context.SecurityContextPersistenceFilter@20cc116e, org.springframework.security.web.header.HeaderWriterFilter@3fb6a489, org.springframework.security.web.csrf.CsrfFilter@13530a70, org.springframework.security.web.authentication.logout.LogoutFilter@45ed7ede, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@54c0bfb1, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@156a2163, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@fd3d76, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5c402e25, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b679f22, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11fff22b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d911a4a, org.springframework.security.web.session.SessionManagementFilter@34bd3985, org.springframework.security.web.access.ExceptionTranslationFilter@c06e2cf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@102d6c00]
-2021-04-09 21:16:35.786  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:16:35.804  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:16:35.811  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 0.615 seconds (JVM running for 140.04)
-2021-04-09 21:16:35.816  INFO 9412 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
-
-
-==========================
-CONDITION EVALUATION DELTA
-==========================
-
-
-Positive matches:
------------------
-
-   SpringBootWebSecurityConfiguration matched:
-      - found 'session' scope (OnWebApplicationCondition)
-      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
-
-   UserDetailsServiceAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
-      - @ConditionalOnBean (types: org.springframework.security.config.annotation.ObjectPostProcessor; SearchStrategy: all) found bean 'objectPostProcessor'; @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   UserDetailsServiceAutoConfiguration#inMemoryUserDetailsManager matched:
-      - @ConditionalOnMissingBean (types: org.springframework.security.oauth2.client.registration.ClientRegistrationRepository; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   WebSecurityEnablerConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
-      - found 'session' scope (OnWebApplicationCondition)
-      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-
-Negative matches:
------------------
-
-    None
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
-2021-04-09 21:16:41.118  INFO 9412 --- [Thread-16] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:16:41.300  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:16:41.300 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:16:41.300  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:16:41.958  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:16:41.959  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:16:41.959  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:16:41.994  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:16:41.994  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 691 ms
-2021-04-09 21:16:42.126  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.BlogCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:16:42.392  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.NewsCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:16:42.599  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.TopicCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:16:42.701  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@708212ae, org.springframework.security.web.context.SecurityContextPersistenceFilter@5832cc97, org.springframework.security.web.header.HeaderWriterFilter@410a16fc, org.springframework.security.web.authentication.logout.LogoutFilter@127fb978, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@40417fd, org.springframework.security.web.session.ConcurrentSessionFilter@110c0e0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@499e8c9b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b775c49, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35288cbd, org.springframework.security.web.session.SessionManagementFilter@5fa9ba43, org.springframework.security.web.access.ExceptionTranslationFilter@4a426722, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2ee855f3]
-2021-04-09 21:16:42.749  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:16:42.780  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:16:42.873  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:16:42.891  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:16:42.894  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 1.637 seconds (JVM running for 147.123)
-2021-04-09 21:16:42.896  INFO 9412 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
-
-
-==========================
-CONDITION EVALUATION DELTA
-==========================
-
-
-Positive matches:
------------------
-
-    None
-
-
-Negative matches:
------------------
-
-   SpringBootWebSecurityConfiguration:
-      Did not match:
-         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' securityConfig; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
-      Matched:
-         - found 'session' scope (OnWebApplicationCondition)
-
-   UserDetailsServiceAutoConfiguration:
-      Did not match:
-         - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) found beans of type 'org.springframework.security.authentication.AuthenticationManager' authenticationManagerBean and found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' customUserDetailsService and found beans of type 'org.springframework.security.authentication.AuthenticationProvider' daoAuthenticationProvider (OnBeanCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
-
-   WebSecurityEnablerConfiguration:
-      Did not match:
-         - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
-         - found 'session' scope (OnWebApplicationCondition)
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
-2021-04-09 21:16:49.553  INFO 9412 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-04-09 21:16:49.554  INFO 9412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-04-09 21:16:49.555  INFO 9412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-04-09 21:16:49.593  INFO 9412 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-04-09 21:16:51.260  INFO 9412 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-04-09 21:16:51.289 DEBUG 9412 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
-2021-04-09 21:16:51.317 DEBUG 9412 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
-2021-04-09 21:16:51.354 DEBUG 9412 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
-2021-04-09 21:16:51.364 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
-2021-04-09 21:16:51.364 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
-2021-04-09 21:16:51.386 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
-2021-04-09 21:16:51.584 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.585 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
-2021-04-09 21:16:51.590 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.619 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.619 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
-2021-04-09 21:16:51.621 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.635 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.635 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
-2021-04-09 21:16:51.636 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.643 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.644 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
-2021-04-09 21:16:51.645 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.666 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.666 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
-2021-04-09 21:16:51.667 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.680 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.681 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
-2021-04-09 21:16:51.681 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.691 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:16:51.692 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
-2021-04-09 21:16:51.694 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:16:51.696 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
-2021-04-09 21:16:51.696 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
-2021-04-09 21:16:51.699 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
-2021-04-09 21:16:53.826 ERROR 9412 --- [http-nio-8080-exec-6] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8080-exec-6] Exception processing template "/login": An error happened during template parsing (template: "class path resource [templates//login.html]")
-
-org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates//login.html]")
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
-	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
-	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
-	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1394)
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1139)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1078)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:147)
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:125)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:218)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:888)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "blog.id" (template: "/login" - line 59, col 44)
-	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393)
-	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
-	... 89 common frames omitted
-Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "blog.id" (template: "/login" - line 59, col 44)
-	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290)
-	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
-	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
-	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
-	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
-	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
-	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
-	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleStandaloneElementEnd(TemplateHandlerAdapterMarkupHandler.java:260)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleStandaloneElementEnd(InlinedOutputExpressionMarkupHandler.java:256)
-	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleStandaloneElementEnd(OutputExpressionInlinePreProcessorHandler.java:169)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleStandaloneElementEnd(InlinedOutputExpressionMarkupHandler.java:104)
-	at org.attoparser.HtmlVoidElement.handleOpenElementEnd(HtmlVoidElement.java:92)
-	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
-	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
-	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
-	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
-	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
-	... 91 common frames omitted
-Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'id' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
-	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
-	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
-	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
-	... 110 common frames omitted
-
-2021-04-09 21:16:53.831 ERROR 9412 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates//login.html]")] with root cause
-
-org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'id' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
-	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
-	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
-	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
-	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
-	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
-	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
-	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
-	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
-	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
-	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleStandaloneElementEnd(TemplateHandlerAdapterMarkupHandler.java:260)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleStandaloneElementEnd(InlinedOutputExpressionMarkupHandler.java:256)
-	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleStandaloneElementEnd(OutputExpressionInlinePreProcessorHandler.java:169)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleStandaloneElementEnd(InlinedOutputExpressionMarkupHandler.java:104)
-	at org.attoparser.HtmlVoidElement.handleOpenElementEnd(HtmlVoidElement.java:92)
-	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
-	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
-	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
-	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
-	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
-	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
-	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
-	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
-	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1394)
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1139)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1078)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:147)
-	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:125)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:218)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:888)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-
-2021-04-09 21:17:30.222 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:17:30.223 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:17:30.226 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:17:30.259  INFO 9412 --- [http-nio-8080-exec-4] com.yunpian.sdk.YunpianClient            : YunpianClient is initing!
-2021-04-09 21:17:30.259  INFO 9412 --- [http-nio-8080-exec-4] com.yunpian.sdk.YunpianConf              : load default yunpian.properties
-2021-04-09 21:17:30.259  INFO 9412 --- [http-nio-8080-exec-4] com.yunpian.sdk.YunpianConf              : apikey-82c722ecc5e610c73af1ba48bd33cc56 conf-{yp.flow.host=https://flow.yunpian.com, yp.sign.host=https://sms.yunpian.com, yp.tpl.host=https://sms.yunpian.com, http.conn.maxperroute=50, yp.user.host=https://sms.yunpian.com, yp.version=v2, yp.call.host=https://call.yunpian.com, yp.short_url.host=https://sms.yunpian.com, http.charset=utf-8, http.conn.timeout=10000, yp.voice.host=https://voice.yunpian.com, http.so.timeout=30000, yp.sms.host=https://sms.yunpian.com, http.conn.maxtotal=200}
-2021-04-09 21:17:30.774  INFO 9412 --- [http-nio-8080-exec-4] com.yunpian.sdk.YunpianClient            : YunpianClient is closing!
-2021-04-09 21:18:33.147 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:18:33.147 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:18:33.149 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:18:33.159  INFO 9412 --- [http-nio-8080-exec-3] com.yunpian.sdk.YunpianClient            : YunpianClient is initing!
-2021-04-09 21:18:33.160  INFO 9412 --- [http-nio-8080-exec-3] com.yunpian.sdk.YunpianConf              : load default yunpian.properties
-2021-04-09 21:18:33.161  INFO 9412 --- [http-nio-8080-exec-3] com.yunpian.sdk.YunpianConf              : apikey-82c722ecc5e610c73af1ba48bd33cc56 conf-{yp.flow.host=https://flow.yunpian.com, yp.sign.host=https://sms.yunpian.com, yp.tpl.host=https://sms.yunpian.com, http.conn.maxperroute=50, yp.user.host=https://sms.yunpian.com, yp.version=v2, yp.call.host=https://call.yunpian.com, yp.short_url.host=https://sms.yunpian.com, http.charset=utf-8, http.conn.timeout=10000, yp.voice.host=https://voice.yunpian.com, http.so.timeout=30000, yp.sms.host=https://sms.yunpian.com, http.conn.maxtotal=200}
-2021-04-09 21:18:33.394  INFO 9412 --- [http-nio-8080-exec-3] com.yunpian.sdk.YunpianClient            : YunpianClient is closing!
-2021-04-09 21:18:46.258 DEBUG 9412 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:18:46.258 DEBUG 9412 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:18:46.260 DEBUG 9412 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:18:46.363 DEBUG 9412 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET qq=?, password=?, git=?, role=?, create_time=?, phone=?, wechat=?, nickname=?, update_time=?, information=?, avatar=?, email=? WHERE id=?
-2021-04-09 21:18:46.365 DEBUG 9412 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.updateById        : ==> Parameters: 123456789(String), $2a$10$VeCoKvmwCBXS28bJklyqoeeJgqcah8nzmEvzvvzMQAFlRfkvk12DG(String), cgqq(String), 0(String), 2020-12-23 17:47:08.743(Timestamp), 18065138932(String), cgqq(String), 曹老板(String), 2021-03-30 15:01:50.083(Timestamp), 奋斗(String), /imgs/1149378068无标题.png(String), 123456789@qq.com(String), 2(Long)
-2021-04-09 21:18:46.383 DEBUG 9412 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
-2021-04-09 21:18:58.546 DEBUG 9412 --- [http-nio-8080-exec-5] c.s.dao.UserDao.getUserInfoByUsername    : ==>  Preparing: select * from sk_user where phone = ?
-2021-04-09 21:18:58.547 DEBUG 9412 --- [http-nio-8080-exec-5] c.s.dao.UserDao.getUserInfoByUsername    : ==> Parameters: 18065138932(String)
-2021-04-09 21:18:58.548 DEBUG 9412 --- [http-nio-8080-exec-5] c.s.dao.UserDao.getUserInfoByUsername    : <==      Total: 1
-2021-04-09 21:18:58.657 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:18:58.658 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:18:58.660 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:18:58.661 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
-2021-04-09 21:18:58.662 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-09 21:18:58.661(Timestamp), 2(Long)
-2021-04-09 21:18:58.665 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
-2021-04-09 21:18:58.666 DEBUG 9412 --- [http-nio-8080-exec-10] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
-2021-04-09 21:18:58.666 DEBUG 9412 --- [http-nio-8080-exec-10] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
-2021-04-09 21:18:58.668 DEBUG 9412 --- [http-nio-8080-exec-10] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
-2021-04-09 21:18:58.669 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
-2021-04-09 21:18:58.670 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
-2021-04-09 21:18:58.674 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
-2021-04-09 21:18:58.681 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.681 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
-2021-04-09 21:18:58.683 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.689 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.690 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
-2021-04-09 21:18:58.691 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.696 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.696 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
-2021-04-09 21:18:58.697 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.701 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.702 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
-2021-04-09 21:18:58.703 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.709 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.709 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
-2021-04-09 21:18:58.710 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.719 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.719 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
-2021-04-09 21:18:58.720 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.730 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:18:58.731 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
-2021-04-09 21:18:58.733 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:18:58.734 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
-2021-04-09 21:18:58.734 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
-2021-04-09 21:18:58.737 DEBUG 9412 --- [http-nio-8080-exec-10] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
-2021-04-09 21:20:35.451  INFO 9412 --- [Thread-21] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:20:35.452  INFO 9412 --- [Thread-21] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-04-09 21:20:35.461  INFO 9412 --- [Thread-21] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2021-04-09 21:20:35.769  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:20:35.770 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:20:35.770  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:20:36.043  WARN 9412 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.soreak.dao]' package. Please check your configuration.
-2021-04-09 21:20:36.175  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:20:36.176  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:20:36.177  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:20:36.226  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:20:36.227  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 454 ms
-2021-04-09 21:20:36.299  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:20:36.322  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:20:36.421  INFO 9412 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
-
-Using generated security password: 0ebfcce1-e793-4388-a14f-8ae2aea34a36
-
-2021-04-09 21:20:36.436  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@643861e9, org.springframework.security.web.context.SecurityContextPersistenceFilter@6395b61e, org.springframework.security.web.header.HeaderWriterFilter@62e332fb, org.springframework.security.web.csrf.CsrfFilter@2d73d72c, org.springframework.security.web.authentication.logout.LogoutFilter@2c110e0e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6810df36, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1f8a22fd, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@b09ba4b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5f89c16a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f238170, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@542c0a85, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@658e3d73, org.springframework.security.web.session.SessionManagementFilter@506cd188, org.springframework.security.web.access.ExceptionTranslationFilter@6934b9cd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7013e9ac]
-2021-04-09 21:20:36.454  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:20:36.473  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:20:36.479  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 0.751 seconds (JVM running for 380.708)
-2021-04-09 21:20:36.481  INFO 9412 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
-
-
-==========================
-CONDITION EVALUATION DELTA
-==========================
-
-
-Positive matches:
------------------
-
-   SpringBootWebSecurityConfiguration matched:
-      - found 'session' scope (OnWebApplicationCondition)
-      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
-
-   UserDetailsServiceAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
-      - @ConditionalOnBean (types: org.springframework.security.config.annotation.ObjectPostProcessor; SearchStrategy: all) found bean 'objectPostProcessor'; @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   UserDetailsServiceAutoConfiguration#inMemoryUserDetailsManager matched:
-      - @ConditionalOnMissingBean (types: org.springframework.security.oauth2.client.registration.ClientRegistrationRepository; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   WebSecurityEnablerConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
-      - found 'session' scope (OnWebApplicationCondition)
-      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-
-Negative matches:
------------------
-
-    None
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
-2021-04-09 21:20:40.264  INFO 9412 --- [Thread-26] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:20:40.480  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:20:40.480 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:20:40.480  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:20:40.954  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:20:40.955  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:20:40.956  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:20:41.050  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:20:41.050  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 568 ms
-2021-04-09 21:20:41.397  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.BlogCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:20:41.646  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.NewsCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:20:41.809  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.TopicCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:20:41.904  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e8a995a, org.springframework.security.web.context.SecurityContextPersistenceFilter@3b29dbd7, org.springframework.security.web.header.HeaderWriterFilter@3b7ade1e, org.springframework.security.web.authentication.logout.LogoutFilter@4d14dfe9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@31783365, org.springframework.security.web.session.ConcurrentSessionFilter@11cc9bb4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56ce6882, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4df27f6e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@594f62fc, org.springframework.security.web.session.SessionManagementFilter@133529f, org.springframework.security.web.access.ExceptionTranslationFilter@27e1a5c7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@663dbaf2]
-2021-04-09 21:20:41.943  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:20:41.976  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:20:42.056  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:20:42.074  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:20:42.078  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 1.628 seconds (JVM running for 386.308)
-2021-04-09 21:20:42.080  INFO 9412 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
-
-
-==========================
-CONDITION EVALUATION DELTA
-==========================
-
-
-Positive matches:
------------------
-
-    None
-
-
-Negative matches:
------------------
-
-   SpringBootWebSecurityConfiguration:
-      Did not match:
-         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' securityConfig; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
-      Matched:
-         - found 'session' scope (OnWebApplicationCondition)
-
-   UserDetailsServiceAutoConfiguration:
-      Did not match:
-         - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) found beans of type 'org.springframework.security.authentication.AuthenticationManager' authenticationManagerBean and found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' customUserDetailsService and found beans of type 'org.springframework.security.authentication.AuthenticationProvider' daoAuthenticationProvider (OnBeanCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
-
-   WebSecurityEnablerConfiguration:
-      Did not match:
-         - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
-         - found 'session' scope (OnWebApplicationCondition)
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
-2021-04-09 21:20:50.914  INFO 9412 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-04-09 21:20:50.915  INFO 9412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-04-09 21:20:50.916  INFO 9412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-04-09 21:20:50.926  INFO 9412 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2021-04-09 21:20:50.958  INFO 9412 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2021-04-09 21:20:50.958 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:20:50.959 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:20:50.962 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:20:50.976  INFO 9412 --- [http-nio-8080-exec-2] com.yunpian.sdk.YunpianClient            : YunpianClient is initing!
-2021-04-09 21:20:50.976  INFO 9412 --- [http-nio-8080-exec-2] com.yunpian.sdk.YunpianConf              : load default yunpian.properties
-2021-04-09 21:20:50.977  INFO 9412 --- [http-nio-8080-exec-2] com.yunpian.sdk.YunpianConf              : apikey-82c722ecc5e610c73af1ba48bd33cc56 conf-{yp.flow.host=https://flow.yunpian.com, yp.sign.host=https://sms.yunpian.com, yp.tpl.host=https://sms.yunpian.com, http.conn.maxperroute=50, yp.user.host=https://sms.yunpian.com, yp.version=v2, yp.call.host=https://call.yunpian.com, yp.short_url.host=https://sms.yunpian.com, http.charset=utf-8, http.conn.timeout=10000, yp.voice.host=https://voice.yunpian.com, http.so.timeout=30000, yp.sms.host=https://sms.yunpian.com, http.conn.maxtotal=200}
-2021-04-09 21:20:51.211  INFO 9412 --- [http-nio-8080-exec-2] com.yunpian.sdk.YunpianClient            : YunpianClient is closing!
-2021-04-09 21:21:01.571 DEBUG 9412 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:21:01.571 DEBUG 9412 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:21:01.572 DEBUG 9412 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:21:01.667 DEBUG 9412 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET qq=?, password=?, git=?, role=?, create_time=?, phone=?, wechat=?, nickname=?, update_time=?, information=?, avatar=?, email=? WHERE id=?
-2021-04-09 21:21:01.668 DEBUG 9412 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.updateById        : ==> Parameters: 123456789(String), $2a$10$16sIsU1ezR/YsiX0UGxWCu5Hu9YDq.9fyqlbtommDMatvJr48QiWy(String), cgqq(String), 0(String), 2020-12-23 17:47:08.743(Timestamp), 18065138932(String), cgqq(String), 曹老板(String), 2021-04-09 21:18:58.661(Timestamp), 奋斗(String), /imgs/1149378068无标题.png(String), 123456789@qq.com(String), 2(Long)
-2021-04-09 21:21:01.675 DEBUG 9412 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
-2021-04-09 21:22:09.289 DEBUG 9412 --- [http-nio-8080-exec-8] c.s.dao.UserDao.getUserInfoByUsername    : ==>  Preparing: select * from sk_user where phone = ?
-2021-04-09 21:22:09.290 DEBUG 9412 --- [http-nio-8080-exec-8] c.s.dao.UserDao.getUserInfoByUsername    : ==> Parameters: 18065138932(String)
-2021-04-09 21:22:09.291 DEBUG 9412 --- [http-nio-8080-exec-8] c.s.dao.UserDao.getUserInfoByUsername    : <==      Total: 1
-2021-04-09 21:22:09.423 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:22:09.424 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:22:09.425 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:22:09.426 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
-2021-04-09 21:22:09.426 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-09 21:22:09.425(Timestamp), 2(Long)
-2021-04-09 21:22:09.431 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
-2021-04-09 21:22:09.436 DEBUG 9412 --- [http-nio-8080-exec-7] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
-2021-04-09 21:22:09.436 DEBUG 9412 --- [http-nio-8080-exec-7] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
-2021-04-09 21:22:09.445 DEBUG 9412 --- [http-nio-8080-exec-7] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
-2021-04-09 21:22:09.446 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
-2021-04-09 21:22:09.446 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
-2021-04-09 21:22:09.452 DEBUG 9412 --- [http-nio-8080-exec-7] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
-2021-04-09 21:22:10.307  INFO 9412 --- [Thread-31] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:22:10.308  INFO 9412 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2021-04-09 21:22:10.317  INFO 9412 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
-2021-04-09 21:22:10.574  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:22:10.574 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:22:10.574  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:22:10.780  WARN 9412 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.soreak.dao]' package. Please check your configuration.
-2021-04-09 21:22:10.908  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:22:10.908  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:22:10.909  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:22:10.956  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:22:10.956  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 379 ms
-2021-04-09 21:22:11.040  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:22:11.060  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:22:11.168  INFO 9412 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
-
-Using generated security password: d8865fa6-7caf-470e-84ca-a5b3fb1342c3
-
-2021-04-09 21:22:11.182  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b206e48, org.springframework.security.web.context.SecurityContextPersistenceFilter@622befc0, org.springframework.security.web.header.HeaderWriterFilter@79df5de, org.springframework.security.web.csrf.CsrfFilter@d4c6459, org.springframework.security.web.authentication.logout.LogoutFilter@394ebf47, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6f781b3, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@3242e312, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5207dc9b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@e9fdf07, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39e65c20, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51bd6dc7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@68c72571, org.springframework.security.web.session.SessionManagementFilter@c2b3cb0, org.springframework.security.web.access.ExceptionTranslationFilter@29de591c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@55119dfa]
-2021-04-09 21:22:11.202  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:22:11.224  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:22:11.230  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 0.703 seconds (JVM running for 475.459)
-2021-04-09 21:22:11.232  INFO 9412 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
-
-
-==========================
-CONDITION EVALUATION DELTA
-==========================
-
-
-Positive matches:
------------------
-
-   SpringBootWebSecurityConfiguration matched:
-      - found 'session' scope (OnWebApplicationCondition)
-      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
-
-   UserDetailsServiceAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
-      - @ConditionalOnBean (types: org.springframework.security.config.annotation.ObjectPostProcessor; SearchStrategy: all) found bean 'objectPostProcessor'; @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   UserDetailsServiceAutoConfiguration#inMemoryUserDetailsManager matched:
-      - @ConditionalOnMissingBean (types: org.springframework.security.oauth2.client.registration.ClientRegistrationRepository; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   WebSecurityEnablerConfiguration matched:
-      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
-      - found 'session' scope (OnWebApplicationCondition)
-      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-
-Negative matches:
------------------
-
-    None
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
-2021-04-09 21:22:11.805  INFO 9412 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-04-09 21:22:11.806  INFO 9412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-04-09 21:22:11.808  INFO 9412 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2021-04-09 21:22:11.849 ERROR 9412 --- [http-nio-8080-exec-1] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-8080-exec-1] Exception processing template "index": An error happened during template parsing (template: "class path resource [templates/index.html]")
-
-org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/index.html]")
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
-	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
-	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
-	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1394)
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1139)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1078)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:58)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:237)
-	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:223)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:218)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:115)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:888)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "master.avatar" (template: "_fragments" - line 49, col 63)
-	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393)
-	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
-	... 98 common frames omitted
-Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "master.avatar" (template: "_fragments" - line 49, col 63)
-	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290)
-	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
-	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
-	at org.thymeleaf.standard.expression.LinkExpression.executeLinkExpression(LinkExpression.java:264)
-	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:85)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
-	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
-	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
-	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
-	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
-	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228)
-	at org.thymeleaf.engine.Model.process(Model.java:282)
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
-	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278)
-	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124)
-	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109)
-	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
-	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
-	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
-	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
-	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
-	... 100 common frames omitted
-Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'avatar' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
-	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
-	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
-	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
-	... 126 common frames omitted
-
-2021-04-09 21:22:11.852 ERROR 9412 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/index.html]")] with root cause
-
-org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'avatar' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
-	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
-	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
-	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
-	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
-	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
-	at org.thymeleaf.standard.expression.LinkExpression.executeLinkExpression(LinkExpression.java:264)
-	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:85)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
-	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
-	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
-	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
-	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
-	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228)
-	at org.thymeleaf.engine.Model.process(Model.java:282)
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
-	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278)
-	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186)
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124)
-	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109)
-	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
-	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
-	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
-	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
-	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
-	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
-	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
-	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
-	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
-	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
-	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
-	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1394)
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1139)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1078)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:149)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:58)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:237)
-	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:223)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:218)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:115)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:888)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-
-2021-04-09 21:22:15.735  INFO 9412 --- [Thread-36] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:22:15.985  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 9412 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
-2021-04-09 21:22:15.985 DEBUG 9412 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-04-09 21:22:15.985  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
-2021-04-09 21:22:16.556  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-04-09 21:22:16.557  INFO 9412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-09 21:22:16.558  INFO 9412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-04-09 21:22:16.694  INFO 9412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-09 21:22:16.694  INFO 9412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 705 ms
-2021-04-09 21:22:16.877  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.BlogCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:22:17.165  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.NewsCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:22:17.491  WARN 9412 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.TopicCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
-2021-04-09 21:22:17.768  INFO 9412 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53564c04, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e827cba, org.springframework.security.web.header.HeaderWriterFilter@6288abb3, org.springframework.security.web.authentication.logout.LogoutFilter@70b2e0c6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@e0c02e6, org.springframework.security.web.session.ConcurrentSessionFilter@7c25fbce, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19f09dea, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ed041f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@727edcb0, org.springframework.security.web.session.SessionManagementFilter@3b75985c, org.springframework.security.web.access.ExceptionTranslationFilter@2ecd950d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@76ec3be4]
-2021-04-09 21:22:17.861  INFO 9412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-09 21:22:17.897  INFO 9412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-04-09 21:22:17.990  INFO 9412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-09 21:22:18.010  INFO 9412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-04-09 21:22:18.014  INFO 9412 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 2.067 seconds (JVM running for 482.243)
-2021-04-09 21:22:18.016  INFO 9412 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
-
-
-==========================
-CONDITION EVALUATION DELTA
-==========================
-
-
-Positive matches:
------------------
-
-    None
-
-
-Negative matches:
------------------
-
-   SpringBootWebSecurityConfiguration:
-      Did not match:
-         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter,org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' securityConfig; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
-      Matched:
-         - found 'session' scope (OnWebApplicationCondition)
-
-   UserDetailsServiceAutoConfiguration:
-      Did not match:
-         - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) found beans of type 'org.springframework.security.authentication.AuthenticationManager' authenticationManagerBean and found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' customUserDetailsService and found beans of type 'org.springframework.security.authentication.AuthenticationProvider' daoAuthenticationProvider (OnBeanCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
-
-   WebSecurityEnablerConfiguration:
-      Did not match:
-         - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
-         - found 'session' scope (OnWebApplicationCondition)
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
-2021-04-09 21:22:18.886  INFO 9412 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-04-09 21:22:18.887  INFO 9412 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-04-09 21:22:18.888  INFO 9412 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-04-09 21:22:18.895  INFO 9412 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2021-04-09 21:22:18.935  INFO 9412 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2021-04-09 21:22:18.935 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:22:18.935 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:22:18.940 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:22:18.941 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
-2021-04-09 21:22:18.942 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-09 21:22:18.941(Timestamp), 2(Long)
-2021-04-09 21:22:18.947 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
-2021-04-09 21:22:18.953 DEBUG 9412 --- [http-nio-8080-exec-2] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
-2021-04-09 21:22:18.954 DEBUG 9412 --- [http-nio-8080-exec-2] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
-2021-04-09 21:22:18.961 DEBUG 9412 --- [http-nio-8080-exec-2] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
-2021-04-09 21:22:18.962 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
-2021-04-09 21:22:18.963 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
-2021-04-09 21:22:18.969 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
-2021-04-09 21:22:18.976 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:18.976 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
-2021-04-09 21:22:18.979 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:18.986 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:18.986 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
-2021-04-09 21:22:18.987 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:18.991 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:18.992 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
-2021-04-09 21:22:18.993 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:18.995 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:18.995 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
-2021-04-09 21:22:18.996 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:19.000 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:19.000 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
-2021-04-09 21:22:19.001 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:19.007 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:19.007 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
-2021-04-09 21:22:19.008 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:19.015 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:19.016 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
-2021-04-09 21:22:19.017 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:19.018 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
-2021-04-09 21:22:19.018 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
-2021-04-09 21:22:19.021 DEBUG 9412 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
-2021-04-09 21:22:27.786 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
-2021-04-09 21:22:27.787 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
-2021-04-09 21:22:27.788 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
-2021-04-09 21:22:27.789 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
-2021-04-09 21:22:27.789 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-09 21:22:27.789(Timestamp), 2(Long)
-2021-04-09 21:22:27.799 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
-2021-04-09 21:22:27.800 DEBUG 9412 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
-2021-04-09 21:22:27.800 DEBUG 9412 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
-2021-04-09 21:22:27.802 DEBUG 9412 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
-2021-04-09 21:22:27.804 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
-2021-04-09 21:22:27.804 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
-2021-04-09 21:22:27.807 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
-2021-04-09 21:22:27.811 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.811 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
-2021-04-09 21:22:27.813 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.817 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.817 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
-2021-04-09 21:22:27.818 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.824 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.824 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
-2021-04-09 21:22:27.826 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.828 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.828 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
-2021-04-09 21:22:27.829 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.833 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.834 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
-2021-04-09 21:22:27.835 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.843 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.843 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
-2021-04-09 21:22:27.844 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.855 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
-2021-04-09 21:22:27.855 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
-2021-04-09 21:22:27.857 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
-2021-04-09 21:22:27.858 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
-2021-04-09 21:22:27.858 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
-2021-04-09 21:22:27.861 DEBUG 9412 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
+2021-04-12 20:36:29.730  INFO 14248 --- [restartedMain] com.soreak.WelogApplication              : Starting WelogApplication using Java 1.8.0_141 on DESKTOP-E76FNBI with PID 14248 (E:\studyspace\IDEA workspace\welog\target\classes started by 14989 in E:\studyspace\IDEA workspace\welog)
+2021-04-12 20:36:29.735 DEBUG 14248 --- [restartedMain] com.soreak.WelogApplication              : Running with Spring Boot v2.4.1, Spring v5.3.2
+2021-04-12 20:36:29.736  INFO 14248 --- [restartedMain] com.soreak.WelogApplication              : No active profile set, falling back to default profiles: default
+2021-04-12 20:36:29.794  INFO 14248 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\14989\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/14989/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2021-04-12 20:36:29.795  INFO 14248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-12 20:36:29.795  INFO 14248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-12 20:36:32.051  INFO 14248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-12 20:36:32.070  INFO 14248 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-12 20:36:32.071  INFO 14248 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-04-12 20:36:32.197  INFO 14248 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-12 20:36:32.197  INFO 14248 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2401 ms
+2021-04-12 20:36:32.723  WARN 14248 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.BlogCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
+2021-04-12 20:36:33.112  WARN 14248 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.NewsCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
+2021-04-12 20:36:33.328  WARN 14248 --- [restartedMain] c.b.m.core.injector.AbstractMethod       : [com.soreak.dao.TopicCommentVODao.selectById] Has been loaded by XML or SqlProvider or Mybatis's Annotation, so ignoring this injection for [class com.baomidou.mybatisplus.core.injector.methods.SelectById]
+2021-04-12 20:36:33.536  INFO 14248 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7bad7f6f, org.springframework.security.web.context.SecurityContextPersistenceFilter@51d76802, org.springframework.security.web.header.HeaderWriterFilter@5faf2e71, org.springframework.security.web.authentication.logout.LogoutFilter@329e4a3f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3bed88ae, org.springframework.security.web.session.ConcurrentSessionFilter@73ec4dd7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b827550, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@436ab9ea, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14cf5cd6, org.springframework.security.web.session.SessionManagementFilter@1657fc2e, org.springframework.security.web.access.ExceptionTranslationFilter@362f634c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@52b0616e]
+2021-04-12 20:36:33.685  INFO 14248 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-12 20:36:33.837  INFO 14248 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-04-12 20:36:34.551  INFO 14248 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-12 20:36:34.602  INFO 14248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-12 20:36:34.620  INFO 14248 --- [restartedMain] com.soreak.WelogApplication              : Started WelogApplication in 5.575 seconds (JVM running for 8.794)
+2021-04-12 20:36:34.686  INFO 14248 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-12 20:36:34.687  INFO 14248 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-12 20:36:34.689  INFO 14248 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-04-12 20:36:34.730  INFO 14248 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-12 20:36:36.966  INFO 14248 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-12 20:36:37.026 DEBUG 14248 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
+2021-04-12 20:36:37.068 DEBUG 14248 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
+2021-04-12 20:36:37.221 DEBUG 14248 --- [http-nio-8080-exec-1] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
+2021-04-12 20:36:37.231 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
+2021-04-12 20:36:37.231 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
+2021-04-12 20:36:37.264 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
+2021-04-12 20:36:37.765 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:37.766 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
+2021-04-12 20:36:37.836 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:37.945 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:37.947 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
+2021-04-12 20:36:37.950 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:37.970 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:37.971 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
+2021-04-12 20:36:37.972 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:37.978 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:37.979 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
+2021-04-12 20:36:37.985 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:38.001 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:38.001 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
+2021-04-12 20:36:38.003 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:38.048 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:38.049 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
+2021-04-12 20:36:38.050 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:38.101 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:38.101 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
+2021-04-12 20:36:38.118 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:38.125 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
+2021-04-12 20:36:38.126 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
+2021-04-12 20:36:38.131 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
+2021-04-12 20:36:44.778 DEBUG 14248 --- [http-nio-8080-exec-2] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
+2021-04-12 20:36:44.779 DEBUG 14248 --- [http-nio-8080-exec-2] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
+2021-04-12 20:36:44.780 DEBUG 14248 --- [http-nio-8080-exec-2] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
+2021-04-12 20:36:44.782 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
+2021-04-12 20:36:44.782 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
+2021-04-12 20:36:44.791 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
+2021-04-12 20:36:44.801 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.802 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
+2021-04-12 20:36:44.803 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.819 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.819 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
+2021-04-12 20:36:44.820 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.827 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.827 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
+2021-04-12 20:36:44.829 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.832 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.833 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
+2021-04-12 20:36:44.837 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.845 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.846 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
+2021-04-12 20:36:44.847 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.861 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.861 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
+2021-04-12 20:36:44.862 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.873 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:36:44.874 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
+2021-04-12 20:36:44.875 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:36:44.877 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
+2021-04-12 20:36:44.877 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
+2021-04-12 20:36:44.881 DEBUG 14248 --- [http-nio-8080-exec-2] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
+2021-04-12 20:37:16.147 DEBUG 14248 --- [http-nio-8080-exec-10] c.s.dao.UserDao.getUserInfoByUsername    : ==>  Preparing: select * from sk_user where phone = ?
+2021-04-12 20:37:16.147 DEBUG 14248 --- [http-nio-8080-exec-10] c.s.dao.UserDao.getUserInfoByUsername    : ==> Parameters: 17689400639(String)
+2021-04-12 20:37:16.149 DEBUG 14248 --- [http-nio-8080-exec-10] c.s.dao.UserDao.getUserInfoByUsername    : <==      Total: 1
+2021-04-12 20:37:16.264 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
+2021-04-12 20:37:16.264 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 17689400639(String)
+2021-04-12 20:37:16.265 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
+2021-04-12 20:37:16.268 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
+2021-04-12 20:37:16.270 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-12 20:37:16.266(Timestamp), 1(Long)
+2021-04-12 20:37:16.290 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
+2021-04-12 20:37:16.291 DEBUG 14248 --- [http-nio-8080-exec-3] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
+2021-04-12 20:37:16.291 DEBUG 14248 --- [http-nio-8080-exec-3] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
+2021-04-12 20:37:16.293 DEBUG 14248 --- [http-nio-8080-exec-3] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
+2021-04-12 20:37:16.294 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
+2021-04-12 20:37:16.295 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
+2021-04-12 20:37:16.301 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
+2021-04-12 20:37:16.304 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.305 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
+2021-04-12 20:37:16.306 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.310 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.311 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
+2021-04-12 20:37:16.312 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.316 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.316 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
+2021-04-12 20:37:16.317 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.319 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.319 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
+2021-04-12 20:37:16.320 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.323 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.324 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
+2021-04-12 20:37:16.325 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.329 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.330 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
+2021-04-12 20:37:16.331 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.336 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:16.336 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
+2021-04-12 20:37:16.337 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:16.339 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
+2021-04-12 20:37:16.339 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
+2021-04-12 20:37:16.341 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
+2021-04-12 20:37:19.141 DEBUG 14248 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectList        : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (role = ?)
+2021-04-12 20:37:19.141 DEBUG 14248 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectList        : ==> Parameters: 0(Integer)
+2021-04-12 20:37:19.145 DEBUG 14248 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectList        : <==      Total: 4
+2021-04-12 20:37:19.146 DEBUG 14248 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectAll         : ==>  Preparing: select * from sk_user
+2021-04-12 20:37:19.146 DEBUG 14248 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectAll         : ==> Parameters: 
+2021-04-12 20:37:19.148 DEBUG 14248 --- [http-nio-8080-exec-7] com.soreak.dao.UserDao.selectAll         : <==      Total: 6
+2021-04-12 20:37:20.330 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
+2021-04-12 20:37:20.331 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 17689400639(String)
+2021-04-12 20:37:20.332 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
+2021-04-12 20:37:20.336 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
+2021-04-12 20:37:20.336 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-12 20:37:20.332(Timestamp), 1(Long)
+2021-04-12 20:37:20.342 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
+2021-04-12 20:37:20.343 DEBUG 14248 --- [http-nio-8080-exec-9] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
+2021-04-12 20:37:20.343 DEBUG 14248 --- [http-nio-8080-exec-9] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
+2021-04-12 20:37:20.345 DEBUG 14248 --- [http-nio-8080-exec-9] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
+2021-04-12 20:37:20.346 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
+2021-04-12 20:37:20.346 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
+2021-04-12 20:37:20.351 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
+2021-04-12 20:37:20.356 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.356 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
+2021-04-12 20:37:20.357 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.362 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.362 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
+2021-04-12 20:37:20.363 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.367 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.367 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
+2021-04-12 20:37:20.368 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.371 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.371 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
+2021-04-12 20:37:20.372 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.376 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.376 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
+2021-04-12 20:37:20.377 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.381 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.382 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
+2021-04-12 20:37:20.383 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.388 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:20.389 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
+2021-04-12 20:37:20.389 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:20.390 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
+2021-04-12 20:37:20.390 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
+2021-04-12 20:37:20.395 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
+2021-04-12 20:37:27.318 DEBUG 14248 --- [http-nio-8080-exec-6] c.s.dao.UserDao.getUserInfoByUsername    : ==>  Preparing: select * from sk_user where phone = ?
+2021-04-12 20:37:27.318 DEBUG 14248 --- [http-nio-8080-exec-6] c.s.dao.UserDao.getUserInfoByUsername    : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:27.319 DEBUG 14248 --- [http-nio-8080-exec-6] c.s.dao.UserDao.getUserInfoByUsername    : <==      Total: 1
+2021-04-12 20:37:27.418 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
+2021-04-12 20:37:27.419 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:27.420 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
+2021-04-12 20:37:27.420 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
+2021-04-12 20:37:27.421 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-12 20:37:27.42(Timestamp), 2(Long)
+2021-04-12 20:37:27.425 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
+2021-04-12 20:37:27.426 DEBUG 14248 --- [http-nio-8080-exec-9] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
+2021-04-12 20:37:27.426 DEBUG 14248 --- [http-nio-8080-exec-9] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
+2021-04-12 20:37:27.427 DEBUG 14248 --- [http-nio-8080-exec-9] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
+2021-04-12 20:37:27.428 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
+2021-04-12 20:37:27.429 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
+2021-04-12 20:37:27.432 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
+2021-04-12 20:37:27.434 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.435 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
+2021-04-12 20:37:27.435 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.439 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.439 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
+2021-04-12 20:37:27.440 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.444 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.445 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
+2021-04-12 20:37:27.445 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.447 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.447 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
+2021-04-12 20:37:27.448 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.452 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.452 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
+2021-04-12 20:37:27.453 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.458 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.458 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
+2021-04-12 20:37:27.459 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.498 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:27.498 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
+2021-04-12 20:37:27.499 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:27.500 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
+2021-04-12 20:37:27.501 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
+2021-04-12 20:37:27.503 DEBUG 14248 --- [http-nio-8080-exec-9] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
+2021-04-12 20:37:30.342 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
+2021-04-12 20:37:30.342 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:30.345 DEBUG 14248 --- [http-nio-8080-exec-3] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
+2021-04-12 20:37:41.881 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
+2021-04-12 20:37:41.882 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:41.883 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
+2021-04-12 20:37:42.076 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET qq=?, password=?, git=?, role=?, create_time=?, phone=?, wechat=?, nickname=?, update_time=?, information=?, avatar=?, email=? WHERE id=?
+2021-04-12 20:37:42.078 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.updateById        : ==> Parameters: 123456789(String), $2a$10$ifdm4TKG.DkLaJFHFdDPcevAHE4sm.v0iGktex2MQvxuB0MvyKDHG(String), cgqq(String), 0(String), 2020-12-23 17:47:08.743(Timestamp), 18065138932(String), cgqq(String), 曹老板(String), 2021-04-12 20:37:27.42(Timestamp), 奋斗(String), /imgs/1149378068无标题.png(String), 123456789@qq.com(String), 2(Long)
+2021-04-12 20:37:42.092 DEBUG 14248 --- [http-nio-8080-exec-1] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
+2021-04-12 20:37:49.624 DEBUG 14248 --- [http-nio-8080-exec-2] c.s.dao.UserDao.getUserInfoByUsername    : ==>  Preparing: select * from sk_user where phone = ?
+2021-04-12 20:37:49.624 DEBUG 14248 --- [http-nio-8080-exec-2] c.s.dao.UserDao.getUserInfoByUsername    : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:49.626 DEBUG 14248 --- [http-nio-8080-exec-2] c.s.dao.UserDao.getUserInfoByUsername    : <==      Total: 1
+2021-04-12 20:37:56.591 DEBUG 14248 --- [http-nio-8080-exec-6] c.s.dao.UserDao.getUserInfoByUsername    : ==>  Preparing: select * from sk_user where phone = ?
+2021-04-12 20:37:56.591 DEBUG 14248 --- [http-nio-8080-exec-6] c.s.dao.UserDao.getUserInfoByUsername    : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:56.593 DEBUG 14248 --- [http-nio-8080-exec-6] c.s.dao.UserDao.getUserInfoByUsername    : <==      Total: 1
+2021-04-12 20:37:56.696 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.selectOne         : ==>  Preparing: SELECT id,qq,password,git,role,create_time,phone,wechat,nickname,update_time,information,avatar,email FROM sk_user WHERE (phone = ?)
+2021-04-12 20:37:56.696 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.selectOne         : ==> Parameters: 18065138932(String)
+2021-04-12 20:37:56.697 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.selectOne         : <==      Total: 1
+2021-04-12 20:37:56.698 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.updateById        : ==>  Preparing: UPDATE sk_user SET update_time=? WHERE id=?
+2021-04-12 20:37:56.698 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.updateById        : ==> Parameters: 2021-04-12 20:37:56.697(Timestamp), 2(Long)
+2021-04-12 20:37:56.703 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.UserDao.updateById        : <==    Updates: 1
+2021-04-12 20:37:56.704 DEBUG 14248 --- [http-nio-8080-exec-4] c.soreak.dao.TagDao.getTagNameAndCount   : ==>  Preparing: select t.id,t.name,COUNT(*) as 'count' FROM sk_tag t,sk_blog b,sk_blog_tag bt where t.id = bt.tag_id and b.id = bt.blog_id GROUP BY t.`Name` ORDER BY COUNT(*) desc LIMIT 8
+2021-04-12 20:37:56.705 DEBUG 14248 --- [http-nio-8080-exec-4] c.soreak.dao.TagDao.getTagNameAndCount   : ==> Parameters: 
+2021-04-12 20:37:56.706 DEBUG 14248 --- [http-nio-8080-exec-4] c.soreak.dao.TagDao.getTagNameAndCount   : <==      Total: 4
+2021-04-12 20:37:56.707 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogDao.getBlogList       : ==>  Preparing: SELECT b.*,u.nickname as 'userName',u.avatar as 'userAvatar' FROM sk_blog b,sk_user u WHERE b.user_id = u.id and b.published = 1 ORDER BY b.update_time DESC
+2021-04-12 20:37:56.707 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogDao.getBlogList       : ==> Parameters: 
+2021-04-12 20:37:56.710 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogDao.getBlogList       : <==      Total: 7
+2021-04-12 20:37:56.713 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.713 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 1(Long)
+2021-04-12 20:37:56.714 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.723 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.723 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 5(Long)
+2021-04-12 20:37:56.724 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.727 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.727 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 4(Long)
+2021-04-12 20:37:56.728 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.730 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.730 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 3(Long)
+2021-04-12 20:37:56.731 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.735 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.735 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 2(Long)
+2021-04-12 20:37:56.737 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.742 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.742 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 6(Long)
+2021-04-12 20:37:56.742 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.747 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM sk_blog_like WHERE (blog_id = ?)
+2021-04-12 20:37:56.747 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : ==> Parameters: 7(Long)
+2021-04-12 20:37:56.749 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogLikeDao.selectCount   : <==      Total: 1
+2021-04-12 20:37:56.750 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogDao.selectList        : ==>  Preparing: SELECT id,flag,create_time,recommend,update_time,published,commentabled,title,user_id,views,content FROM sk_blog ORDER BY views DESC limit 5
+2021-04-12 20:37:56.750 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogDao.selectList        : ==> Parameters: 
+2021-04-12 20:37:56.753 DEBUG 14248 --- [http-nio-8080-exec-4] com.soreak.dao.BlogDao.selectList        : <==      Total: 5
