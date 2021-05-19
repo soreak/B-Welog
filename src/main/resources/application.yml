@@ -11,8 +11,6 @@ spring:
 
 
 
-
-
 logging:
   file:
     path: log/welog.log

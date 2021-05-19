@@ -24,15 +24,15 @@ public class SMSService {
 
 
     //签名
-    static final String signName = "juice";
+    static final String signName = "xxxx";
 
     //短信模板
-    static final String  Template= "SMS_207500910";
+    static final String  Template= "xxxx";
 
 
     /*阿里云的AK*/
-    static final String accessKeyId = "LTAI4G9n5HEDDTf1XZQk9u3u";
-    static final String accessKeySecret = "lYZfGIpeJEqB9OONLIxzPwJjLnzoG5";
+    static final String accessKeyId = "xxxx";
+    static final String accessKeySecret = "xxx";
 
     public static SendSmsResponse sendSms(String phone,String code) throws ClientException {
         //超时时间

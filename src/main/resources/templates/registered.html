@@ -230,10 +230,10 @@
                 $('.field.check').addClass("error");
                 $("#remind").text("请输入确认密码").show();
                 alert("信息有误");
-            } else if($("#pwd").val() != $("#checkPwd").val()){
+            } else if($("#password").val() != $("#checkPwd").val()){
                 $('.field.check').addClass("error");
                 $("#remind").text("两次密码输入不一致").show();
-                alert("信息有误");
+                alert("两次密码输入不一致");
             } else {
                 $('.field.check').removeClass("error");
                 $("#remind").text("").show();
